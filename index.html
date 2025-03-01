@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的作品集 | Portfolio</title>
+    <title>咖啡体验设计 | UX Portfolio</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="logo">Portfolio</div>
+        <div class="logo">Coffee UX</div>
         <ul class="nav-links">
             <li><a href="#home">首页</a></li>
             <li><a href="#about">关于</a></li>
             <li><a href="#projects">作品</a></li>
+            <li><a href="#process">设计流程</a></li>
             <li><a href="#contact">联系</a></li>
         </ul>
     </nav>
@@ -22,9 +23,9 @@
     <!-- 首页部分 -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>你好，我是<span class="highlight">开发者</span></h1>
-            <p>全栈开发工程师 / UI设计师</p>
-            <a href="#projects" class="cta-button">查看作品</a>
+            <h1>探索<span class="highlight">咖啡体验</span>设计</h1>
+            <p>UX设计师 / 咖啡爱好者 / 用户体验研究员</p>
+            <a href="#projects" class="cta-button">查看项目</a>
         </div>
     </section>
 
@@ -33,16 +34,16 @@
         <h2>关于我</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>我是一名充满热情的开发者，专注于创建美观且实用的web应用。</p>
+                <p>作为一名专注于咖啡领域的UX设计师，我致力于创造令人愉悦的咖啡体验。通过深入的用户研究和创新的设计解决方案，我帮助咖啡品牌建立更好的用户连接。</p>
                 <div class="skills">
-                    <h3>技能</h3>
+                    <h3>专业技能</h3>
                     <div class="skill-tags">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>UI设计</span>
+                        <span>用户研究</span>
+                        <span>原型设计</span>
+                        <span>用户旅程图</span>
+                        <span>交互设计</span>
+                        <span>服务设计</span>
+                        <span>品牌体验</span>
                     </div>
                 </div>
             </div>
@@ -51,34 +52,61 @@
 
     <!-- 作品部分 -->
     <section id="projects" class="projects">
-        <h2>我的作品</h2>
+        <h2>精选项目</h2>
         <div class="project-grid">
             <div class="project-card">
-                <div class="project-image"></div>
-                <h3>项目一</h3>
-                <p>这是一个响应式网站项目，使用了现代化的设计理念。</p>
+                <div class="project-image coffee-app"></div>
+                <h3>咖啡订购App设计</h3>
+                <p>重新设计移动端咖啡订购流程，提升用户下单体验。通过用户研究发现痛点，优化交互流程。</p>
                 <div class="project-links">
-                    <a href="#" class="project-link">查看演示</a>
-                    <a href="#" class="project-link">源代码</a>
+                    <a href="#" class="project-link">查看案例</a>
+                    <a href="#" class="project-link">设计过程</a>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-image"></div>
-                <h3>项目二</h3>
-                <p>一个使用React开发的单页面应用。</p>
+                <div class="project-image coffee-shop"></div>
+                <h3>咖啡店服务体验优化</h3>
+                <p>为本地咖啡连锁店设计新的服务流程，包括空间布局、点单系统和会员体验。</p>
                 <div class="project-links">
-                    <a href="#" class="project-link">查看演示</a>
-                    <a href="#" class="project-link">源代码</a>
+                    <a href="#" class="project-link">查看案例</a>
+                    <a href="#" class="project-link">研究报告</a>
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-image"></div>
-                <h3>项目三</h3>
-                <p>基于Node.js的后端API项目。</p>
+                <div class="project-image coffee-brand"></div>
+                <h3>咖啡品牌数字化转型</h3>
+                <p>帮助传统咖啡品牌建立数字化体验，设计从线下到线上的无缝用户旅程。</p>
                 <div class="project-links">
-                    <a href="#" class="project-link">查看演示</a>
-                    <a href="#" class="project-link">源代码</a>
+                    <a href="#" class="project-link">查看案例</a>
+                    <a href="#" class="project-link">完整方案</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 设计流程部分 -->
+    <section id="process" class="process">
+        <h2>设计流程</h2>
+        <div class="process-grid">
+            <div class="process-item">
+                <i class="fas fa-search"></i>
+                <h3>发现与研究</h3>
+                <p>深入理解用户需求，进行实地观察和访谈，收集数据分析。</p>
+            </div>
+            <div class="process-item">
+                <i class="fas fa-lightbulb"></i>
+                <h3>定义问题</h3>
+                <p>整理研究发现，确定核心问题，制定设计策略。</p>
+            </div>
+            <div class="process-item">
+                <i class="fas fa-pencil-alt"></i>
+                <h3>设计构思</h3>
+                <p>头脑风暴，快速原型，反复迭代优化设计方案。</p>
+            </div>
+            <div class="process-item">
+                <i class="fas fa-check-circle"></i>
+                <h3>测试验证</h3>
+                <p>用户测试，收集反馈，持续改进设计成果。</p>
             </div>
         </div>
     </section>
@@ -106,7 +134,7 @@
 
     <!-- 页脚 -->
     <footer>
-        <p>&copy; 2024 我的作品集. All rights reserved.</p>
+        <p>&copy; 2024 咖啡体验设计作品集. All rights reserved.</p>
     </footer>
 </body>
 </html> 
