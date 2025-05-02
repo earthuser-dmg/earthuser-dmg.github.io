@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #020c15, #121254); /* 自定义渐变颜色 */
-    color: #333;
+    color: #ffffff;
 }
 
 .container {
@@ -14,13 +14,13 @@ body {
 .section {
     padding: 80px 20px;
     text-align: center;
-    opacity: 0; /* 初始透明度为 0，用于入场动画 */
+    opacity: 100; /* 初始透明度为 0，用于入场动画 */
     transform: translateY(20px); /* 初始位置向下偏移，用于入场动画 */
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .section.active {
-    opacity: 1;
+    opacity: 100;
     transform: translateY(0);
 }
 
