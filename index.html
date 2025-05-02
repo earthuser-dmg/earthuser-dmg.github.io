@@ -1,86 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juno的个人作品集</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juno's Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <section id="hero" class="section">
-            <div class="hero-content">
-                <h1>你好，我是 [你的名字]</h1>
-                <p>一名充满热情的 [你的职业/领域]。</p>
-                <a href="#portfolio" class="button">查看我的作品</a>
-            </div>
-        </section>
+  <!-- 导航栏 -->
+  <nav>
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#connect">CONNECT</a></li>
+    </ul>
+  </nav>
 
-        <section id="about" class="section about-columns">
-            <h2>关于我</h2>
-            <div class="about-grid">
-                <div class="about-item">
-                    <h3>技能/兴趣 1</h3>
-                    <p>这里可以写一些关于你的第一个技能或兴趣的介绍。</p>
-                </div>
-                <div class="about-item">
-                    <h3>技能/兴趣 2</h3>
-                    <p>这里可以写一些关于你的第二个技能或兴趣的介绍。</p>
-                </div>
-                <div class="about-item">
-                    <h3>技能/兴趣 3</h3>
-                    <p>这里可以写一些关于你的第三个技能或兴趣的介绍。</p>
-                </div>
-            </div>
-        </section>
+  <!-- 关于部分 -->
+  <section id="about">
+    <h1>About Me</h1>
+    <p>Product designer focused on craft, storytelling, and strategy at the intersection of digital design and consumer devices. Currently at Snap Lab, working on fun projects for Spectacles. Previously, worked on Monetization at Meta and the Alexa App and Echo Show suite at Amazon. Before diving into tech, I studied Architecture and worked on professional projects ranging from skyscrapers to masterplans. My work aims to bridge the gap between the digital and physical worlds, one thoughtful interaction at a time.</p>
+  </section>
 
-        <section id="portfolio" class="section portfolio-columns">
-            <h2>我的作品</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <span class="portfolio-number">01</span>
-                    <div class="portfolio-info">
-                        <h3>作品标题 1</h3>
-                        <p>作品简要介绍 1。</p>
-                        <a href="#">查看详情</a>
-                    </div>
-                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
-                </div>
-                <div class="portfolio-item">
-                    <span class="portfolio-number">02</span>
-                    <div class="portfolio-info">
-                        <h3>作品标题 2</h3>
-                        <p>作品简要介绍 2。</p>
-                        <a href="#">查看详情</a>
-                    </div>
-                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
-                </div>
-                <div class="portfolio-item">
-                    <span class="portfolio-number">03</span>
-                    <div class="portfolio-info">
-                        <h3>作品标题 3</h3>
-                        <p>作品简要介绍 3。</p>
-                        <a href="#">查看详情</a>
-                    </div>
-                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
-                </div>
-                </div>
-        </section>
-
-        <section id="contact" class="section">
-            <h2>联系我</h2>
-            <p>期待与你合作！可以通过以下方式联系我：</p>
-            <ul>
-                <li>邮箱：[你的邮箱]</li>
-                <li>GitHub：[你的 GitHub 链接]</li>
-                <li>LinkedIn：[你的 LinkedIn 链接]</li>
-            </ul>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 [你的名字]. All rights reserved.</p>
-        </footer>
+  <!-- 经验部分 -->
+  <section id="experience">
+    <h1>Experience</h1>
+    <!-- 项目1 -->
+    <div class="project">
+      <span class="project-number">01</span>
+      <h2 class="project-name">Spectacles</h2>
+      <p class="project-company">Snap Lab • 2023 - Present</p>
+      <p class="project-description">The latest 5th generation Spectacles are radical, see-through, standalone AR glasses that enable you to use Lenses and experience the world with friends in new ways. At Snap Lab, I wear multiple hats, drive design projects for the Spectacles Mobile App, and conceptualize on-device AR experiences with creative engineers, prototypers, and researchers.</p>
     </div>
-    <script src="js/script.js"></script>
+    <!-- 其他项目依次添加 -->
+  </section>
+
+  <!-- 连接部分 -->
+  <section id="connect">
+    <h1>Connect</h1>
+    <p>BASED<br>Los Angeles</p>
+  </section>
 </body>
+
 </html>
