@@ -1,120 +1,39 @@
+/* 全局样式 */
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #020c15, #121254); /* 自定义渐变颜色 */
-    color: #ffffff;
-}
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-.section {
-    padding: 80px 20px;
-    text-align: center;
-    opacity: 100; /* 初始透明度为 0，用于入场动画 */
-    transform: translateY(20px); /* 初始位置向下偏移，用于入场动画 */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.section.active {
-    opacity: 100;
-    transform: translateY(0);
-}
-
-#hero {
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-.hero-content {
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#portfolio {
-    background-color: #f9f9f9;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.portfolio-item {
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-item img {
-    width: 100%;
-    display: block;
-}
-
-.portfolio-item h3 {
-    padding: 10px;
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.portfolio-item p {
-    padding: 0 10px 10px;
-    margin: 0;
-    color: #777;
-}
-
-.portfolio-item a {
-    display: block;
-    padding: 10px;
-    background-color: #eee;
-    color: #333;
-    text-decoration: none;
-    text-align: center;
-}
-
-#contact ul {
-    list-style: none;
-    padding: 0;
-}
-
-#contact li {
-    margin-bottom: 10px;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
+  }
+  
+  nav {
     background-color: #333;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
     color: white;
-}
-
-/* 可以根据你的喜好添加更多样式 */
+    text-decoration: none;
+  }
+  
+  section {
+    padding: 20px;
+  }
+  
+  .project {
+    margin-bottom: 20px;
+  }
+  
+  .project-number {
+    font-weight: bold;
+  }
