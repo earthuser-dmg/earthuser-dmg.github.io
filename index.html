@@ -1,102 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>设计师作品集 | Portfolio</title>
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Juno's Space</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
     <div class="container">
-        <!-- 左侧边栏 -->
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="profile-image">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="设计师头像">
-                </div>
-                <h1>设计师名字</h1>
-                <p class="title">UI/UX设计师 / 创意总监</p>
+        <section id="hero" class="section">
+            <div class="hero-content">
+                <h1>你好，我是 [你的名字]</h1>
+                <p>一名充满热情的 [你的职业/领域]。</p>
+                <a href="#portfolio" class="button">查看我的作品</a>
             </div>
-            
-            <div class="bio">
-                <p>专注于创造优雅且实用的数字体验。拥有5年设计经验，擅长将复杂的问题转化为简单、直观的解决方案。</p>
-            </div>
+        </section>
 
-            <nav class="sidebar-nav">
-                <a href="#works" class="nav-item">
-                    <i class="fas fa-briefcase"></i>
-                    <span>作品</span>
-                </a>
-                <a href="#blog" class="nav-item">
-                    <i class="fas fa-blog"></i>
-                    <span>博客</span>
-                </a>
-                <a href="#contact" class="nav-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>联系</span>
-                </a>
-            </nav>
-
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
-            </div>
-        </aside>
-
-        <!-- 右侧内容区 -->
-        <main class="main-content">
-            <section id="works" class="projects">
-                <h2>精选项目</h2>
-                <div class="project-grid">
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="项目1">
-                        </div>
-                        <div class="project-info">
-                            <h3>咖啡订购App设计</h3>
-                            <p>重新设计移动端咖啡订购流程，提升用户下单体验。通过用户研究发现痛点，优化交互流程。</p>
-                            <div class="project-tags">
-                                <span>UI设计</span>
-                                <span>用户体验</span>
-                                <span>移动应用</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="项目2">
-                        </div>
-                        <div class="project-info">
-                            <h3>电商平台改版</h3>
-                            <p>为大型电商平台进行整体视觉升级，优化购物流程，提升转化率。</p>
-                            <div class="project-tags">
-                                <span>电商设计</span>
-                                <span>品牌设计</span>
-                                <span>网页设计</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="项目3">
-                        </div>
-                        <div class="project-info">
-                            <h3>企业管理系统设计</h3>
-                            <p>设计企业级管理系统界面，简化复杂操作流程，提升工作效率。</p>
-                            <div class="project-tags">
-                                <span>企业设计</span>
-                                <span>系统设计</span>
-                                <span>交互设计</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+        <section id="about" class="section">
+            <h2>关于我</h2>
+            <p>在这里可以写一些关于你自己的介绍、技能、经历等等。</p>
             </section>
-        </main>
+
+        <section id="portfolio" class="section">
+            <h2>我的作品</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="placeholder.jpg" alt="作品 1">
+                    <h3>作品标题 1</h3>
+                    <p>作品简述 1</p>
+                    <a href="#">查看详情</a>
+                </div>
+                <div class="portfolio-item">
+                    <img src="placeholder.jpg" alt="作品 2">
+                    <h3>作品标题 2</h3>
+                    <p>作品简述 2</p>
+                    <a href="#">查看详情</a>
+                </div>
+                </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>联系我</h2>
+            <p>期待与你合作！可以通过以下方式联系我：</p>
+            <ul>
+                <li>邮箱：[你的邮箱]</li>
+                <li>GitHub：[你的 GitHub 链接]</li>
+                <li>LinkedIn：[你的 LinkedIn 链接]</li>
+                </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 [你的名字]. All rights reserved.</p>
+        </footer>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
