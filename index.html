@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juno's Portfolio</title>
+    <title>Juno的个人作品集</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
     <div class="container">
@@ -17,25 +16,53 @@
             </div>
         </section>
 
-        <section id="about" class="section">
+        <section id="about" class="section about-columns">
             <h2>关于我</h2>
-            <p>在这里可以写一些关于你自己的介绍、技能、经历等等。</p>
-            </section>
+            <div class="about-grid">
+                <div class="about-item">
+                    <h3>技能/兴趣 1</h3>
+                    <p>这里可以写一些关于你的第一个技能或兴趣的介绍。</p>
+                </div>
+                <div class="about-item">
+                    <h3>技能/兴趣 2</h3>
+                    <p>这里可以写一些关于你的第二个技能或兴趣的介绍。</p>
+                </div>
+                <div class="about-item">
+                    <h3>技能/兴趣 3</h3>
+                    <p>这里可以写一些关于你的第三个技能或兴趣的介绍。</p>
+                </div>
+            </div>
+        </section>
 
-        <section id="portfolio" class="section">
+        <section id="portfolio" class="section portfolio-columns">
             <h2>我的作品</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="placeholder.jpg" alt="作品 1">
-                    <h3>作品标题 1</h3>
-                    <p>作品简述 1</p>
-                    <a href="#">查看详情</a>
+                    <span class="portfolio-number">01</span>
+                    <div class="portfolio-info">
+                        <h3>作品标题 1</h3>
+                        <p>作品简要介绍 1。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
                 </div>
                 <div class="portfolio-item">
-                    <img src="placeholder.jpg" alt="作品 2">
-                    <h3>作品标题 2</h3>
-                    <p>作品简述 2</p>
-                    <a href="#">查看详情</a>
+                    <span class="portfolio-number">02</span>
+                    <div class="portfolio-info">
+                        <h3>作品标题 2</h3>
+                        <p>作品简要介绍 2。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
+                </div>
+                <div class="portfolio-item">
+                    <span class="portfolio-number">03</span>
+                    <div class="portfolio-info">
+                        <h3>作品标题 3</h3>
+                        <p>作品简要介绍 3。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                    <img src="placeholder_separator.png" alt="分隔图片" class="separator">
                 </div>
                 </div>
         </section>
@@ -47,14 +74,13 @@
                 <li>邮箱：[你的邮箱]</li>
                 <li>GitHub：[你的 GitHub 链接]</li>
                 <li>LinkedIn：[你的 LinkedIn 链接]</li>
-                </ul>
+            </ul>
         </section>
 
         <footer>
             <p>&copy; 2025 [你的名字]. All rights reserved.</p>
         </footer>
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>
