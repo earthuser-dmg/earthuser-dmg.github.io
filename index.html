@@ -1,46 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juno's Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- 导航栏 -->
-  <nav>
-    <ul>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#connect">CONNECT</a></li>
-    </ul>
-  </nav>
+    <!-- Header Section -->
+    <header>
+        <div class="name">Your Name</div>
+        <div></div>
+        <div></div>
+        <div class="title">Interaction • Visual<br>• Strategy</div>
+    </header>
 
-  <!-- 关于部分 -->
-  <section id="about">
-    <h1>About Me</h1>
-    <p>Product designer focused on craft, storytelling, and strategy at the intersection of digital design and consumer devices. Currently at Snap Lab, working on fun projects for Spectacles. Previously, worked on Monetization at Meta and the Alexa App and Echo Show suite at Amazon. Before diving into tech, I studied Architecture and worked on professional projects ranging from skyscrapers to masterplans. My work aims to bridge the gap between the digital and physical worlds, one thoughtful interaction at a time.</p>
-  </section>
+    <!-- Content Grid -->
+    <div class="content-grid">
+        <div class="about">
+            <h2>About</h2>
+            <p>Product designer focused on craft, storytelling, and strategy at the intersection of digital design and consumer devices. Currently at Design Lab, working on fun projects for customers. Previously worked on Monetization at Tech Company and the App suite. Before diving into tech, I worked on architectural projects and professional projects ranging from skyscrapers to masterplans. My work aims to bridge the gap between the digital and physical worlds, one thoughtful interaction at a time.</p>
+        </div>
 
-  <!-- 经验部分 -->
-  <section id="experience">
-    <h1>Experience</h1>
-    <!-- 项目1 -->
-    <div class="project">
-      <span class="project-number">01</span>
-      <h2 class="project-name">Spectacles</h2>
-      <p class="project-company">Snap Lab • 2023 - Present</p>
-      <p class="project-description">The latest 5th generation Spectacles are radical, see-through, standalone AR glasses that enable you to use Lenses and experience the world with friends in new ways. At Snap Lab, I wear multiple hats, drive design projects for the Spectacles Mobile App, and conceptualize on-device AR experiences with creative engineers, prototypers, and researchers.</p>
+        <div class="connect">
+            <h2>Connect</h2>
+            <ul>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+            <h2 class="based">Based</h2>
+            <p>Your City</p>
+        </div>
+
+        <div class="experience">
+            <h2>Experience</h2>
+            <ul>
+                <li>Design Lab</li>
+                <li>Tech Company</li>
+                <li>Studio ABC</li>
+            </ul>
+        </div>
     </div>
-    <!-- 其他项目依次添加 -->
-  </section>
 
-  <!-- 连接部分 -->
-  <section id="connect">
-    <h1>Connect</h1>
-    <p>BASED<br>Los Angeles</p>
-  </section>
+    <!-- Full Width Image 1 -->
+    <img src="images/project1-hero.jpg" alt="Project Showcase" class="full-width-image">
+
+    <!-- Project 1 -->
+    <div class="project">
+        <div class="project-header">
+            <div class="project-number">01</div>
+            <div class="project-title">Project Name</div>
+        </div>
+        <div class="project-content">
+            <div></div>
+            <div class="project-description">
+                <p class="company-period">Company • 2022 - Present</p>
+                <p class="project-detail">The latest generation experience that redefines interaction. A comprehensive digital platform that enables you to use it and experience the world with friends in new ways.</p>
+                <p class="project-detail">At Design Lab, I wear multiple hats, drive design projects for the platform. Mobile App, and Website, and conceptualize AR experiences with creative engineers, prototypers, and researchers.</p>
+            </div>
+            <div class="project-images">
+                <img src="images/project1-screenshot.jpg" alt="Project Screenshot" class="project-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Interface Images -->
+    <img src="images/project1-interfaces.jpg" alt="Project Interface" class="full-width-image">
+
+    <!-- Project 2 -->
+    <div class="project">
+        <div class="project-header">
+            <div class="project-number">02</div>
+            <div class="project-title">Second Project</div>
+        </div>
+        <div class="project-content">
+            <div></div>
+            <div class="project-description">
+                <p class="company-period">Tech Company • 2020 - 2022</p>
+                <p class="project-detail">Collaborating with Monetization and Platform teams, I helped operation experience for both Partnership ads and creators. This helped advertisers likely partnering with creators by 2.1x.</p>
+                <p class="project-detail">I improved key parts of the partnership ad creation flow such as identity selection, enabling Company/Platform advertisers without accounts to run Partnership ads on Platform.</p>
+                <p class="project-detail">Additionally, I identified strategic opportunities to simplify ad creation and increase adoption.</p>
+                
+                <div class="stats">
+                    <div class="stat">+$18M/yr</div>
+                    <div class="stat">+2.7x</div>
+                </div>
+                <div class="stats-description">
+                    <div>Ad revenue generation</div>
+                    <div>Increase in Partnerships with from advertisers partnering with creators</div>
+                </div>
+            </div>
+            <div class="project-images">
+                <img src="images/project2-screenshot.jpg" alt="Project Screenshot" class="project-image">
+            </div>
+        </div>
+    </div>
+
 </body>
-
 </html>
