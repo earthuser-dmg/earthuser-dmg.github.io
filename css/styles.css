@@ -92,6 +92,7 @@ header {
     grid-template-columns: 0.5fr 1.5fr 2fr;
     gap: 2rem;
     margin-bottom: 2rem;
+    align-items: center;
 }
 
 .project-number {
@@ -102,6 +103,28 @@ header {
 .project-title {
     font-size: 2rem;
     font-weight: 500;
+}
+
+.project-view-button {
+    text-align: right;
+}
+
+.view-button {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.view-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
 }
 
 .project-content {
@@ -122,10 +145,24 @@ header {
     margin-top: 1.5rem;
 }
 
+.project-images a {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.project-images a:hover {
+    opacity: 0.9;
+}
+
 .project-image {
     width: 100%;
     height: auto;
     margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.project-images a:hover .project-image {
+    transform: scale(1.02);
 }
 
 /* Stats Section */
@@ -220,6 +257,11 @@ header {
     .stats-description div {
         width: 100%;
         margin-top: 0.5rem;
+    }
+
+    .project-view-button {
+        text-align: left;
+        margin-top: 1rem;
     }
 }
 

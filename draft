@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juno XI</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header Section -->
     <header>
-        <div class="name">Juno XI</div>
+        <div class="name">Your Name</div>
         <div></div>
         <div></div>
         <div class="title">Interaction • Visual<br>• Strategy</div>
@@ -25,12 +25,12 @@
         <div class="connect">
             <h2>Connect</h2>
             <ul>
-                <li><a href="https://linkedin.com/in/coffeeuniversegirl">LinkedIn</a></li>
-                <li><a href="mailto:earthuser021@gmail.com">Email</a></li>
-                <li><a href="https://instagram.com/coffeeuniversegirl">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Instagram</a></li>
             </ul>
             <h2 class="based">Based</h2>
-            <p>Shanghai, China</p>
+            <p>Your City</p>
         </div>
 
         <div class="experience">
@@ -52,7 +52,7 @@
             <div class="project-number">01</div>
             <div class="project-title">Project Name</div>
             <div class="project-view-button">
-                <a href="https://rc7zj95w42.feishu.cn/file/boxcnnN5AYFOLB4HNp3xkrT9DqS" class="view-button">View Project</a>
+                <a href="https://www.rinakang.design/" class="view-button">View Project</a>
             </div>
         </div>
         <div class="project-content">
@@ -63,7 +63,7 @@
                 <p class="project-detail">At Design Lab, I wear multiple hats, drive design projects for the platform. Mobile App, and Website, and conceptualize AR experiences with creative engineers, prototypers, and researchers.</p>
             </div>
             <div class="project-images">
-                <a href="https://rc7zj95w42.feishu.cn/file/boxcnnN5AYFOLB4HNp3xkrT9DqS">
+                <a href="https://www.rinakang.design/">
                     <img src="images/project1-screenshot.jpg" alt="Project Screenshot" class="project-image">
                 </a>
             </div>
@@ -72,17 +72,14 @@
 
     <!-- Project Interface Images -->
     <img src="images/project1-interfaces.jpg" alt="Project Interface" class="full-width-image">
-
+    
     <!-- Figma Embed Section -->
     <div class="figma-embed">
         <h3>Interactive Prototype</h3>
         <div class="figma-container">
-            <iframe
-             style="border: 1px solid rgba(0, 0, 0, 0.1);" 
-             width="100%" 
-             height="100%" 
-             src="https://embed.figma.com/proto/LYl3YGE9Y4EHVTWslgLjWW/%E2%9B%BD%EF%B8%8F-2025?page-id=29%3A85&node-id=866-8956&viewport=6378%2C-7499%2C0.49&scaling=contain&content-scaling=fixed&starting-point-node-id=866%3A8956&show-proto-sidebar=1&embed-host=share" 
-             allowfullscreen
+            <iframe 
+                src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_URL_HERE" 
+                allowfullscreen
             ></iframe>
         </div>
     </div>
@@ -91,31 +88,30 @@
     <div class="project">
         <div class="project-header">
             <div class="project-number">02</div>
-            <div class="project-title">Second Project</div>
+            <div class="project-title">MyScooter</div>
             <div class="project-view-button">
-                <a href="project2.html" class="view-button">View Project</a>
+                <a href="https://jollyland.framer.website/projects/project-03" class="view-button">View Project</a>
             </div>
         </div>
         <div class="project-content">
             <div></div>
             <div class="project-description">
-                <p class="company-period">Tech Company • 2020 - 2022</p>
-                <p class="project-detail">Collaborating with Monetization and Platform teams, I helped operation experience for both Partnership ads and creators. This helped advertisers likely partnering with creators by 2.1x.</p>
-                <p class="project-detail">I improved key parts of the partnership ad creation flow such as identity selection, enabling Company/Platform advertisers without accounts to run Partnership ads on Platform.</p>
-                <p class="project-detail">Additionally, I identified strategic opportunities to simplify ad creation and increase adoption.</p>
+                <p class="company-period">Business Case Building • 2023</p>
+                <p class="project-detail">A business case study for a scooter subscription service focused on management, maintenance, and end-of-life strategy. The MyScooter project was developed to create a sustainable model for urban mobility.</p>
+                <p class="project-detail">I analyzed subscription models, created referral and loyalty programs, and developed strategies for end-of-life management to ensure environmental sustainability while maintaining profitability.</p>
                 
                 <div class="stats">
-                    <div class="stat">+$18M/yr</div>
-                    <div class="stat">+2.7x</div>
+                    <div class="stat">+42%</div>
+                    <div class="stat">21,913</div>
                 </div>
                 <div class="stats-description">
-                    <div>Ad revenue generation</div>
-                    <div>Increase in Partnerships with from advertisers partnering with creators</div>
+                    <div>Growth rate compared to the industry average</div>
+                    <div>Annual active users</div>
                 </div>
             </div>
             <div class="project-images">
-                <a href="project2.html">
-                    <img src="images/project2-screenshot.jpg" alt="Project Screenshot" class="project-image">
+                <a href="https://jollyland.framer.website/projects/project-03">
+                    <img src="/api/placeholder/600/900" alt="MyScooter Business Case" class="project-image">
                 </a>
             </div>
         </div>
