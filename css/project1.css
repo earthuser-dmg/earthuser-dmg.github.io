@@ -1,0 +1,456 @@
+/* Media Queries for better responsiveness */
+@media screen and (max-width: 600px) {
+  .container {
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+  
+  .project-goal p {
+      font-size: 16px;
+  }
+  
+  .project-task h3 {
+      font-size: 16px;
+  }
+  
+  .after-before h2 {
+      font-size: 18px;
+  }
+  
+  .red-placeholder {
+      height: 150px;
+  }
+  
+  .comparison-image {
+      height: 150px;
+  }
+  
+  .screenshot {
+      max-width: 250px;
+  }
+}/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.container {
+  margin-left: 270px;
+  margin-right: 270px;
+}
+
+/* Grid system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 64px);
+  grid-column-gap: 12px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1439px) {
+  .container {
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+  
+  .grid {
+      grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+      flex-direction: column;
+  }
+  
+  .context {
+      grid-column: 1 / 13;
+      margin-top: 20px;
+  }
+}
+
+/* Header section */
+.header {
+  display: flex;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.summary {
+  padding: 40px;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin-right: 24px;
+}
+
+.summary-row {
+  display: flex;
+}
+
+.summary-label {
+  color: #7D7B7B;
+  font-size: 13px;
+  width: 60px;
+  margin-right: 36px;
+}
+
+.summary-content {
+  color: #1E1E1E;
+  width: 120px;
+  font-size: 13px;
+}
+
+.context {
+  grid-column: 7 / 13;
+}
+
+.context h2 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.context p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+      flex-direction: column;
+  }
+  
+  .summary {
+      margin-bottom: 20px;
+  }
+  
+  .context {
+      padding-left: 0;
+  }
+}
+
+/* My role section */
+.my-role {
+  margin-top: 32px;
+}
+
+.my-role h3 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.my-role p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Project impact section */
+.project-impact {
+  margin-top: 32px;
+}
+
+.project-impact h3 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.project-impact ul {
+  list-style-type: none;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.project-impact li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.project-impact li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Understanding section */
+.understanding {
+  margin-top: 60px;
+}
+
+.understanding h2 {
+  color: #8b42ff;
+  border-bottom: 1px solid #8b42ff;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.understanding .chinese-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.understanding ol {
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.understanding li {
+  margin-bottom: 8px;
+}
+
+/* Image placeholders */
+.red-placeholder {
+  background-color: #b30000;
+  width: 100%;
+  height: 180px;
+  margin: 20px 0;
+}
+
+/* Project goal section */
+.project-goal {
+  margin-top: 60px;
+}
+
+.project-goal h2 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.project-goal p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* Project task section */
+.project-task {
+  margin-top: 60px;
+}
+
+.project-task h2 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.project-task h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+/* Task details */
+.task-details {
+  display: flex;
+  margin: 20px 0;
+}
+
+.task-detail-col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.task-detail-col:last-child {
+  margin-right: 0;
+}
+
+.task-detail-col h4 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.task-detail-col p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .task-details {
+      flex-direction: column;
+  }
+  
+  .task-detail-col {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+}
+
+/* Background section */
+.background {
+  margin-top: 20px;
+}
+
+.background h3 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.background p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Goals section */
+.goals {
+  margin-top: 20px;
+}
+
+.goals h3 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.goals p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Purple section */
+.purple-section {
+  background-color: #8b42ff;
+  padding: 40px 0;
+  margin-top: 60px;
+  color: white;
+}
+
+/* Output section */
+.output-section {
+  display: flex;
+  margin-top: 20px;
+}
+
+.output-image {
+  flex: 2;
+}
+
+.output-text {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.output-text h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.output-text p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.small-image {
+  background-color: #b30000;
+  width: 100%;
+  height: 120px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .output-section {
+      flex-direction: column;
+  }
+  
+  .output-text {
+      padding-left: 0;
+      margin-top: 20px;
+  }
+  
+  .small-image {
+      margin-top: 15px;
+  }
+}
+
+/* After & Before section */
+.after-before {
+  margin-top: 60px;
+}
+
+.after-before h2 {
+  color: white;
+  margin-bottom: 12px;
+}
+
+.after-before p {
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.comparison-image {
+  background-color: #b30000;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.screenshot {
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* Figma Embed Styles */
+.figma-embed {
+    margin: 4rem 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 2fr;
+    gap: 2rem;
+}
+
+.figma-embed h3 {
+    grid-column: 2;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.figma-container {
+    grid-column: 2 / span 2;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.figma-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 768px) {
+    .figma-embed {
+        grid-template-columns: 1fr;
+    }
+    
+    .figma-embed h3,
+    .figma-container {
+        grid-column: 1;
+    }
+}
