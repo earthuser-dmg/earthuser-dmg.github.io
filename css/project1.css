@@ -223,16 +223,21 @@ body {
 /* Project goal section */
 .project-goal {
   margin-top: 60px;
+  margin-left: 36px;
+  width: 464px;
 }
 
 .project-goal h2 {
-  color: #333;
+  color: #968BA3;
   margin-bottom: 12px;
 }
 
 .project-goal p {
-  font-size: 18px;
-  font-weight: bold;
+  color: #532889;
+  font-family: Bitter, serif; /* Added Bitter with fallback */
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.5;
   margin-bottom: 12px;
 }
 
