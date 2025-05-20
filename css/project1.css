@@ -56,8 +56,8 @@ body {
 /* Responsive styles */
 @media screen and (max-width: 1439px) {
   .container {
-      margin-left: 5%;
-      margin-right: 5%;
+      margin-left: 12%;
+      margin-right: 12%;
   }
   
   .grid {
@@ -117,14 +117,14 @@ body {
 }
 
 .context h2 {
-  color: #333;
-  margin-bottom: 12px;
+  color: #532889;
+  margin-bottom: 10px;
 }
 
 .context p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 2px;
 }
 
 @media screen and (max-width: 768px) {
@@ -143,37 +143,37 @@ body {
 
 /* My role section */
 .my-role {
-  margin-top: 32px;
+  margin-top: 20px;
 }
 
 .my-role h3 {
-  color: #333;
-  margin-bottom: 12px;
+  color: #968BA3;
+  margin-bottom: 10px;
 }
 
 .my-role p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* Project impact section */
 .project-impact {
-  margin-top: 32px;
+  margin-top: 20px;
 }
 
 .project-impact h3 {
-  color: #333;
+  color: #968BA3;
   margin-bottom: 12px;
 }
 
 .project-impact ul {
   list-style-type: none;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .project-impact li {
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   position: relative;
   padding-left: 20px;
 }
@@ -188,38 +188,36 @@ body {
 
 /* Understanding section */
 .understanding {
-  margin-top: 60px;
+  margin-top: 120px;
 }
 
 .understanding h2 {
-  color: #8b42ff;
-  border-bottom: 1px solid #8b42ff;
+  color: #532889;
   padding-bottom: 4px;
   margin-bottom: 12px;
 }
 
 .understanding .chinese-text {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.4;
   margin-bottom: 20px;
 }
 
 .understanding ol {
   padding-left: 20px;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .understanding li {
   margin-bottom: 8px;
 }
 
-/* Image placeholders */
-.red-placeholder {
-  background-color: #b30000;
+/* Full Width Images */
+.full-width-image {
   width: 100%;
-  height: 180px;
-  margin: 20px 0;
+  height: auto;
+  margin: 36px;
 }
 
 /* Project goal section */
@@ -269,14 +267,14 @@ body {
 }
 
 .task-detail-col h4 {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
   margin-bottom: 8px;
 }
 
 .task-detail-col p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 @media screen and (max-width: 768px) {
@@ -296,14 +294,14 @@ body {
 }
 
 .background h3 {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
   margin-bottom: 8px;
 }
 
 .background p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* Goals section */
@@ -312,19 +310,19 @@ body {
 }
 
 .goals h3 {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
   margin-bottom: 8px;
 }
 
 .goals p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* Purple section */
 .purple-section {
-  background-color: #8b42ff;
+  background-color: #7B61FF;
   padding: 40px 0;
   margin-top: 60px;
   color: white;
@@ -351,8 +349,8 @@ body {
 }
 
 .output-text p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .small-image {
@@ -389,8 +387,8 @@ body {
 
 .after-before p {
   color: white;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
   margin-bottom: 20px;
 }
 

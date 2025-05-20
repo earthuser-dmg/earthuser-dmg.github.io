@@ -39,8 +39,9 @@ header {
 
 .name {
     grid-column: 1;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: #532889;
 }
 
 .title {
@@ -53,7 +54,7 @@ header {
 /* Main Content Grid */
 .content-grid {
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
     gap: 4rem;
     margin-bottom: 4rem;
 }
@@ -114,7 +115,7 @@ header {
     background: #471b79;
     color: #ffffff;
     padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -191,7 +192,7 @@ header {
 .full-width-image {
     width: 100%;
     height: auto;
-    margin: 4rem 0;
+    margin: 2rem 0;
 }
 
 /* Figma Embed Styles */
