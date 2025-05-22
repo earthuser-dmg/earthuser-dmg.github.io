@@ -267,3 +267,41 @@ header {
         padding: 2rem 4rem;
     }
 }
+
+/* Hero Section */
+.hero {
+    padding: 4rem 2rem;
+    width: 100%;
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    text-align: left;
+}
+
+.ship-icon {
+    width: 120px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.hero-text {
+    font-family: 'Bitter', serif;
+    font-size: 1.625rem;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 50rem;
+}
+
+.hero-text strong {
+    color: #FF8512;
+    font-weight: 600;
+}

@@ -91,9 +91,15 @@ a:hover {
 }
 
 .hero-text {
+    font-family: 'Bitter', serif;
     font-size: 1.625rem;
-    line-height: 1.5;
+    font-weight: 400;
+    line-height: normal;
     max-width: 50rem;
+}
+
+.hero-text .greeting {
+    font-weight: 600;
 }
 
 .hero-text strong {
@@ -302,5 +308,88 @@ a:hover {
     .tag {
         font-size: 0.75rem;
         padding: 0.25rem 0.6rem;
+    }
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    background-color: #FAEED4;
+    border-top: 1px solid #7D7B7B;
+    padding: 3rem 4rem;
+    margin-top: 6rem;
+}
+
+.footer-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-date {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1E1E1E;
+}
+
+.footer-location {
+    font-size: 1rem;
+    color: #1E1E1E;
+}
+
+.footer-right {
+    display: flex;
+    gap: 4rem;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1E1E1E;
+    margin-bottom: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    font-size: 1rem;
+    color: #1E1E1E;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 2rem;
+    }
+    
+    .footer-content {
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .footer-right {
+        gap: 1.5rem;
     }
 }
