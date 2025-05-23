@@ -45,6 +45,7 @@
                 <div class="projects-container">
                     <!-- Project 1: Decathlon Business Module System -->
                     <div class="project-card">
+                        <a href="project1.html" class="project-card"/a>
                         <div class="project-content">
                             <div class="project-info">
                                 <div class="project-header">
@@ -64,7 +65,6 @@
                             </div>
                             <div class="project-image">
                                 <img src="images/project1-interfaces.jpg" alt="Business module system interface">
-                                <div class="decathlon-logo">DECATHLON</div>
                             </div>
                         </div>
                     </div>
@@ -152,8 +152,23 @@
             </div>
         </footer>
     
-    <script>
-        // 移除 sidebar 相关的 JavaScript
-    </script>
+        <script>
+            // 随机颜色hover效果
+            document.addEventListener('DOMContentLoaded', function() {
+                const projectCards = document.querySelectorAll('.project-card');
+                const colors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
+                
+                projectCards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        this.style.backgroundColor = randomColor;
+                    });
+                    
+                    card.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = '';
+                    });
+                });
+            });
+        </script>
 </body>
 </html>
