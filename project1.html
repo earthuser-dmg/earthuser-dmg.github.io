@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Top Navigation -->
-    <nav class="top-nav">
+    <nav class="top-nav" id="topNav">
         <div class="top-nav-content">
             <div class="logo"><a href="index.html">Juno XI</a></div>
             <ul class="nav-links">
@@ -212,12 +212,54 @@
     </footer>
 
     <script>
-        // Mobile menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const topNav = document.getElementById('topNav');
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
             const mobileMenuClose = document.querySelector('.mobile-menu-close');
             
+            let lastScrollTop = 0;
+            let ticking = false;
+
+            // Sticky navigation scroll effect
+            function updateNavOnScroll() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercentage = (scrollTop / scrollHeight) * 100;
+                
+                // Add/remove scrolled class based on scroll position
+                if (scrollTop > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+                
+                // Handle scroll direction for mobile (optional enhancement)
+                if (window.innerWidth <= 768) {
+                    if (scrollTop > lastScrollTop && scrollTop > 100) {
+                        // Scrolling down
+                        topNav.style.transform = 'translateY(-100%)';
+                    } else {
+                        // Scrolling up
+                        topNav.style.transform = 'translateY(0)';
+                    }
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                ticking = false;
+            }
+
+            // Throttle scroll events
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateNavOnScroll);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', requestTick);
+
+            // Mobile menu functionality
             function openMenu() {
                 mobileMenuToggle.classList.add('active');
                 mobileMenuOverlay.classList.add('active');
@@ -253,6 +295,9 @@
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', closeMenu);
             });
+
+            // Initialize nav state on page load
+            updateNavOnScroll();
         });
     </script>
 </body>

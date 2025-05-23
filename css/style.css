@@ -32,6 +32,24 @@ a {
     backdrop-filter: blur(20px);
     z-index: 100;
     width: 100vw;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 80px;
+}
+
+/* Sticky navigation states */
+.top-nav.scrolled {
+    background: hsla(0, 0%, 96%, 0.95);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+.top-nav.scrolled .top-nav-content {
+    padding: 1.5rem 6%;
+}
+
+.top-nav.scrolled .logo {
+    transform: scale(0.9);
 }
 
 .top-nav::after {
@@ -53,11 +71,13 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 6%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .logo {
     font-size: 1rem;
     font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .nav-links {
@@ -70,13 +90,13 @@ a {
     font-size: 1rem;
     font-weight: 400;
     position: relative;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 500ms;
-    transition-property: color;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0.8;
 }
 
 .nav-links a:hover {
     opacity: 1;
+    transform: translateY(-1px);
 }
 
 .nav-links a:after {
@@ -88,9 +108,7 @@ a {
     width: 0%;
     height: 2px;
     background-color: #1E1E1E;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 500ms;
-    transition-property: width, left;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .nav-links a:hover:after {
@@ -101,6 +119,7 @@ a {
 .nav-links a.active {
     color: #1E1E1E;
     font-weight: 700;
+    opacity: 1;
 }
 
 .nav-links a.active:after {
@@ -119,6 +138,11 @@ a {
     width: 30px;
     height: 30px;
     z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.top-nav.scrolled .mobile-menu-toggle {
+    transform: scale(0.9);
 }
 
 .hamburger {
@@ -384,15 +408,11 @@ a {
 }
 
 .tag {
-
-
-    /* Subtitle */
     font-family: "DM Sans";
     font-size: 0.8125rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
     background: #FBE8F0;
     color: #d81b67;
     padding: 0.3rem 0.8rem;
@@ -543,6 +563,10 @@ a {
     .top-nav-content {
         padding: 2rem 8%;
     }
+
+    .top-nav.scrolled .top-nav-content {
+        padding: 1.5rem 8%;
+    }
 }
 
 @media (max-width: 962px) {
@@ -573,6 +597,11 @@ a {
 @media (max-width: 768px) {
     .top-nav {
         padding: 0rem;
+        height: 70px;
+    }
+
+    .top-nav.scrolled {
+        height: 60px;
     }
 
     .mobile-menu-toggle {
@@ -586,6 +615,7 @@ a {
     .hero {
         padding: 2rem 4rem;
         min-height: calc(100vh - 100px);
+        margin-top: 5rem;
     }
 
     .hero-content {
@@ -595,7 +625,7 @@ a {
     }
 
     .hero-text {
-        font-size: 1.1rem;
+        font-size: 2rem;
     }
 
     .main-container {
