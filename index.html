@@ -44,8 +44,7 @@
                 <!-- Project Cards -->
                 <div class="projects-container">
                     <!-- Project 1: Decathlon Business Module System -->
-                    <div class="project-card">
-                        <a href="project1.html" class="project-card"/a>
+                    <a href="project1.html" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
                                 <div class="project-header">
@@ -67,10 +66,10 @@
                                 <img src="images/project1-interfaces.jpg" alt="Business module system interface">
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project 2: Decathlon Business Module System -->
-                    <div class="project-card">
+                    <a href="" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
                                 <div class="project-header">
@@ -92,7 +91,7 @@
                                 <img src="images/project1-interfaces.jpg" alt="Business module system interface">
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Project 3: Business Module System -->
                     <div class="project-card">
@@ -161,11 +160,13 @@
                 projectCards.forEach(card => {
                     card.addEventListener('mouseenter', function() {
                         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                        this.style.backgroundColor = randomColor;
+                        // 只改变背景色，不影响其他样式
+                        this.style.setProperty('background-color', randomColor, 'important');
                     });
                     
                     card.addEventListener('mouseleave', function() {
-                        this.style.backgroundColor = '';
+                        // 移除背景色
+                        this.style.removeProperty('background-color');
                     });
                 });
             });
