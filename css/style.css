@@ -104,14 +104,13 @@ a {
     left: 0%;
 }
 
-
 .nav-links a.active {
-    color: #FF8512;
-    font-weight: 500;
+    color: #1E1E1E;
+    font-weight: 700;
 }
 
 .nav-links a.active:after {
-    background-color: #FF8512;
+    background-color: #1E1E1E;
     width: 100%;
     left: 0%;
 }
@@ -461,12 +460,12 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0 270px;
+    padding: 0 8% 0 6%;
 }
 
 @media screen and (max-width: 1439px) {
     .footer-content {
-        padding: 0% 4% 0% 0%;
+        padding: 0 8%;
     }
 }
 
@@ -553,7 +552,7 @@ a {
     }
 
     .mobile-menu-toggle {
-        display: none;
+        display: block;
     }
 
     .nav-links {
