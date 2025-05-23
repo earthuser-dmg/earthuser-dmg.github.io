@@ -13,15 +13,31 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="top-nav-content">
-            <div class="logo">Juno XI</div>
+            <div class="logo"><a href="index.html">Juno XI</a></div>
             <ul class="nav-links">
-                <li><a href="https://linkedin.com/in/coffeeuniversegirl">LinkedIn</a></li>
+                <li><a href="index.html">Work</a></li>
                 <li><a href="mailto:earthuser021@gmail.com">Resume</a></li>
                 <li><a href="#">Play</a></li>
                 <li><a href="#">About</a></li>
             </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="hamburger"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span class="close-icon"></span>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Work</a></li>
+            <li><a href="mailto:earthuser021@gmail.com">Resume</a></li>
+            <li><a href="#">Play</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
 
     <div class="container">
         <div class="header grid">
@@ -194,6 +210,50 @@
                 </div>
             </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
             
+            function openMenu() {
+                mobileMenuToggle.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                if (mobileMenuOverlay.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+            
+            // Close menu when clicking close button
+            mobileMenuClose.addEventListener('click', closeMenu);
+            
+            // Close menu when clicking on overlay
+            mobileMenuOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+    </script>
 </body>
 </html>
