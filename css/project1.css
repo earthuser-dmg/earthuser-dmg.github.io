@@ -45,6 +45,7 @@ body {
 .container {
   margin-left: 270px;
   margin-right: 270px;
+  padding-top: 100px;
 }
 
 /* Grid system */
@@ -328,10 +329,28 @@ body {
 
 /* Purple section */
 .purple-section {
-  background-color: #7B61FF;
-  padding: 40px 0;
-  margin-top: 60px;
-  color: white;
+    background-color: #7B61FF;
+    padding: 40px 0;
+    margin-top: 60px;
+    color: white;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.purple-section .container {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0 270px;
+}
+
+@media screen and (max-width: 1439px) {
+    .purple-section .container {
+        padding: 0 12%;
+    }
 }
 
 /* Output section */
