@@ -63,6 +63,33 @@ a:hover {
 .nav-links a {
     font-size: 0.9rem;
     font-weight: 400;
+    position: relative;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 500ms;
+    transition-property: color;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.nav-links a:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #1E1E1E;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 500ms;
+    transition-property: width, left;
+}
+
+.nav-links a:hover:after {
+    width: 100%;
+    left: 0%;
 }
 
 /* Hero Section */
@@ -373,10 +400,34 @@ a:hover {
     font-size: 1rem;
     color: #1E1E1E;
     text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 500ms;
+    transition-property: color;
 }
 
 .footer-links a:hover {
-    opacity: 0.7;
+    opacity: 1;
+}
+
+.footer-links a:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #1E1E1E;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 500ms;
+    transition-property: width, left;
+}
+
+.footer-links a:hover:after {
+    width: 100%;
+    left: 0%;
 }
 
 @media (max-width: 768px) {
