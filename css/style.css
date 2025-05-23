@@ -107,13 +107,13 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 2rem;
-    max-width: 800px;
+    max-width: 916px;
     text-align: left;
 }
 
-.ship-icon {
-    width: 120px;
-    height: auto;
+.hero-icon {
+    width: 106px;
+    height: 100%;
     flex-shrink: 0;
 }
 
@@ -121,7 +121,7 @@ a:hover {
     font-family: 'Bitter', serif;
     font-size: 1.625rem;
     font-weight: 400;
-    line-height: normal;
+    line-height: 1.4;
     max-width: 50rem;
 }
 
@@ -343,7 +343,7 @@ a:hover {
     width: 100%;
     background-color: #FAEED4;
     border-top: 1px solid #7D7B7B;
-    padding: 3rem 4rem;
+    padding: 3rem 10rem 3rem 6rem;
     margin-top: 6rem;
 }
 
@@ -374,7 +374,7 @@ a:hover {
 
 .footer-right {
     display: flex;
-    gap: 4rem;
+    gap: 8rem;
 }
 
 .footer-section {
@@ -394,14 +394,15 @@ a:hover {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: flex-start;
 }
 
 .footer-links a {
     font-size: 1rem;
+    font-weight: 400;
     color: #1E1E1E;
     text-decoration: none;
     position: relative;
-    display: inline-block;
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 500ms;
     transition-property: color;
@@ -432,7 +433,7 @@ a:hover {
 
 @media (max-width: 768px) {
     .footer {
-        padding: 2rem 2rem;
+        padding: 2rem 3rem;
     }
     
     .footer-content {
