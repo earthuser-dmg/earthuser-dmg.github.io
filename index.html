@@ -10,35 +10,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Homepage.css">
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav" id="topNav">
-        <div class="top-nav-content">
-            <div class="logo">Juno XI</div>
-            <ul class="nav-links">
-                <li><a href="#" class="active">Work</a></li>
-                <li><a href="mailto:earthuser021@gmail.com">Resume</a></li>
-                <li><a href="#">Play</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-                <span class="hamburger"></span>
-            </button>
-        </nav>
-    
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay">
-            <button class="mobile-menu-close" aria-label="Close menu">
-                <span class="close-icon"></span>
-            </button>
-            <ul class="mobile-nav-links">
-                <li><a href="#" class="active">Work</a></li>
-                <li><a href="mailto:earthuser021@gmail.com">Resume</a></li>
-                <li><a href="#">Play</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </div>
+    <!-- Include Top Navigation -->
+    <div id="top-nav-container"></div>
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -139,159 +115,28 @@
         </div>
     </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-date">© Juno XI   2025</div>
-                    <div class="footer-location">Shanghai, China</div>
-                </div>
-                <div class="footer-right">
-                    <div class="footer-section">
-                        <div class="footer-title">CONNECT</div>
-                        <div class="footer-links">
-                            <a href="https://linkedin.com/in/coffeeuniversegirl">LinkedIn</a>
-                            <a href="mailto:earthuser021@gmail.com">Email</a>
-                            <a href="#">Instagram</a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <div class="footer-title">SITE MAP</div>
-                        <div class="footer-links">
-                            <a href="#" class="active">Work</a>
-                            <a href="#">Play</a>
-                            <a href="#">About</a>
-                            <a href="mailto:earthuser021@gmail.com">Resume</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const topNav = document.getElementById('topNav');
-                const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-                const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-                const mobileMenuClose = document.querySelector('.mobile-menu-close');
-                const projectCards = document.querySelectorAll('.project-card');
-                
-                let lastScrollTop = 0;
-                let ticking = false;
-    
-                // Sticky navigation scroll effect
-                function updateNavOnScroll() {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    const scrollPercentage = (scrollTop / scrollHeight) * 100;
-                    
-                    // Add/remove scrolled class based on scroll position
-                    if (scrollTop > 50) {
-                        topNav.classList.add('scrolled');
-                    } else {
-                        topNav.classList.remove('scrolled');
-                    }
-                    
-                    // Handle scroll direction for mobile (optional enhancement)
-                    if (window.innerWidth <= 768) {
-                        if (scrollTop > lastScrollTop && scrollTop > 100) {
-                            // Scrolling down
-                            topNav.style.transform = 'translateY(-100%)';
-                        } else {
-                            // Scrolling up
-                            topNav.style.transform = 'translateY(0)';
-                        }
-                    }
-                    
-                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-                    ticking = false;
-                }
-    
-                // Throttle scroll events
-                function requestTick() {
-                    if (!ticking) {
-                        requestAnimationFrame(updateNavOnScroll);
-                        ticking = true;
-                    }
-                }
-    
-                window.addEventListener('scroll', requestTick);
-    
-                // Mobile menu functionality
-                function openMenu() {
-                    mobileMenuToggle.classList.add('active');
-                    mobileMenuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-                
-                function closeMenu() {
-                    mobileMenuToggle.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-                
-                mobileMenuToggle.addEventListener('click', function() {
-                    if (mobileMenuOverlay.classList.contains('active')) {
-                        closeMenu();
-                    } else {
-                        openMenu();
-                    }
+    <!-- Include Footer -->
+    <div id="footer-container"></div>
+
+    <script src="js/common.js"></script>
+    <script>
+        // Page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Random color hover effect for project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            const colors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
+            
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    this.style.setProperty('background-color', randomColor, 'important');
                 });
                 
-                // Close menu when clicking close button
-                mobileMenuClose.addEventListener('click', closeMenu);
-                
-                // Close menu when clicking on overlay
-                mobileMenuOverlay.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        closeMenu();
-                    }
+                card.addEventListener('mouseleave', function() {
+                    this.style.removeProperty('background-color');
                 });
-                
-                // Close menu when clicking on a link
-                const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-    
-                // Random color hover effect for project cards
-                const colors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
-                
-                projectCards.forEach(card => {
-                    card.addEventListener('mouseenter', function() {
-                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                        this.style.setProperty('background-color', randomColor, 'important');
-                    });
-                    
-                    card.addEventListener('mouseleave', function() {
-                        this.style.removeProperty('background-color');
-                    });
-                });
-    
-                // Smooth scroll for navigation links (optional enhancement)
-                const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        const href = this.getAttribute('href');
-                        if (href.startsWith('#') && href !== '#') {
-                            e.preventDefault();
-                            const target = document.querySelector(href);
-                            if (target) {
-                                const headerHeight = topNav.offsetHeight;
-                                const targetPosition = target.offsetTop - headerHeight - 20;
-                                
-                                window.scrollTo({
-                                    top: targetPosition,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }
-                    });
-                });
-    
-                // Initialize nav state on page load
-                updateNavOnScroll();
             });
-        </script>
-    </body>
-    </html>
+        });
+    </script>
+</body>
+</html>
