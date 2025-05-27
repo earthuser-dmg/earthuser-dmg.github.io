@@ -1,5 +1,6 @@
 /* Import component styles */
 @import url('components/top-navigation.css');
+@import url('components/footer.css');
 
 /* Base Styles */
 * {

@@ -32,7 +32,7 @@
 }
 
 .hero-text .greeting {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .hero-text strong {
@@ -91,7 +91,7 @@
 }
 
 .project-number {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: #532889;
 }
@@ -99,6 +99,7 @@
 .project-title {
     font-size: 1.8rem;
     font-weight: 500;
+    line-height: 1.4;
     color: #1E1E1E;
 }
 
