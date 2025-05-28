@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juno XI</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/32.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/16.ico">
-    <link rel="icon" href="images/favicon/SVG.svg" type="image/svg+xml">
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
@@ -122,13 +120,26 @@
     <script>
         // Page specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
+            // Tag colors for random assignment
+            const tagColors = ['#E1D4F8', '#FAD0E8', '#FDDFD2'];
+
             // Random color hover effect for project cards
             const projectCards = document.querySelectorAll('.project-card');
-            const colors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
-            
+            const cardColors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
+
+            // Assign random colors to tags in each project card
             projectCards.forEach(card => {
+                const tags = card.querySelectorAll('.tag');
+                const shuffledColors = [...tagColors].sort(() => Math.random() - 0.5);
+                
+                tags.forEach((tag, index) => {
+                    const colorIndex = index % shuffledColors.length;
+                    tag.style.backgroundColor = shuffledColors[colorIndex];
+                });
+                
+                // Project card hover effects
                 card.addEventListener('mouseenter', function() {
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    const randomColor = cardColors[Math.floor(Math.random() * cardColors.length)];
                     this.style.setProperty('background-color', randomColor, 'important');
                 });
                 
