@@ -5,67 +5,18 @@
     min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     margin: 0 auto;
     position: relative;
     max-width: 1440px;
-    gap: 2rem;
+    gap: 8rem;
 }
 
-.hero-main {
-    display: block;
-    width: 100%;
-}
-
-.hero-visuals {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    position: relative;
-}
-
-.hero-icon {
-    width: auto;
-    height: 100%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-/* 路径动画样式 */
-.path-animation {
-    position: relative;
-    width: 694px;
-    height: 193px;
-    pointer-events: none;
-    left: 2rem;
-    top: -0.5rem;
-    margin-bottom: 2rem;
-}
-
-.path-svg {
-    width: 100%;
-    height: 100%;
-}
-
-.animated-path {
-    fill: none;
-    stroke: #FF4B30;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;
-    animation: drawPath 3s ease-in-out forwards;
-}
-
-@keyframes drawPath {
-    to {
-        stroke-dashoffset: 0;
-    }
+/* Lottie Player Styles */
+.hero lottie-player {
+    width: 84% !important;
+    background: transparent !important;
 }
 
 .path-text {
@@ -101,7 +52,7 @@
 
 .path-text:hover path {
     fill: #FF8512;
-    transform: translateX(-5px);
+    transform: translateX(-1px);
 }
 
 @keyframes fadeInText {
@@ -120,7 +71,6 @@
     font-size: 1.625rem;
     font-weight: 400;
     line-height: 1.4;
-    margin-bottom: 1rem;
     text-align: left;
 }
 
@@ -277,16 +227,12 @@
     border-color: #1E1E1E;
 }
 
-/* Media Queries */
-@media screen and (max-width: 1439px) {
-    .path-animation {
-        width: 80%;
-        height: auto;
-        aspect-ratio: 694/193;
-    }
-}
-
 @media (max-width: 962px) {
+    .hero lottie-player {
+        width: 150% !important;
+        margin-left: 25%;
+    }
+
     .project-content {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -323,12 +269,12 @@
         margin: 0 auto 2rem;
         padding: 0 1rem;
     }
-
-    .hero-visuals {
-        align-items: center;
+    
+    .hero lottie-player {
+        width: 150% !important;
+        margin-left: 25%;
     }
 
-    .path-animation, 
     .path-text {
         display: none;
     }
@@ -364,8 +310,18 @@
 }
 
 @media (max-width: 480px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    .hero lottie-player {
+        width: 190% !important;
+        margin-left: 18%;
+    }
+
     .hero {
         padding: 8rem 0rem 0rem;
+        align-items: normal;
     }
 
     .hero-text {
