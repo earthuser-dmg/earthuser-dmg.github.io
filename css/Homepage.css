@@ -1,6 +1,6 @@
 /* Hero Section */
 .hero {
-    padding: 12rem 8% 0 8%;
+    padding: 18% 4% 12% 4%;
     width: 80%;
     min-height: calc(100vh - 80px);
     display: flex;
@@ -15,7 +15,7 @@
 
 /* Lottie Player Styles */
 .hero lottie-player {
-    width: 84% !important;
+    width: 84%;
     background: transparent !important;
 }
 
@@ -24,7 +24,6 @@
     right: 0;
     bottom: 0;
     font-family: 'DM Sans', sans-serif;
-    color: #1E1E1E;
     opacity: 0;
     animation: fadeInText 0.5s ease-in-out forwards;
     animation-delay: 3s;
@@ -33,7 +32,7 @@
     z-index: 100;
     width: 5.6875rem;
     height: 3.55069rem;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .path-text.visible {
@@ -51,8 +50,8 @@
 }
 
 .path-text:hover path {
-    fill: #FF8512;
-    transform: translateX(-1px);
+    fill: #FF4B30;
+    transform: translateX(1px);
 }
 
 @keyframes fadeInText {
@@ -60,6 +59,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -83,14 +83,12 @@
     font-weight: 600;
     position: relative;
     display: inline-block;
-    background: linear-gradient(
-        90deg,
-        #FF8512 0%,
-        #FFB74D 25%,
-        #FF8512 50%,
-        #FFB74D 75%,
-        #FF8512 100%
-    );
+    background: linear-gradient(90deg,
+            #FF8512 0%,
+            #FFB74D 25%,
+            #FF8512 50%,
+            #FFB74D 75%,
+            #FF8512 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -108,7 +106,7 @@
 .main-container {
     display: block;
     min-height: 100vh;
-    max-width: 1440px;
+    max-width: 1340px;
     margin: 0 auto;
     position: relative;
 }
@@ -227,10 +225,60 @@
     border-color: #1E1E1E;
 }
 
-@media (max-width: 962px) {
+@media (min-width: 962px) {
+    .hero-text {
+        margin-left: 220px;
+    }
+
+    .hero {
+        display: block
+    }
+
+    .hero-visuals {
+        margin-top: -100px;
+        width: 820px;
+        position: relative;
+    }
+
     .hero lottie-player {
-        width: 150% !important;
-        margin-left: 25%;
+        width: 45rem;
+    }
+
+    .path-text {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 962px) {
+    .hero-text {
+        margin-left: 210px;
+    }
+
+    .hero {
+        display: block
+    }
+
+    .hero-visuals {
+        margin-top: -120px;
+        width: 820px;
+        position: relative;
+    }
+
+    .hero lottie-player {
+        width: 45rem;
+    }
+
+    /*
+    .hero lottie-player {
+        width: 100%;
+        margin-left: 30%;
+    }
+    */
+
+    .path-text {
+        display: none;
     }
 
     .project-content {
@@ -261,18 +309,22 @@
     .hero {
         padding: 10rem 0 0 0;
         min-height: calc(100vh - 60px);
+        display: flex;
     }
 
     .hero-text {
         font-size: 2rem;
         text-align: center;
-        margin: 0 auto 2rem;
+        margin: 0 1rem 4rem 1rem;
         padding: 0 1rem;
     }
-    
+
+    .hero-visuals {
+        margin-left: 28%;
+    }
+
     .hero lottie-player {
-        width: 150% !important;
-        margin-left: 25%;
+        width: 110%;
     }
 
     .path-text {
@@ -310,13 +362,16 @@
 }
 
 @media (max-width: 480px) {
-    body{
+    body {
         overflow-x: hidden;
     }
 
+    .hero-visuals {
+        margin-left: 20%;
+    }
+
     .hero lottie-player {
-        width: 190% !important;
-        margin-left: 18%;
+        width: 90%;
     }
 
     .hero {
