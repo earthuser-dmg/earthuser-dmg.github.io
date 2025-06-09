@@ -252,12 +252,16 @@
 }
 
 @media (max-width: 962px) {
-    .hero-text {
-        margin-left: 210px;
+    body {
+        overflow-x: hidden;
     }
 
     .hero {
         display: block
+    }
+
+    .hero-text {
+        margin-left: 210px;
     }
 
     .hero-visuals {
@@ -269,13 +273,6 @@
     .hero lottie-player {
         width: 45rem;
     }
-
-    /*
-    .hero lottie-player {
-        width: 100%;
-        margin-left: 30%;
-    }
-    */
 
     .path-text {
         display: none;
@@ -307,9 +304,13 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 10rem 0 0 0;
+        padding: 10rem 2rem 0;
         min-height: calc(100vh - 60px);
         display: flex;
+        position: relative;
+        overflow: hidden; /* 隐藏所有方向的溢出 */
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* 让容器占满视窗宽度 */
     }
 
     .hero-text {
@@ -320,7 +321,8 @@
     }
 
     .hero-visuals {
-        margin-left: 28%;
+        margin-left: 30%;
+        position: relative;
     }
 
     .hero lottie-player {
@@ -368,6 +370,7 @@
 
     .hero-visuals {
         margin-left: 20%;
+        position: relative;
     }
 
     .hero lottie-player {
@@ -375,8 +378,12 @@
     }
 
     .hero {
-        padding: 8rem 0rem 0rem;
+        padding: 8rem 1rem 0rem;
         align-items: normal;
+        position: relative;
+        overflow: hidden; /* 隐藏所有方向的溢出 */
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* 让容器占满视窗宽度 */
     }
 
     .hero-text {
@@ -393,7 +400,6 @@
         padding: 0.25rem 0.6rem;
     }
 
-    .path-animation,
     .path-text {
         display: none;
     }
