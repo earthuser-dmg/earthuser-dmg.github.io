@@ -22,15 +22,33 @@ a {
     text-decoration: none;
 }
 
+/*定义变量*/
+:root {
+    /* 颜色系统 */
+    --color-Inverse: #FFFFFF;
+    --color-theme-purple: #7B61FF;
+    --color-bg: #F6F6F6;
+
+    /* 字体系统 */
+    --Fonts-size-H1: 30px;
+    --Fonts-size-H2: 24px;
+    --Fonts-size-H3: 20px;
+    --Fonts-size-H4: 16px;
+    --Fonts-size-Body: 16px;
+    --Fonts-size-label: 13px;
+    --color-H2: #532889;
+    --color-H3: #968BA3;
+    --color-H4: #7D7B7B;
+    --color-Body: #1E1E1E;
+
+    /* 其他通用值 */
+}
+
 /* Media Queries */
-@media screen and (max-width: 1439px) {
-}
+@media screen and (max-width: 1439px) {}
 
-@media (max-width: 962px) {
-}
+@media (max-width: 962px) {}
 
-@media (max-width: 768px) {
-}
+@media (max-width: 768px) {}
 
-@media (max-width: 480px) {
-}
+@media (max-width: 480px) {}
