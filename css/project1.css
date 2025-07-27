@@ -23,8 +23,8 @@ body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--color-bg, #f6f6f6);
   color: var(--color-Body, #1E1E1E);
-  font-size: var(--Fonts-size-body);
-  line-height: 1.6;
+  font-size: var(--fonts-size-body, 16px);
+  line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
   width: 100%;
@@ -75,7 +75,7 @@ body {
 
 .summary-label {
   color: var(--color-H4, #7D7B7B);
-  font-size: var(--Fonts-size-label, 13px);
+  font-size: var(--fonts-size-label, 13px);
   width: 60px;
   margin-right: 36px;
 }
@@ -83,7 +83,7 @@ body {
 .summary-content {
   color: var(--color-Body, #1E1E1E);
   width: 120px;
-  font-size: var(--Fonts-size-label, 13px);
+  font-size: var(--fonts-size-label, 13px);
 }
 
 .context {
@@ -92,11 +92,11 @@ body {
 
 .context h2 {
   color: var(--color-H2);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .context p {
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 6px;
 }
 
@@ -107,7 +107,7 @@ body {
 
 .my-role h3 {
   color: var(--color-H3, #968BA3);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* Project impact section */
@@ -122,7 +122,7 @@ body {
 
 .project-impact ul {
   list-style-type: none;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .project-impact li {
@@ -145,14 +145,40 @@ body {
 }
 
 .understanding h2 {
-  color: #532889;
-  padding-bottom: 4px;
-  margin-bottom: 12px;
+  color: var(--color-H2);
+  margin-bottom: 16px;
 }
 
-.understanding .chinese-text {
-  line-height: 1.4;
+.understanding .text-1 {
+  line-height: 1.5;
   margin-bottom: 20px;
+}
+
+.understanding .text-1 ol {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  padding-left: 0;
+  list-style-position: inside;
+  /* 让序号在内容区最左侧 */
+}
+
+.understanding .text-1 ol li {
+  margin-bottom: 4px;
+  font-size: var(--fonts-size-body, 16px);
+  text-indent: 0;
+  /* 避免内容缩进 */
+}
+
+.understanding .text-2 {
+  line-height: 1.5;
+  margin-top: 36px;
+}
+
+.understanding .text-2 ol h4 {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  color: var(--color-H4);
+  font-weight: 400;
 }
 
 /* Full Width Images */
@@ -165,29 +191,30 @@ body {
 /* Project goal section */
 .project-goal {
   margin-top: 60px;
-  margin-left: 0;
+  margin-left: 6%;
   width: 100%;
-  max-width: 464px;
+  max-width: 60%;
 }
 
 .project-goal h2 {
-  color: #968BA3;
+  color: var(--color-H3, #968BA3);
   margin-bottom: 12px;
 }
 
 .project-goal p {
-  color: #532889;
+  color: var(--color-H2, #532889);
   font-family: Bitter, serif;
-  /* Added Bitter with fallback */
-  font-size: 25px;
+  font-size: var(--fonts-size-h1);
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 12px;
 }
 
-.red-placeholder {
+/* Full Width Images */
+.project-goal-scope {
   width: 100%;
   height: auto;
+  margin: 18px 0;
 }
 
 /* Project task section */
@@ -196,13 +223,18 @@ body {
 }
 
 .project-task h2 {
-  color: #333;
-  margin-bottom: 12px;
+  color: var(--color-H2);
+  font-size: var(--fonts-size-h2);
+  margin-bottom: 6px;
 }
 
-.project-task h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
+.project-task h1 {
+  color: var(--color-H1);
+  font-size: var(--fonts-size-h1);
+  font-family: Bitter, serif;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 48px;
 }
 
 /* Task details */
@@ -221,12 +253,14 @@ body {
 }
 
 .task-detail-col h4 {
-  color: #666;
+  color: var(--color-H4, #7D7B7B);
+  font-size: var(--fonts-size-h4, 16px);
+  font-weight: 400;
   margin-bottom: 8px;
 }
 
 .task-detail-col p {
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 /* Background section */
@@ -235,35 +269,42 @@ body {
 }
 
 .background h3 {
-  color: #666;
+  color: var(--color-H3);
   margin-bottom: 8px;
 }
 
 .background p {
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* Goals section */
-.goals {
+/* desk-research section */
+.desk-research {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.goals h3 {
-  color: #666;
+.desk-research h3 {
+  color: var(--color-H3);
   margin-bottom: 8px;
 }
 
-.goals p {
-  line-height: 1.4;
+.desk-research p {
+  line-height: 1.5;
+}
+
+.desk-research-comparison {
+  width: 80%;
+  height: auto;
+  margin: 48px auto;  
+  display: block;
 }
 
 /* Purple section */
 .purple-section {
-  background-color: #7B61FF;
+  background-color: var(--color-theme, #7B61FF);
   padding: 40px 0;
   margin-top: 60px;
-  color: white;
+  color: var(--color-inverse, #ffffff);
   width: 100%;
   position: relative;
   overflow-x: hidden;
@@ -280,25 +321,39 @@ body {
 /* Output section */
 .output-section {
   display: flex;
-  margin-top: 20px;
+  margin-top: 48px;
+  gap: 48px;
 }
 
 .output-image {
-  flex: 2;
+  flex: 1.2;
+}
+
+.output-img-1 {
+  width: 100%;
+  height: auto;
 }
 
 .output-text {
-  flex: 1;
-  padding-left: 20px;
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
 }
 
-.output-text h3 {
+.output-text h2 {
   font-size: 16px;
   margin-bottom: 12px;
 }
 
 .output-text p {
-  line-height: 1.4;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.output-img-2 {
+  width: 100%;
+  height: auto;
+  margin-top: auto;
 }
 
 .small-image {
@@ -320,7 +375,7 @@ body {
 
 .after-before p {
   color: white;
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 20px;
 }
 
@@ -412,11 +467,11 @@ body {
 
   .output-section {
     flex-direction: column;
+    gap: 20px;
   }
 
   .output-text {
-    padding-left: 0;
-    margin-top: 20px;
+    margin-top: 0;
   }
 
   .small-image {
@@ -466,10 +521,6 @@ body {
 
   .after-before h2 {
     font-size: 18px;
-  }
-
-  .red-placeholder {
-    height: 150px;
   }
 
   .comparison-image {
