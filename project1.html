@@ -17,8 +17,9 @@
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
-        <!-- Main Container -->
         <div class="container">
+            <img src="images/project1-headimg.jpg" alt="Decathlon" class="head-image">
+
             <div class="header grid">
                 <div class="summary-container">
                     <div class="summary-row">
@@ -107,6 +108,11 @@
                         operate business-facing products directly, but serves as an infrastructure layer that connects
                         and supports them.
                         <p>
+
+                            <!-- Full Width Image 1 -->
+                            <img src="images/project1-Understanding-stakeholders map.png" alt="Stakeholders map"
+                                class="Understanding-img">
+
                         <h4>Platform Background</h4>
                         One of our key user groups, the SPLs (Supply Planning Leads), faces a high turnover rate. The
                         main reason is the steep learning curve — it takes a long time to become proficient with the
@@ -119,15 +125,11 @@
                         design system to assemble the interface on their own.
                     </ol>
                 </div>
-
-                <!-- Full Width Image 1 -->
-                <img src="images/project1-Understanding-stakeholders map.png" alt="Stakeholders map"
-                    class="full-width-image">
             </div>
 
             <div class="project-goal">
                 <h2>Project Goal & Scope</h2>
-                <p>All of digital products should provide a easy-to-use and seamless experience without confusion.</p>
+                <h1>All of digital products should provide a easy-to-use and seamless experience without confusion.</h1>
             </div>
 
             <img src="/images/project1-Project Goal & Scope.png" alt="Project Goal & Scope" class="project-goal-scope">
@@ -177,7 +179,8 @@
                     <div class="output-text">
                         <h2>Output</h2>
                         <p>I defined grid system, patterns, icons, components and so on. This effort not only enhanced
-                            my future work efficiency but also <strong>established a solid foundation for the development of
+                            my future work efficiency but also <strong>established a solid foundation for the
+                                development of
                                 BMS. </strong></p>
                         <img src="/images/project1-task1-output2.png" alt="placeholder" class="output-img-2">
                     </div>
@@ -185,14 +188,177 @@
 
                 <div class="after-before">
                     <h2>After & Before</h2>
-                    <p>After taking the design system project, designers could create consistent experiences for people
-                        more easily. Engineers can build features faster and it's cleaner from an architecture
-                        standpoint.</p>
+                    <p>After nearly a year of effort, I’ve updated most of interfaces across the platform, marking a
+                        significant step in our digital transformation. This has received positive feedback from users.
+                    </p>
 
-                    <img src="/images/project1-screenshot.jpg" alt="comparison" class="comparison-image">
+                    <div class="gallery-container">
+                        <div class="gallery-main">
+                            <button class="gallery-nav gallery-prev" onclick="changeSlide(-1)">‹</button>
+                            <div class="gallery-slide active">
+                                <img src="/images/project1-task1-b&a1.png" alt="Before" class="gallery-image">
+                                <div class="slide-caption">Before</div>
+                            </div>
+                            <div class="gallery-slide">
+                                <img src="/images/project1-task1-b&a2.png" alt="After" class="gallery-image">
+                                <div class="slide-caption">After</div>
+                            </div>
+                            <button class="gallery-nav gallery-next" onclick="changeSlide(1)">›</button>
+                        </div>
 
-                    <img src="/images/project1-screenshot.jpg" alt="Interface screenshot" class="screenshot">
+                        <div class="gallery-thumbnails">
+                            <div class="thumbnail active" onclick="currentSlide(1)">
+                                <img src="/images/project1-task1-b&a1.png" alt="Before thumbnail">
+                                <span class="thumbnail-caption">Before</span>
+                            </div>
+                            <div class="thumbnail" onclick="currentSlide(2)">
+                                <img src="/images/project1-task1-b&a2.png" alt="After thumbnail">
+                                <span class="thumbnail-caption">After</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="project-task">
+                <h2>Project Task 2</h2>
+                <h1>Modular Magic: Making Complex Tasks Simpler, Faster, and More Scalable</h1>
+
+                <div class="task-details">
+                    <div class="task-detail-col">
+                        <h4>Probelm</h4>
+                        <ul>
+                            <li>complex business logic and prolonged workflows for task completion</li>
+                            <li>inconsistent interaction across platforms lead to poor usability</li>
+                        </ul>
+                    </div>
+                    <div class="task-detail-col">
+                        <h4>Approach</h4>
+                        <p>define interaction patterns through business scenarios </p>
+                    </div>
+                </div>
+
+                <div class="current-situation">
+                    <h4>Current situation</h4>
+                    <h1>Digital products in supply chain is a "mess".</h1>
+                    <div class="situation-cards">
+                        <div class="situation-card">
+                            <p><strong>Users struggle with fragmented tools</strong>: Day-to-day tasks require
+                                navigating multiple internal and external systems, making it difficult to maintain
+                                consistent data. </p>
+                        </div>
+                        <div class="situation-card">
+                            <p>To centralize business processes, key systems such as order management, warehouse
+                                operations, and ERP were gradually integrated into one internal platform. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology">
+                    <h3>Methodology</h3>
+
+                    <div class="methodology-content">
+                        <div class="methodology-text">
+                            <p><strong>Atomic design methodology & task-driven </strong></p>
+                            <p>Due to the domain traits, many daily tasks are repetitive, and employees only need to
+                                follow
+                                basic procedures to complete their work. To improve efficiency and user experience, we
+                                aimed to
+                                build a module system focused on task-driven flows and task modularization — this became
+                                the
+                                core concept behind the Business Module System (BMS). </p>
+                        </div>
+
+                        <div class="methodology-image-container">
+                            <img src="/images/project1-atomic-design-process.png" alt="Atomic design process"
+                                class="Methodology-img">
+                            <p class="image-source">Source: Atomic Design by Brad Frost</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research">
+                    <h3>Research</h3>
+                    <p>After delivering design tasks, do some desk research and conduct a Kick-Off workshop, luckily I
+                        solved some valuable questions like <strong> What do we need? </strong></p>
+                    <div class="research-images">
+                        <img src="/images/project1-research-1.png" alt="Workshop" class="research-img-1">
+                        <img src="/images/project1-research-2.png" alt="Result" class="research-img-2">
+                    </div>
+                </div>
+
+                <div class="ideate">
+                    <h3>Ideate and Prioritize</h3>
+                    <p>Categorized based on user behavior, usage frequency, and internal priority</p>
+
+                    <div class="stage stage-1">
+                        <h4>Stage 1: Basic content structure</h4>
+                        <img src="/images/project1-stage1.png" alt="Table of content" class="ideate-img">
+                        <p><strong>Source: </strong>Current component library and design tasks</p>
+                    </div>
+
+                    <div class="stage stage-2">
+                        <h4>Stage 2: Two Category</h4>
+                        <p>In the second phase, we introduced new categories—Business Needs and Basic Services—based on
+                            usage scenarios. With the foundational modules summarized, I also drew inspiration from the
+                            products I was working on.
+                            Our current focus is on modules closely tied to core business processes. </p>
+                            <div class="stage2-card">
+                                <p><strong>Business needs</strong><br>interactions related to business processes, specific to certain types of products</p>
+                            </div>
+                            <p><strong>Source: </strong>Stakeholders journey and product team</p>
+                            
+                            <div class="stage2-card">
+                                <p><strong>Basic service</strong><br>components used to complete general operations, without strong business attributes</p>
+                            </div>
+                            <p><strong>Source: </strong>Product review and user research</p>
+                    </div>
+
+                    <div class="stage stage-3">
+                        <h4>Stage 3: Module, Template and pages</h4>
+                        <p>In the second phase, we introduced new categories—Business Needs and Basic Services—based on
+                            usage scenarios. With the foundational modules summarized, I also drew inspiration from the
+                            products I was working on.
+                            Our current focus is on modules closely tied to core business processes. </p>
+                        <img src="/images/project1-stage3.png" alt="Layer" class="ideate-img">
+                        <p><strong>Source</strong>: product review and user research</p>
+                    </div>
+
+                    <div class="figma-embed">
+                        <h4>Interactive Prototype</h4>
+                        <div class="figma-container">
+                            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="100%"
+                                src="https://embed.figma.com/proto/LYl3YGE9Y4EHVTWslgLjWW/%E2%9B%BD%EF%B8%8F-2025?page-id=&node-id=1901-2935&viewport=1847%2C-2267%2C0.11&scaling=fit-width&content-scaling=fixed&starting-point-node-id=1901%3A2935&footer=false&show-proto-sidebar=false&embed-host=share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h2>Conclusion</h2>
+                    <h4>What did I do?</h4>
+                    <ul>
+                        <li><strong>Research:</strong> Collected real user scenarios from product teams to identify the
+                            core focus and structure of the Business Module System (BMS).</li>
+                        <li><strong>Define:</strong> Designed the foundational structure by categorizing modules based
+                            on user behavior, usage frequency, and internal priorities.</li>
+                        <li><strong>Ideate:</strong> Formulated the content architecture and drafted an actionable plan
+                            for scalable module delivery.</li>
+                        <li><strong>Design:</strong> Led UX design for modules, setting usability benchmarks and
+                            interaction logic.</li>
+                        <li><strong>A/B Testing:</strong> Conducted in-product A/B testing to validate usability and
+                            inform iteration.</li>
+                        <li><strong>Internal Release:</strong> Promoted the system within internal product teams,
+                            delivered spec documents to frontend engineers, and aligned on development timelines.</li>
+                        <li><strong>Implementation:</strong> Established a request form and SOP to qualify module
+                            submissions as BMS components.</li>
+                        <li><strong>Promote:</strong> Advocated adoption across external product teams to broaden impact
+                            and ensure consistency.</li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
@@ -244,6 +410,44 @@
                 overlay.style.display = 'none';
                 img.src = '';
             });
+        });
+
+        // Gallery functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+            // Show current slide
+            slides[index].classList.add('active');
+            thumbnails[index].classList.add('active');
+
+            currentSlideIndex = index;
+        }
+
+        function changeSlide(direction) {
+            let newIndex = currentSlideIndex + direction;
+
+            if (newIndex >= slides.length) {
+                newIndex = 0;
+            } else if (newIndex < 0) {
+                newIndex = slides.length - 1;
+            }
+
+            showSlide(newIndex);
+        }
+
+        function currentSlide(index) {
+            showSlide(index - 1); // Convert to 0-based index
+        }
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function () {
+            showSlide(0);
         });
     </script>
 </body>
