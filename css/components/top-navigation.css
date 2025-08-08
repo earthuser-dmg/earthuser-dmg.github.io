@@ -21,7 +21,7 @@
   background: hsla(0, 0%, 96%, 0.95);
   backdrop-filter: blur(25px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  height: 70px;
+  height: 60px;
 }
 
 .top-nav.scrolled .top-nav-content {
@@ -58,6 +58,26 @@
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-image {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1rem;
+  font-weight: 500;
+  display: none;
 }
 
 .nav-links {
@@ -266,10 +286,21 @@
   transform: translateX(0);
 }
 
-.mobile-nav-links a:nth-child(1) { transition-delay: 0.1s; }
-.mobile-nav-links a:nth-child(2) { transition-delay: 0.2s; }
-.mobile-nav-links a:nth-child(3) { transition-delay: 0.3s; }
-.mobile-nav-links a:nth-child(4) { transition-delay: 0.4s; }
+.mobile-nav-links a:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.mobile-nav-links a:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.mobile-nav-links a:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.mobile-nav-links a:nth-child(4) {
+  transition-delay: 0.4s;
+}
 
 .mobile-nav-links a.active {
   color: #FF8512;
@@ -281,23 +312,35 @@
 }
 
 /* Media Queries for navigation */
-@media screen and (max-width: 1439px) {
+@media screen and (min-width: 962px) {
   .top-nav-content {
-    padding: 2rem 8%;
+    padding: 28px 8%;
   }
 
   .top-nav.scrolled .top-nav-content {
-    padding: 1.5rem 8%;
+    padding: 18px 8%;
   }
 }
 
 @media (max-width: 962px) {
+  .top-nav {
+    padding: 0rem;
+    height: 80px;
+  }
+
+  .top-nav-content {
+    padding: 28px 8%;
+  }
 }
 
 @media (max-width: 768px) {
   .top-nav {
     padding: 0rem;
     height: 70px;
+  }
+
+  .top-nav-content {
+    padding: 23px 8%;
   }
 
   .top-nav.scrolled {
@@ -316,9 +359,22 @@
   .nav-links {
     display: none;
   }
-} 
+}
 
 @media (max-width: 480px) {
+  .top-nav {
+    padding: 0rem;
+    height: 70px;
+  }
+
+    .top-nav.scrolled {
+    height: 60px;
+  }
+
+  .top-nav-content {
+    padding: 20px 8%;
+  }
+
   .mobile-menu-close {
     top: 1rem;
     right: 8%;
