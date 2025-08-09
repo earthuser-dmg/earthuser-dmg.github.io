@@ -148,15 +148,36 @@
 
                 // 点击 path-text 滚动到作品区域
                 pathText.addEventListener('click', () => {
-                    const projectsContainer = document.querySelector('.content-area');
-                    if (projectsContainer) {
-                        projectsContainer.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    scrollToContentArea();
                 });
             }
+
+            // 滚动到content-area的函数
+            function scrollToContentArea() {
+                const projectsContainer = document.querySelector('.content-area');
+                if (projectsContainer) {
+                    projectsContainer.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+
+            // 检查URL hash，如果是#content-area则滚动到对应位置
+            function handleHashNavigation() {
+                if (window.location.hash === '#content-area') {
+                    // 延迟执行，确保页面完全加载
+                    setTimeout(() => {
+                        scrollToContentArea();
+                    }, 100);
+                }
+            }
+
+            // 页面加载时检查hash
+            handleHashNavigation();
+
+            // 监听hash变化
+            window.addEventListener('hashchange', handleHashNavigation);
 
             // Tag colors for random assignment
             const tagColors = ['#E1D4F8', '#FAD0E8', '#FDDFD2'];

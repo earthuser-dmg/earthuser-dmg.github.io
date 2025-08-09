@@ -95,7 +95,9 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 1439px) {
+@media (min-width: 962px) {}
+
+@media (max-width: 962px) {
     .footer-content {
         padding: 0 9% 0 8%;
     }

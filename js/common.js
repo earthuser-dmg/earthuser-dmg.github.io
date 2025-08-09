@@ -4,20 +4,22 @@
 function setActiveNavLink() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
-    
+
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
+        const linkPathWithoutHash = linkPath.split('#')[0]; // 移除hash部分
+
         // 移除 active 类
         link.classList.remove('active');
-        
+
         // 检查是否是首页
         if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-            if (linkPath === 'index.html') {
+            if (linkPathWithoutHash === 'index.html' || linkPath.startsWith('index.html#')) {
                 link.classList.add('active');
             }
         }
         // 检查其他页面
-        else if (currentPath.endsWith(linkPath)) {
+        else if (currentPath.endsWith(linkPathWithoutHash)) {
             link.classList.add('active');
         }
     });
@@ -77,12 +79,14 @@ function initializeNavigation() {
     function openMenu() {
         mobileMenuToggle.classList.add('active');
         mobileMenuOverlay.classList.add('active');
+        document.body.classList.add('mobile-menu-open');
         document.body.style.overflow = 'hidden';
     }
-    
+
     function closeMenu() {
         mobileMenuToggle.classList.remove('active');
         mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
         document.body.style.overflow = 'auto';
     }
     
@@ -109,6 +113,36 @@ function initializeNavigation() {
 
     // Initialize nav state on page load
     updateNavOnScroll();
+
+    // 处理Work链接点击事件
+    function handleWorkLinkClick() {
+        const workLinks = document.querySelectorAll('.work-link');
+        workLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 如果当前不在index.html页面，让链接正常跳转
+                const currentPath = window.location.pathname;
+                if (!currentPath.endsWith('/') && !currentPath.endsWith('index.html')) {
+                    return; // 让默认行为发生（跳转到index.html#content-area）
+                }
+
+                // 如果已经在index.html页面，阻止默认行为并平滑滚动
+                e.preventDefault();
+                const contentArea = document.querySelector('.content-area');
+                if (contentArea) {
+                    contentArea.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // 关闭移动端菜单
+                closeMenu();
+            });
+        });
+    }
+
+    // 延迟执行以确保DOM完全加载
+    setTimeout(handleWorkLinkClick, 100);
 }
 
 // Load favicon

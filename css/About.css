@@ -1,3 +1,8 @@
+/* Import component styles */
+@import url('components/top-navigation.css');
+@import url('components/footer.css');
+@import url('style.css');
+
 /* Base Styles */
 * {
     margin: 0;
@@ -29,8 +34,8 @@
 
 /* Container */
 .container {
-    padding: 100px 6rem 0;
-    max-width: 1440px;
+    padding: 10% 8% 0;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -43,21 +48,17 @@
 }
 
 /* Media Queries */
-@media screen and (max-width: 1439px) {
+@media (min-width: 962px) {}
+
+@media (max-width: 962px) {
     .container {
-        padding: 100px 8% 0;
+        padding: 12% 8% 0;
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 768px) {
     .container {
-        padding: 100px 6% 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 80px 4rem 0;
+        padding: 14% 8% 0;
     }
 
     .container h1 {
@@ -65,23 +66,13 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
     .container {
-        padding: 70px 1.5rem 0;
+        padding: 24% 2rem 0;
     }
 
     .container h1 {
         font-size: 1.75rem;
-    }
-}
-
-@media screen and (max-width: 430px) {
-    .container {
-        padding: 60px 1rem 0;
-    }
-
-    .container h1 {
-        font-size: 1.5rem;
     }
 }
   
