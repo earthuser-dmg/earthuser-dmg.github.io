@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Google tag (gtag.js) - Should be first in head -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FP84ENEGMJ"></script>
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Play.css">
 </head>
+
 <body>
     <!-- Include Top Navigation -->
     <div id="top-nav-container"></div>
@@ -25,8 +27,52 @@
     <!-- Page Content -->
     <div class="page-wrapper">
         <div class="container">
-            <h1>Play</h1>
-            <!-- 在这里添加 Play 页面的具体内容 -->
+            <h1>Playground</h1>
+
+            <!-- Photo Gallery -->
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="images/Play/Journaling1.png" alt="Photo 1">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Journaling</div>
+                    </div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="images/Play/Illustration-1.png" alt="Photo 2">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Poster for a Coffee Lovers Community with 180k members on Douban<br>2021</div>
+                    </div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="images/Play/Journaling2.png" alt="Photo 3">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Journaling</div>
+                    </div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="images/Play/Portrait.png" alt="Photo 4">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Photo 4 Description</div>
+                    </div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="images/placeholder2.jpg" alt="Photo 5">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Photo 5 Description</div>
+                    </div>
+                </div>
+
+                <div class="photo-item">
+                    <img src="images/placeholder.jpg" alt="Photo 6">
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Photo 6 Description</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -34,5 +80,61 @@
     <div id="footer-container"></div>
 
     <script src="js/common.js"></script>
+
+    <script>
+        // 等待页面完全加载后初始化
+        window.addEventListener('load', function () {
+            console.log('Page loaded, initializing image preview...');
+
+            // 创建遮罩和大图容器
+            const overlay = document.createElement('div');
+            overlay.id = 'img-overlay';
+            overlay.style.cssText = `
+                display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;
+                background:rgba(0,0,0,0.8);justify-content:center;align-items:center;cursor:pointer;
+            `;
+
+            const img = document.createElement('img');
+            img.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:6px;';
+
+            overlay.appendChild(img);
+            document.body.appendChild(overlay);
+
+            // 为所有photo-gallery中的图片添加点击事件
+            const images = document.querySelectorAll('.photo-gallery img');
+            console.log('Found images:', images.length);
+
+            images.forEach(function (image, index) {
+                image.addEventListener('click', function (e) {
+                    console.log('Image clicked:', index, this.src);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    img.src = this.src;
+                    overlay.style.display = 'flex';
+                });
+            });
+
+            // 点击遮罩关闭
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) {
+                    overlay.style.display = 'none';
+                    img.src = '';
+                    console.log('Overlay closed');
+                }
+            });
+
+            // ESC键关闭
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && overlay.style.display === 'flex') {
+                    overlay.style.display = 'none';
+                    img.src = '';
+                    console.log('Closed with ESC');
+                }
+            });
+
+            console.log('Image preview initialized');
+        });
+    </script>
 </body>
+
 </html>

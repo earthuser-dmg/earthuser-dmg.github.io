@@ -1,3 +1,8 @@
+/* Import component styles */
+@import url('components/top-navigation.css');
+@import url('components/footer.css');
+@import url('style.css');
+
 /* Hero Section */
 .hero {
     padding: 18% 4% 12% 4%;
@@ -155,7 +160,7 @@
 .project-number {
     font-size: 1.7rem;
     font-weight: 600;
-    color: #532889;
+    color: var(--color-body, #1E1E1E);
 }
 
 .project-title {

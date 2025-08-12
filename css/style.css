@@ -27,6 +27,8 @@ a {
     /* 颜色系统 */
     --color-inverse: #FFFFFF;
     --color-bg: #F6F6F6;
+    --color-H4: #7D7B7B;
+    --color-body: #1E1E1E; 
 
     /* 字体系统 */
     --fonts-size-h1: 30px;
@@ -35,8 +37,6 @@ a {
     --fonts-size-h4: 16px;
     --fonts-size-body: 16px;
     --fonts-size-label: 13px;
-    --color-H4: #7D7B7B;
-    --color-Body: #1E1E1E;
 
     /* 其他通用值 */
 }

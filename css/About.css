@@ -5,74 +5,157 @@
 
 /* Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #F6F6F6;
-    color: #1E1E1E;
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
-    width: 100%;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #F6F6F6;
+  color: #1E1E1E;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 /* Page Wrapper */
 .page-wrapper {
-    display: block;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    position: relative;
-    overflow-x: hidden;
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
 }
 
 /* Container */
 .container {
-    padding: 10% 8% 0;
-    max-width: 1000px;
-    margin: 0 auto;
+  padding: 12% 8% 4% 8%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Container内容间距设置 */
+.container>* {
+  margin-bottom: 3rem;
+}
+
+.container>*:last-child {
+  margin-bottom: 0;
 }
 
 /* Page Title */
 .container h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1E1E1E;
-    margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1E1E1E;
+  margin-bottom: 3rem;
 }
+
+.me {
+  margin: 0;
+  padding: 2rem 0;
+}
+
+.me h3 {
+  margin-bottom: 0px;
+}
+
+.me-content {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1rem;
+  align-items: flex-start;
+}
+
+.me-text {
+  flex: 1;
+}
+
+.me-text p {
+  margin-bottom: 1rem;
+}
+
+.me-text p:last-child {
+  margin-bottom: 0;
+}
+
+.me-image-container {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.me-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+  border-radius: 10px;
+  display: block;
+}
+
+.layout55-images {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0;
+  max-width: 100%;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.layout5050-img {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: calc(50% - 12px);
+}
+
 
 /* Media Queries */
 @media (min-width: 962px) {}
 
 @media (max-width: 962px) {
-    .container {
-        padding: 12% 8% 0;
-    }
+  .container {
+    padding: 12% 8% 0;
+  }
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 14% 8% 0;
-    }
+  .container {
+    padding: 14% 8% 0;
+  }
 
-    .container h1 {
-        font-size: 2rem;
-    }
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .container>* {
+    margin-bottom: 2rem;
+    /* 移动端减少间距 */
+  }
+
+  .me-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .me-image-container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 24% 2rem 0;
-    }
+  .container {
+    padding: 24% 2rem 0;
+  }
 
-    .container h1 {
-        font-size: 1.75rem;
-    }
+  .container h1 {
+    font-size: 1.75rem;
+  }
 }
-  
