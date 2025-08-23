@@ -1,5 +1,7 @@
-/* Footer Styles */
+/* Import component styles */
+@import url('style.css');
 
+/* Footer Styles */
 .footer {
     width: 100vw;
     position: relative;
