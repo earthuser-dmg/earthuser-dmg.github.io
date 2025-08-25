@@ -625,31 +625,10 @@
     <script src="js/common.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 创建遮罩和大图容器
-            const overlay = document.createElement('div');
-            overlay.id = 'img-overlay';
-            overlay.style.cssText = `
-        display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;
-        background:rgba(0,0,0,0.8);justify-content:center;align-items:center;
-    `;
-            const img = document.createElement('img');
-            img.style.cssText = 'max-width:90vw;max-height:90vh;box-shadow:0 0 16px #000;border-radius:8px;';
-            overlay.appendChild(img);
-            document.body.appendChild(overlay);
-
-            // 点击图片放大
-            document.body.addEventListener('click', function (e) {
-                if (e.target.tagName === 'IMG') {
-                    img.src = e.target.src;
-                    overlay.style.display = 'flex';
-                }
-            });
-
-            // 点击遮罩关闭
-            overlay.addEventListener('click', function () {
-                overlay.style.display = 'none';
-                img.src = '';
-            });
+            // 启用统一图片预览（作用于全站图片）
+            if (window.initImagePreview) {
+                window.initImagePreview({ selector: 'img' });
+            }
         });
 
         // Gallery functionality

@@ -80,59 +80,11 @@
     <div id="footer-container"></div>
 
     <script src="js/common.js"></script>
-
     <script>
-        // 等待页面完全加载后初始化
-        window.addEventListener('load', function () {
-            console.log('Page loaded, initializing image preview...');
-
-            // 创建遮罩和大图容器
-            const overlay = document.createElement('div');
-            overlay.id = 'img-overlay';
-            overlay.style.cssText = `
-                display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;
-                background:rgba(0,0,0,0.8);justify-content:center;align-items:center;cursor:pointer;
-            `;
-
-            const img = document.createElement('img');
-            img.style.cssText = 'max-width:90vw;max-height:90vh;border-radius:6px;';
-
-            overlay.appendChild(img);
-            document.body.appendChild(overlay);
-
-            // 为所有photo-gallery中的图片添加点击事件
-            const images = document.querySelectorAll('.photo-gallery img');
-            console.log('Found images:', images.length);
-
-            images.forEach(function (image, index) {
-                image.addEventListener('click', function (e) {
-                    console.log('Image clicked:', index, this.src);
-                    e.preventDefault();
-                    e.stopPropagation();
-                    img.src = this.src;
-                    overlay.style.display = 'flex';
-                });
-            });
-
-            // 点击遮罩关闭
-            overlay.addEventListener('click', function (e) {
-                if (e.target === overlay) {
-                    overlay.style.display = 'none';
-                    img.src = '';
-                    console.log('Overlay closed');
-                }
-            });
-
-            // ESC键关闭
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape' && overlay.style.display === 'flex') {
-                    overlay.style.display = 'none';
-                    img.src = '';
-                    console.log('Closed with ESC');
-                }
-            });
-
-            console.log('Image preview initialized');
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.initImagePreview) {
+                window.initImagePreview({ selector: '.photo-gallery img' });
+            }
         });
     </script>
 </body>

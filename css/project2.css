@@ -8,7 +8,8 @@
     /* Project2 Color System */
     --color-theme: #FF6B9D;
     --color-H2: #484848;
-    --color-H3: #968BA3;
+    --color-H3: #909090;
+    --color-H4: #3b3b3b;
 }
 
 /* Project2 Typography Color Overrides */
@@ -17,11 +18,11 @@ h2 {
 }
 
 h3 {
-    color: var(--color-H3, #968BA3);
+    color: var(--color-H3, #909090);
 }
 
 h4 {
-    color: var(--color-H4, #7D7B7B);
+    color: var(--color-H4, #3b3b3b);
 }
 
 p {
@@ -152,6 +153,7 @@ body {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    pointer-events: none;
 }
 
 .fullwidthL-image {
@@ -162,7 +164,7 @@ body {
     max-width: var(--fullwidthL-max);
     height: auto;
     display: block;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 .fullwidthM-image {
@@ -172,13 +174,50 @@ body {
     display: block;
 }
 
+.fullwidthS-image {
+    width: 80%;
+    height: auto;
+    margin: 1rem auto;
+    display: block;
+}
+
+/* Spacing utilities */
+.spacer-y {
+    display: block;
+    width: 100%;
+    height: var(--space, 24px);
+}
+
+.spacer-x {
+    display: inline-block;
+    width: var(--space, 24px);
+    height: 1px;
+}
+
+/* Spacing size presets */
+.space-s {
+    --space: 0.5rem;
+}
+
+.space-m {
+    --space: 1rem;
+}
+
+.space-l {
+    --space: 2rem;
+}
+
+.space-xl {
+    --space: 4rem;
+}
+
 /* Card */
 .cardwithborder {
     height: fit-content;
     padding: 32px;
-    margin: 0 0 1rem 0;
     background-color: var(--card-bg, #FAEED4);
     border: 1px solid var(--color-H4, #7D7B7B);
+    border-radius: 12px;
 }
 
 .cardwithborder p {
@@ -190,21 +229,42 @@ body {
     color: var(--color-Body);
 }
 
+.cardwithborder h4 {
+    font-weight: 900;
+}
+
+
+/* Three cards layout - equal width and height */
+.three-cards-layout {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    margin: 1rem 0;
+}
+
+.three-cards-layout .cardwithborder {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
 /* Two cards with center arrow */
 .cards-with-arrow {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     gap: 12px;
-    margin: 1.5rem 0 0.5rem 0;
+    margin: 0 0 2rem;
 }
 
 .cards-with-arrow .cardwithborder {
     flex: 1 1 auto;
-    border-radius: 12px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .card-arrow {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,11 +305,111 @@ body {
 
 /* Background section */
 .paragraph {
-    padding: 1rem 0;
+    padding: 1.5rem 0 0;
 }
 
-.paragraph p {
+.paragraph>p {
     line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.paragraph h1 {
+    margin-bottom: 10px;
+}
+
+.cardwithborder p {
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.cardwithborder ol {
+    margin-top: 12px;
+    margin-bottom: 20px;
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+.cardwithborder ol li {
+    margin-bottom: 4px;
+    font-size: var(--fonts-size-body, 16px);
+    text-indent: 0;
+}
+
+/* Issues list styling */
+.issues-list {
+    margin-top: 12px;
+}
+
+.issue-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    gap: 8px;
+}
+
+.issue-number {
+    font-weight: bold;
+    color: var(--color-Body, #1E1E1E);
+    min-width: 24px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.issue-text {
+    flex: 1;
+    line-height: 1.5;
+}
+
+.paragraphin1line {
+    display: flex;
+    gap: 3rem;
+    align-items: stretch;
+    margin-bottom: 3rem;
+}
+
+.paragraphin1line>.paragraph {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.paragraphin1line .paragraph .paragraph-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+/* Remove image margin only within paragraphin1line */
+.paragraphin1line .fullwidthM-image {
+    margin: 0;
+}
+
+.layout-55block {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+}
+
+.block-left {
+    flex: 0 0 60%;
+    min-width: 0;
+}
+
+.block-right {
+    flex: 0 0 40%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.block-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Media Queries */
@@ -291,6 +451,11 @@ body {
         padding-left: 0;
     }
 
+    .paragraphin1line {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
     .cards-with-arrow {
         flex-direction: column;
         gap: 12px;
@@ -299,6 +464,25 @@ body {
     .card-arrow {
         display: none;
         /* mobile: stack without arrow */
+    }
+
+    .three-cards-layout {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .three-cards-layout .cardwithborder {
+        flex: none;
+    }
+
+    .layout-55block {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .block-left,
+    .block-right {
+        flex: 0 0 100%;
     }
 }
 

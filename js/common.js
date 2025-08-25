@@ -166,6 +166,78 @@ function loadFavicon() {
         });
 }
 
+// Initialize image click-to-enlarge overlay (configurable)
+function initImagePreview(options) {
+    const config = Object.assign({ selector: 'img', container: document, closeOnEsc: true }, options || {});
+
+    let overlay = document.getElementById('img-overlay');
+    let overlayImage;
+
+    function ensureOverlay() {
+        if (overlay) return;
+        overlay = document.createElement('div');
+        overlay.id = 'img-overlay';
+        overlay.style.cssText = 'display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;cursor:pointer;';
+        overlayImage = document.createElement('img');
+        overlayImage.style.cssText = 'max-width:90vw;max-height:90vh;box-shadow:0 0 16px #000;border-radius:8px;';
+        overlay.appendChild(overlayImage);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        if (config.closeOnEsc) {
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.style.display === 'flex') {
+                    closeOverlay();
+                }
+            });
+        }
+    }
+
+    function openOverlay(src) {
+        ensureOverlay();
+        overlayImage.src = src;
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+        if (!overlay) return;
+        overlay.style.display = 'none';
+        if (overlayImage) overlayImage.src = '';
+        document.body.style.overflow = '';
+    }
+
+    config.container.addEventListener('click', function (e) {
+        const target = e.target;
+        if (!(target && target.tagName === 'IMG')) return;
+        if (overlay && overlay.contains(target)) return; // ignore clicks on enlarged image
+
+        // Match selector scope
+        if (config.selector) {
+            try {
+                const matched = target.matches(config.selector) || target.closest(config.selector);
+                if (!matched) return;
+            } catch (err) {
+                // If selector invalid, fail safe: do nothing
+                return;
+            }
+        }
+
+        openOverlay(target.src);
+    });
+
+    // Expose close for potential external usage
+    return { close: closeOverlay };
+}
+
+// expose to window for page usage
+window.initImagePreview = initImagePreview;
+
 // Load common modules
 document.addEventListener('DOMContentLoaded', function() {
     // Load favicon

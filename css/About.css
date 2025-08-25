@@ -104,7 +104,6 @@ body {
   margin: 24px 0;
   max-width: 100%;
   width: 100%;
-  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -114,6 +113,7 @@ body {
   height: auto;
   object-fit: contain;
   max-width: calc(50% - 12px);
+  border-radius: 10px;
 }
 
 
