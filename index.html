@@ -31,8 +31,10 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-text">
-                <span class="greeting">Hi, I'm <strong>Juno</strong></span>—a product designer navigating the world
-                through design—each project a vessel, each experience a journey.
+                I'm <strong>Juno</strong> — a product designer who observes closely, thinks in systems, and
+                makes products — and life — work better.
+                <div class="spacer-x space-s"></div>
+                <span class="prev">Prev. Decathlon, Alibaba</span>
             </div>
             <div class="hero-visuals">
                 <lottie-player src="./js/catline.json" speed="1" autoplay></lottie-player>
@@ -54,19 +56,20 @@
                 <!-- Project Cards -->
                 <div class="projects-container">
                     <!-- Project 1 -->
-                    <a href="project1.html" class="project-card">
+                    <a href="Business-module-system.html" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Designing for Digital Transformation: <br>Crafting Decathlon’s Business Module System</h1>
+                                <h1 class="project-title">Designing for Digital Transformation: <br>Crafting Decathlon’s
+                                    Business Module System</h1>
                                 <div class="project-description">
                                     A business module system built from scratch to power internal integration at scale.
                                     At Decathlon, I led the 0-1 design for DPCP, navigating new domains, aligning
                                     stakeholders, and shaping the foundation through close collaboration.
                                 </div>
                                 <div class="project-tags">
-                                    <span class="tag">Decathlon</span>
                                     <span class="tag">B2B</span>
                                     <span class="tag">Design System</span>
+                                    <span class="tag">2025</span>
                                 </div>
                             </div>
                             <div class="project-image">
@@ -76,17 +79,40 @@
                     </a>
 
                     <!-- Project 2 -->
-                    <a href="project2.html" class="project-card">
+                    <a href="Creating-my-website-with-AI.html" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Breaking Borders: <br>Designing Seamless Travel with Fliggy</h1>
+                                <h1 class="project-title">Teaming with AI: <br>Creating My first Website in 4 Months
+                                </h1>
                                 <div class="project-description">
-                                    How I designed for different markets: China & Southeast Asia 
+                                    In the beginning, coding was only lines I could read but never truly understand.
+                                    With the support of Claude, Cursor, ChatGPT, Augment—I built my first site,
+                                    and more importantly, I learned how to bring my design to life. </div>
+                                <div class="project-tags">
+                                    <span class="tag">Vide Coding</span>
+                                    <span class="tag">Web Design & Dev</span>
+                                    <span class="tag">2025</span>
+                                </div>
+                            </div>
+                            <div class="project-image">
+                                <img src="images/CoverWeb.png" alt="Cover">
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Project 2 -->
+                    <a href="Alibaba-travel.html" class="project-card">
+                        <div class="project-content">
+                            <div class="project-info">
+                                <h1 class="project-title">Breaking Borders: <br>Designing Connected Flight Journeys</h1>
+                                <div class="project-description">
+                                    How I designed for different markets: China & Southeast Asia
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Alibaba</span>
                                     <span class="tag">Mobile</span>
                                     <span class="tag">l10n</span>
+                                    <span class="tag">2022</span>
                                 </div>
                             </div>
                             <div class="project-image">
@@ -96,14 +122,14 @@
                     </a>
 
                     <!-- Project 3 -->
-                    <a href="https://www.behance.net/gallery/148712487/zFuse-Mobile-App-UXUI-Redesign" class="project-card">
+                    <a href="https://www.behance.net/gallery/148712487/zFuse-Mobile-App-UXUI-Redesign"
+                        class="project-card">
                         <div class="project-content">
                             <div class="project-info">
                                 <h1 class="project-title">Rebuilding Flow: <br>Video Player APP Redesign</h1>
                                 <div class="project-description">
-                                    Lorem Ipsum
-                                    <br><br>
-                                    Lorem Ipsum
+                                    I redefined the product with a new visual language and restructured framework.
+                                    You'll explore the complete redesign on Behance.
                                 </div>
                                 <div class="project-tags">
                                     <span class="tag">Side project</span>
@@ -145,11 +171,17 @@
 
             // 滚动到content-area的函数
             function scrollToContentArea() {
-                const projectsContainer = document.querySelector('.content-area');
-                if (projectsContainer) {
-                    projectsContainer.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                const contentArea = document.querySelector('.content-area');
+                if (contentArea) {
+                    const topNav = document.getElementById('topNav');
+                    // 考虑到导航栏是固定的，滚动时需要减去它的高度
+                    const navHeight = topNav ? topNav.offsetHeight : 80; // 提供一个后备高度
+                    const elementPosition = contentArea.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             }

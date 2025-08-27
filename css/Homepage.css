@@ -79,8 +79,10 @@
     text-align: left;
 }
 
-.hero-text .greeting {
-    font-weight: 400;
+.hero-text .prev {
+    font-family: "DM Sans";
+    font-size: 16px;
+    color: var(--color-H4);
 }
 
 .hero-text strong {
@@ -300,9 +302,11 @@
         min-height: calc(100vh - 60px);
         display: flex;
         position: relative;
-        overflow: hidden; /* 隐藏所有方向的溢出 */
+        overflow: hidden;
+        /* 隐藏所有方向的溢出 */
         width: 100vw;
-        margin-left: calc(-50vw + 50%); /* 让容器占满视窗宽度 */
+        margin-left: calc(-50vw + 50%);
+        /* 让容器占满视窗宽度 */
     }
 
     .hero-text {
@@ -368,9 +372,11 @@
         padding: 8rem 1rem 0rem;
         align-items: normal;
         position: relative;
-        overflow: hidden; /* 隐藏所有方向的溢出 */
+        overflow: hidden;
+        /* 隐藏所有方向的溢出 */
         width: 100vw;
-        margin-left: calc(-50vw + 50%); /* 让容器占满视窗宽度 */
+        margin-left: calc(-50vw + 50%);
+        /* 让容器占满视窗宽度 */
     }
 
     .hero-text {

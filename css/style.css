@@ -41,12 +41,42 @@ a {
     /* 其他通用值 */
 }
 
+/* Spacing utilities */
+.spacer-y {
+    display: block;
+    width: 100%;
+    height: var(--space, 24px);
+}
+
+.spacer-x {
+    display: inline-block;
+    width: var(--space, 24px);
+    height: 1px;
+}
+
+/* Spacing size presets */
+.space-s {
+    --space: 0.5rem;
+}
+
+.space-m {
+    --space: 1rem;
+}
+
+.space-l {
+    --space: 2rem;
+}
+
+.space-xl {
+    --space: 4rem;
+}
+
 /* Typography System */
 h1 {
     font-family: 'Bitter', serif;
     font-size: var(--fonts-size-h1);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.4;
     margin: 0;
     /* 颜色由各页面单独设置 */
 }

@@ -10,7 +10,7 @@
   --color-H3: #968BA3;
 }
 
-/* Project1 页面字体颜色覆盖 */
+/* Business Module System 页面字体颜色覆盖 */
 h2 {
   color: var(--color-H2, #532889);
 }

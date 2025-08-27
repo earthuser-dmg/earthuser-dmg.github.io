@@ -5,14 +5,14 @@
 
 :root {
     --fullwidthL-max: 1100px;
-    /* Project2 Color System */
+    /* Alibaba Travel Color System */
     --color-theme: #FF6B9D;
     --color-H2: #484848;
     --color-H3: #909090;
     --color-H4: #3b3b3b;
 }
 
-/* Project2 Typography Color Overrides */
+/* Alibaba Travel Typography Color Overrides */
 h2 {
     color: var(--color-H2, #484848);
 }

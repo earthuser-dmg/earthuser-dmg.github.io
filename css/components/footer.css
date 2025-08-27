@@ -55,7 +55,7 @@
 .footer-column {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 14px;
 }
 
 .footer-column.links {
