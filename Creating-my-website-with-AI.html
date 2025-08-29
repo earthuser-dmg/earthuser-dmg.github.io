@@ -31,13 +31,13 @@
             <img src="images/CoverWeb.png" alt="AI Website Creation" class="head-image">
             -->
 
-            <div class="head-title">
+            <div class="head-title fade-in">
                 <h4>Self Empolyed | 2025.04-2025.08</h4>
-                <h1>Creating My Website with AI: A Journey of Learning and Innovation</h1>
+                <h1>Teaming with AI: Creating My first Website in 4 Months</h1>
             </div>
 
             <div class="header">
-                <div class="summary-container">
+                <div class="summary-container fade-in">
                     <div class="summary-row">
                         <div class="summary-label">Company</div>
                         <div class="summary-content">Juno XI</div>
@@ -67,14 +67,16 @@
                     </div>
                 </div>
 
-                <div class="context">
+                <div class="context fade-in">
                     <h2>Context</h2>
                     <p>This project explores the capabilities of AI-assisted development and demonstrates my ability to
                         learn and build a personal portfolio website from 0 to 1. </p>
 
                     <div class="my-role">
                         <h3>My role</h3>
-                        <p>As the project owner and designer, I collaborated with AI assistants to design, develop, and iterate on this personal website. I also learned how to buy a domain, deploy the site, and publish it online. </p>
+                        <p>As the project owner and designer, I collaborated with AI assistants to design, develop, and
+                            iterate on this personal website. I also learned how to buy a domain, deploy the site, and
+                            publish it online. </p>
                     </div>
 
                     <div class="project-impact">
@@ -92,13 +94,10 @@
 
             <div class="spacer-y space-l"></div>
 
-            <div class="temporary-paragraph">
-                <h1>Full case study - 
+            <div class="temporary-paragraph fade-in">
+                <h1>Full case study -
                     coming soon<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h1>
             </div>
-
-            <!-- Add more content sections as needed -->
-
         </div>
     </div>
 
@@ -107,6 +106,26 @@
 
     <!-- Scripts -->
     <script src="js/common.js"></script>
+    <script>
+        // 简化的滚动触发动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有带有 fade-in 类的元素
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 
 </html>

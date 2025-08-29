@@ -181,6 +181,14 @@ body {
     display: block;
 }
 
+.divider-image {
+    width: 100%;
+    height: auto;
+    margin: 1rem auto;
+    display: block;
+    pointer-events: none;
+}
+
 /* Spacing utilities */
 .spacer-y {
     display: block;
@@ -239,7 +247,7 @@ body {
     display: flex;
     align-items: stretch;
     gap: 16px;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .three-cards-layout .cardwithborder {
@@ -410,6 +418,19 @@ body {
     max-width: 100%;
     object-fit: cover;
     border-radius: 8px;
+}
+
+/* Scroll-triggered fade in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Media Queries */

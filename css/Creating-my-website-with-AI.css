@@ -202,49 +202,6 @@ body {
     color: var(--color-Body, #1E1E1E);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 80px 2rem 0;
-    }
-
-    .header {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .summary-container {
-        grid-column: 1;
-    }
-
-    .context {
-        grid-column: 1;
-    }
-
-    .head-title h1 {
-        font-size: 32px;
-    }
-
-    .context h2 {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 60px 1rem 0;
-    }
-
-    .head-title h1 {
-        font-size: 28px;
-    }
-
-    .context h2 {
-        font-size: 24px;
-    }
-}
-
-/* Additional styles to match Business-module-system.css structure */
 .context h2 {
     font-family: 'Bitter', serif;
     font-size: var(--fonts-size-h2, 32px);
@@ -310,5 +267,60 @@ body {
     }
     40%, 100% {
         opacity: 1;
+    }
+}
+
+/* Scroll-triggered fade in animation */
+.fade-in {
+    opacity: 0.3;
+    transform: translateY(10px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 80px 2rem 0;
+    }
+
+    .header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .summary-container {
+        grid-column: 1;
+    }
+
+    .context {
+        grid-column: 1;
+    }
+
+    .head-title h1 {
+        font-size: 32px;
+    }
+
+    .context h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 60px 1rem 0;
+    }
+
+    .head-title h1 {
+        font-size: 28px;
+    }
+
+    .context h2 {
+        font-size: 24px;
     }
 }
