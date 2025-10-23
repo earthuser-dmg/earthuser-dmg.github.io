@@ -77,12 +77,29 @@
     font-weight: 400;
     line-height: 1.4;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .hero-text .prev {
-    font-family: "DM Sans";
+    font-family: "Bitter";
     font-size: 16px;
+}
+
+.hero-text .main-text {
+    font-family: 'Bitter', serif;
+    font-size: calc(var(--fonts-size-h1, 2rem) * 0.9);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.hero-text .words {
+    font-family: "Bitter";
+    font-size: 16px;
+    line-height: 1.4;
     color: var(--color-H4);
+    margin-top: 0.5rem;
 }
 
 .hero-text strong {
@@ -229,7 +246,7 @@
     }
 
     .hero-visuals {
-        margin-top: -100px;
+        margin-top: -130px;
         width: 820px;
         position: relative;
     }

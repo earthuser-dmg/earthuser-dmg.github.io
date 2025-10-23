@@ -22,6 +22,178 @@ a {
     text-decoration: none;
 }
 
+/* ---------------------------------
+   Table of Contents (TOC) - Global
+   --------------------------------- */
+.toc {
+    position: fixed;
+    top: 90px; /* below sticky nav */
+    left: 24px;
+    width: 220px; /* fixed width as spec */
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 12px 12px 12px 8px;
+    z-index: 800; /* below head-image but above content */
+}
+
+
+.toc-list {
+    list-style: none;
+}
+
+.toc-list li {
+    list-style: none;
+}
+
+.toc-link {
+    display: block;
+    font-size: 14px; /* 14px as spec */
+    line-height: 1.5;
+    color: #1E1E1E;
+    padding: 6px 8px 6px 12px;
+    border-left: 2px solid transparent; /* indicator for active */
+    transition: color 0.2s ease;
+}
+
+.toc-link:hover {
+    color: var(--color-theme, #7B61FF); /* hover = theme color */
+}
+
+/* Indent by levels */
+.toc-link-l1 { padding-left: 12px; }
+.toc-link-l2 { padding-left: 28px; } /* H2 indent 16px */
+.toc-link-l3 { padding-left: 44px; } /* H3 indent 32px */
+
+/* Active state */
+.toc-link.active {
+    font-weight: 700;
+    color: var(--color-theme, #7B61FF);
+    border-left-color: var(--color-theme, #7B61FF);
+}
+
+/* Collapsible visual (H2 groups) */
+.toc li.collapsible > ul {
+    display: block;
+}
+
+.toc li.collapsible:not(.expanded) > ul {
+    display: none;
+}
+
+/* Toggle button for tablet */
+.toc-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 801;
+    background: #FFFFFF;
+    color: #1E1E1E;
+    border: 1px solid #E5E5E5;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Responsive behavior */
+@media (max-width: 962px) {
+    .toc {
+        right: 16px;
+        width: 220px;
+        transform: translateY(10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+    }
+    .toc.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .toc-toggle { display: inline-flex; }
+}
+
+@media (min-width: 963px) {
+    .toc-toggle { display: none; }
+}
+
+@media (max-width: 768px) {
+    .toc { display: none; }
+    .toc-toggle { display: none; }
+}
+
+/* Compact Rail Mode */
+.toc.rail {
+    width: 20px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    z-index: 800; /* below head-image */
+    top: 50%;
+    transform: translateY(-50%);
+    max-height: calc(100vh - 200px); /* prevent overlap with footer */
+}
+
+.toc.rail .toc-list {
+    display: none;
+}
+
+/* Rail lines for each heading */
+.toc-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    max-height: calc(100vh - 200px);
+    overflow: hidden;
+}
+
+.rail-line {
+    height: 4px;
+    border-radius: 2px;
+    background: #E5E5E5;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+    opacity: 0.9;
+}
+
+.rail-line.level-1 { width: 18px; }
+.rail-line.level-2 { width: 14px; }
+.rail-line.level-3 { width: 10px; }
+
+.rail-line:hover { background: var(--color-theme, #7B61FF); opacity: 1; }
+.rail-line.active { background: #1E1E1E; opacity: 1; }
+
+/* Hover to expand on desktop */
+@media (min-width: 963px) {
+    .toc.rail:hover {
+        width: 220px;
+        background: #FFFFFF;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        padding: 12px 12px 12px 8px;
+    }
+    .toc.rail:hover .toc-list {
+        display: block;
+    }
+    /* Rail remains visible on the left when expanded */
+    .toc.rail:hover .toc-rail { display: none; }
+}
+
+/* Hide TOC when scrolling through head-image area */
+.toc.hidden-in-hero {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Reset transform when hidden to avoid centering issues */
+.toc.rail.hidden-in-hero {
+    transform: translateY(-50%) scale(0.8);
+}
+
 /*定义变量*/
 :root {
     /* 颜色系统 */
@@ -112,6 +284,15 @@ p {
     /* 颜色由各页面单独设置 */
 }
 
+.highlight-one {
+    font-family: 'Bitter', serif;
+    font-size: var(--fonts-size-h1);
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    /* 颜色由各页面单独设置 */
+}
+
 /* Media Queries */
 @media (min-width: 962px) {}
 
@@ -124,6 +305,10 @@ p {
 
     h2 {
         font-size: calc(var(--fonts-size-h2) * 0.9);
+    }
+
+    .highlight-one {
+        font-size: calc(var(--fonts-size-h1) * 0.9);
     }
 }
 
@@ -138,5 +323,9 @@ p {
 
     h3 {
         font-size: calc(var(--fonts-size-h3) * 0.9);
+    }
+    
+    .highlight-one {
+        font-size: calc(var(--fonts-size-h1) * 0.8);
     }
 }

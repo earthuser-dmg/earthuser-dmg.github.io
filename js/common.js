@@ -268,4 +268,240 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error loading footer:', error);
         });
+
+    // Initialize Table of Contents after DOM is ready
+    initTableOfContents();
 }); 
+
+// ------------------------------
+// Table of Contents (TOC)
+// ------------------------------
+function initTableOfContents() {
+    try {
+        // Delay to ensure page content is present
+        requestAnimationFrame(() => {
+            // Only enable TOC on specified pages
+            const allowedPages = [
+                'Business-module-system.html',
+                'Alibaba-travel.html',
+                'Creating-my-website-with-AI.html'
+            ];
+            const currentPageName = (window.location.pathname.split('/').pop() || '').toLowerCase();
+            const isAllowedPage = allowedPages.some(p => p.toLowerCase() === currentPageName);
+            if (!isAllowedPage) return;
+
+            const contentRoot = document.querySelector('.page-wrapper') || document.body;
+            if (!contentRoot) return;
+
+            const headings = Array.from(contentRoot.querySelectorAll('h1, h2, h3'))
+                .filter(h => h.innerText && h.innerText.trim().length > 0);
+            if (!headings.length) return;
+
+            // Ensure IDs and compute structure
+            const slugCounts = Object.create(null);
+            function slugify(text) {
+                const base = text.toLowerCase().trim().replace(/[^a-z0-9\u4e00-\u9fa5\s-]/g, '').replace(/\s+/g, '-');
+                const count = (slugCounts[base] = (slugCounts[base] || 0) + 1);
+                return count > 1 ? `${base}-${count}` : base;
+            }
+
+            headings.forEach(h => {
+                if (!h.id) h.id = slugify(h.innerText);
+                // Improve scroll alignment under fixed nav
+                h.style.scrollMarginTop = '90px';
+            });
+
+            // Build nested structure
+            const tocRoot = document.createElement('aside');
+            tocRoot.className = 'toc';
+            tocRoot.setAttribute('role', 'navigation');
+            tocRoot.setAttribute('aria-label', '页面目录');
+
+
+            const list = document.createElement('ul');
+            list.className = 'toc-list';
+            tocRoot.appendChild(list);
+
+            // Rail container for compact mode
+            const rail = document.createElement('div');
+            rail.className = 'toc-rail';
+            tocRoot.appendChild(rail);
+
+            let currentH1Li = null;
+            let currentH2Li = null;
+
+            function createLink(h) {
+                const a = document.createElement('a');
+                a.href = `#${h.id}`;
+                a.textContent = h.innerText;
+                a.setAttribute('tabindex', '0');
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.getElementById(h.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', `#${h.id}`);
+                });
+                return a;
+            }
+
+            function createRailLine(h) {
+                const level = parseInt(h.tagName.substring(1), 10);
+                const line = document.createElement('div');
+                line.className = `rail-line level-${level}`;
+                line.setAttribute('role', 'button');
+                line.setAttribute('aria-label', `跳转到 ${h.innerText}`);
+                line.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.getElementById(h.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', `#${h.id}`);
+                });
+                return line;
+            }
+
+            function ensureSublist(parentLi) {
+                let ul = parentLi.querySelector(':scope > ul');
+                if (!ul) {
+                    ul = document.createElement('ul');
+                    parentLi.appendChild(ul);
+                }
+                return ul;
+            }
+
+            const railMap = new Map();
+            headings.forEach(h => {
+                const level = parseInt(h.tagName.substring(1), 10);
+                const li = document.createElement('li');
+                li.className = `toc-l${level}`;
+
+                const link = createLink(h);
+                link.className = `toc-link toc-link-l${level}`;
+                li.appendChild(link);
+
+                // Create rail line per heading
+                const railLine = createRailLine(h);
+                rail.appendChild(railLine);
+                railMap.set(h, railLine);
+
+                if (level === 1) {
+                    list.appendChild(li);
+                    currentH1Li = li;
+                    currentH2Li = null;
+                } else if (level === 2) {
+                    const parent = currentH1Li || list;
+                    const parentUl = parent === list ? list : ensureSublist(parent);
+                    parentUl.appendChild(li);
+                    // Collapsible group for H2 (controls its H3 children)
+                    li.classList.add('collapsible');
+                    currentH2Li = li;
+                } else if (level === 3) {
+                    const parent = currentH2Li || currentH1Li || list;
+                    const parentUl = parent === list ? list : ensureSublist(parent);
+                    parentUl.appendChild(li);
+                }
+            });
+
+            // Insert TOC into page
+            const host = document.querySelector('.page-wrapper') || document.body;
+            host.appendChild(tocRoot);
+
+            // Toggle button for tablet
+            const tocToggle = document.createElement('button');
+            tocToggle.className = 'toc-toggle';
+            tocToggle.type = 'button';
+            tocToggle.setAttribute('aria-label', '切换目录可见性');
+            tocToggle.textContent = '目录';
+            host.appendChild(tocToggle);
+
+            function openToc() {
+                tocRoot.classList.add('open');
+                tocToggle.setAttribute('aria-expanded', 'true');
+            }
+            function closeToc() {
+                tocRoot.classList.remove('open');
+                tocToggle.setAttribute('aria-expanded', 'false');
+            }
+            tocToggle.addEventListener('click', function() {
+                if (tocRoot.classList.contains('open')) closeToc(); else openToc();
+            });
+
+            // Default compact rail mode; users can hover (desktop) or click button (tablet) to expand
+            tocRoot.classList.add('rail');
+
+            // Collapsible behavior for H2 groups (expand/collapse their UL)
+            tocRoot.querySelectorAll('li.collapsible').forEach(li => {
+                const linkEl = li.querySelector(':scope > a');
+                const childUl = li.querySelector(':scope > ul');
+                if (!childUl) return;
+                // Default expanded
+                li.classList.add('expanded');
+                linkEl.setAttribute('aria-expanded', 'true');
+                linkEl.setAttribute('aria-label', `${linkEl.textContent} 小节展开/收起`);
+                linkEl.addEventListener('dblclick', function(e) {
+                    // Allow double-click to toggle without jumping
+                    e.preventDefault();
+                    const isExpanded = li.classList.toggle('expanded');
+                    linkEl.setAttribute('aria-expanded', String(isExpanded));
+                });
+            });
+
+            // Active section highlighting via IntersectionObserver
+            const linkMap = new Map();
+            headings.forEach(h => {
+                const a = tocRoot.querySelector(`a[href="#${CSS.escape(h.id)}"]`);
+                if (a) linkMap.set(h, a);
+            });
+
+            let activeLink = null;
+            let activeRail = null;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const h = entry.target;
+                    const link = linkMap.get(h);
+                    if (!link) return;
+                    if (activeLink) {
+                        activeLink.classList.remove('active');
+                        activeLink.removeAttribute('aria-current');
+                    }
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'true');
+                    activeLink = link;
+
+                    const railLine = railMap.get(h);
+                    if (activeRail) activeRail.classList.remove('active');
+                    if (railLine) {
+                        railLine.classList.add('active');
+                        activeRail = railLine;
+                    }
+
+                    // Auto-open parent groups when active child appears
+                    const parentCollapsible = link.closest('li.collapsible');
+                    if (parentCollapsible) parentCollapsible.classList.add('expanded');
+                });
+            }, { rootMargin: '-30% 0px -60% 0px', threshold: 0.01 });
+
+            headings.forEach(h => io.observe(h));
+
+            // Hide TOC when scrolling through head-image area
+            const headImage = contentRoot.querySelector('.head-image');
+            if (headImage) {
+                const headImageHeight = headImage.offsetHeight;
+                const navHeight = 90; // sticky nav height
+                const totalHeroHeight = headImageHeight + navHeight;
+
+                function updateTocVisibility() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrollTop < totalHeroHeight) {
+                        tocRoot.classList.add('hidden-in-hero');
+                    } else {
+                        tocRoot.classList.remove('hidden-in-hero');
+                    }
+                }
+
+                window.addEventListener('scroll', updateTocVisibility);
+                updateTocVisibility(); // initial check
+            }
+        });
+    } catch (err) {
+        console.error('TOC init failed:', err);
+    }
+}
