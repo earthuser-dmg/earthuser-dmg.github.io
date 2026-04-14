@@ -1,0 +1,210 @@
+/* ---------------------------------
+   Table of Contents (TOC) - Global
+   --------------------------------- */
+.toc {
+    position: fixed;
+    top: 108px;
+    right: 24px;
+    width: 220px;
+    max-height: calc(100vh - 140px);
+    overflow: auto;
+    background: var(--color-inverse, #FFFFFF);
+    border: 1px solid #e2e2e2;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: 12px 6px;
+    z-index: 850;
+    transition: width 0.14s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.14s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.12s ease-out, border-color 0.12s ease-out, box-shadow 0.12s ease-out, opacity 0.12s ease-out;
+}
+
+.toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap:0px;
+}
+
+.toc-list li {
+    list-style: none;
+}
+
+.toc-link {
+    display: block;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #7d7b7b;
+    padding: 4px 8px;
+    border-left: none;
+    border-radius: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.toc-link:hover {
+    color: var(--color-body, #1E1E1E);
+    background: #efefef;
+}
+
+/* Expand mode states (text list) */
+.toc:not(.is-collapsed) a.toc-link,
+.toc:not(.is-collapsed) a.toc-link:link,
+.toc:not(.is-collapsed) a.toc-link:visited {
+    color: #7d7b7b;
+}
+
+.toc:not(.is-collapsed) a.toc-link:hover,
+.toc:not(.is-collapsed) a.toc-link:focus-visible {
+    color: var(--color-body, #1E1E1E);
+    background: #efefef;
+    outline: none;
+}
+
+.toc:not(.is-collapsed) a.toc-link.active,
+.toc:not(.is-collapsed) a.toc-link.active:link,
+.toc:not(.is-collapsed) a.toc-link.active:visited,
+.toc:not(.is-collapsed) a.toc-link.active:hover,
+.toc:not(.is-collapsed) a.toc-link.toc-link-l1.active,
+.toc:not(.is-collapsed) a.toc-link.toc-link-l2.active,
+.toc:not(.is-collapsed) a.toc-link.toc-link-l3.active {
+    color: var(--color-theme, #2f2f2f);
+}
+
+/* Indent by levels（与 .toc-link 组合写，避免与 .toc-link.active 同优先级被覆盖） */
+.toc .toc-link.toc-link-l1 { padding-left: 12px; }
+.toc .toc-link.toc-link-l2 { padding-left: 12px; }
+.toc .toc-link.toc-link-l3 { padding-left: 24px; }
+
+/* Collapsible visual (H2 groups) */
+.toc li.collapsible > ul {
+    display: block;
+}
+
+.toc li.collapsible:not(.expanded) > ul {
+    display: none;
+}
+
+/* Toggle button for tablet */
+.toc-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 851;
+    background: #FFFFFF;
+    color: #1E1E1E;
+    border: 1px solid #E5E5E5;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Responsive behavior */
+@media (max-width: 962px) {
+    .toc {
+        top: 96px;
+        right: 16px;
+        width: 220px;
+        max-height: calc(100vh - 120px);
+        transform: translateY(10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+    }
+    .toc.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .toc-toggle { display: inline-flex; }
+}
+
+@media (min-width: 963px) {
+    .toc-toggle { display: none; }
+}
+
+@media (max-width: 768px) {
+    .toc { display: none; }
+    .toc-toggle { display: none; }
+}
+
+/* Collapsed state: Notion-like rail */
+.toc.is-collapsed {
+    top: 50%;
+    width: 34px;
+    max-height: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: translateY(-50%);
+    overflow: visible;
+}
+
+/* Desktop: keep TOC vertically centered in viewport */
+@media (min-width: 963px) {
+    .toc {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.toc.is-collapsed .toc-list {
+    --toc-collapsed-gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--toc-collapsed-gap);
+    align-items: flex-end;
+}
+
+.toc.is-collapsed .toc-list ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--toc-collapsed-gap);
+    align-items: flex-end;
+    margin: var(--toc-collapsed-gap) 0 0;
+    padding-left: 0;
+}
+
+/* Override generic collapsible rule in collapsed mode */
+.toc.is-collapsed li.collapsible > ul {
+    display: flex;
+}
+
+/* 收起态：所有项共用「横线」尺寸；颜色分 active / 非 active */
+.toc.is-collapsed .toc-link {
+    height: 2px;
+    padding: 0;
+    border-radius: 999px;
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    transition: none;
+}
+
+.toc.is-collapsed .toc-link:not(.active) {
+    background: #d6d6d6;
+}
+
+.toc.is-collapsed .toc-link-l1 { width: 16px; }
+.toc.is-collapsed .toc-link-l2 { width: 16px; }
+.toc.is-collapsed .toc-link-l3 { width: 12px; margin-right: 0; }
+
+/* 收起态当前节：横线颜色（文字仍透明，改 color 看不见） */
+.toc.is-collapsed .toc-link.active {
+    background: var(--color-theme, #2f2f2f);
+}
+
+/* Hide TOC when scrolling through head-image area */
+.toc.hidden-in-hero {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.toc.hidden-near-footer {
+    opacity: 0;
+    pointer-events: none;
+}

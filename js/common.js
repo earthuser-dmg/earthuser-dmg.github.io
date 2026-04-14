@@ -322,11 +322,6 @@ function initTableOfContents() {
             list.className = 'toc-list';
             tocRoot.appendChild(list);
 
-            // Rail container for compact mode
-            const rail = document.createElement('div');
-            rail.className = 'toc-rail';
-            tocRoot.appendChild(rail);
-
             let currentH1Li = null;
             let currentH2Li = null;
 
@@ -343,20 +338,6 @@ function initTableOfContents() {
                 return a;
             }
 
-            function createRailLine(h) {
-                const level = parseInt(h.tagName.substring(1), 10);
-                const line = document.createElement('div');
-                line.className = `rail-line level-${level}`;
-                line.setAttribute('role', 'button');
-                line.setAttribute('aria-label', `跳转到 ${h.innerText}`);
-                line.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.getElementById(h.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    history.replaceState(null, '', `#${h.id}`);
-                });
-                return line;
-            }
-
             function ensureSublist(parentLi) {
                 let ul = parentLi.querySelector(':scope > ul');
                 if (!ul) {
@@ -366,7 +347,6 @@ function initTableOfContents() {
                 return ul;
             }
 
-            const railMap = new Map();
             headings.forEach(h => {
                 const level = parseInt(h.tagName.substring(1), 10);
                 const li = document.createElement('li');
@@ -375,11 +355,6 @@ function initTableOfContents() {
                 const link = createLink(h);
                 link.className = `toc-link toc-link-l${level}`;
                 li.appendChild(link);
-
-                // Create rail line per heading
-                const railLine = createRailLine(h);
-                rail.appendChild(railLine);
-                railMap.set(h, railLine);
 
                 if (level === 1) {
                     list.appendChild(li);
@@ -423,24 +398,44 @@ function initTableOfContents() {
                 if (tocRoot.classList.contains('open')) closeToc(); else openToc();
             });
 
-            // Default compact rail mode; users can hover (desktop) or click button (tablet) to expand
-            tocRoot.classList.add('rail');
+            // Desktop: collapsed rail by default, expand on hover/focus
+            function setupDesktopTocMode() {
+                const isDesktop = window.matchMedia('(min-width: 963px)').matches;
+                if (isDesktop) {
+                    tocRoot.classList.add('is-collapsed');
+                } else {
+                    tocRoot.classList.remove('is-collapsed');
+                }
+            }
 
-            // Collapsible behavior for H2 groups (expand/collapse their UL)
+            function openDesktopToc() {
+                if (!window.matchMedia('(min-width: 963px)').matches) return;
+                tocRoot.classList.remove('is-collapsed');
+            }
+
+            function closeDesktopToc() {
+                if (!window.matchMedia('(min-width: 963px)').matches) return;
+                tocRoot.classList.add('is-collapsed');
+            }
+
+            tocRoot.addEventListener('mouseenter', openDesktopToc);
+            tocRoot.addEventListener('mouseleave', closeDesktopToc);
+            tocRoot.addEventListener('focusin', openDesktopToc);
+            tocRoot.addEventListener('focusout', function(e) {
+                if (!tocRoot.contains(e.relatedTarget)) {
+                    closeDesktopToc();
+                }
+            });
+            window.addEventListener('resize', setupDesktopTocMode);
+            setupDesktopTocMode();
+
+            // Keep H2 groups expanded by default
             tocRoot.querySelectorAll('li.collapsible').forEach(li => {
                 const linkEl = li.querySelector(':scope > a');
                 const childUl = li.querySelector(':scope > ul');
                 if (!childUl) return;
-                // Default expanded
                 li.classList.add('expanded');
                 linkEl.setAttribute('aria-expanded', 'true');
-                linkEl.setAttribute('aria-label', `${linkEl.textContent} 小节展开/收起`);
-                linkEl.addEventListener('dblclick', function(e) {
-                    // Allow double-click to toggle without jumping
-                    e.preventDefault();
-                    const isExpanded = li.classList.toggle('expanded');
-                    linkEl.setAttribute('aria-expanded', String(isExpanded));
-                });
             });
 
             // Active section highlighting via IntersectionObserver
@@ -451,7 +446,6 @@ function initTableOfContents() {
             });
 
             let activeLink = null;
-            let activeRail = null;
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
@@ -465,13 +459,6 @@ function initTableOfContents() {
                     link.classList.add('active');
                     link.setAttribute('aria-current', 'true');
                     activeLink = link;
-
-                    const railLine = railMap.get(h);
-                    if (activeRail) activeRail.classList.remove('active');
-                    if (railLine) {
-                        railLine.classList.add('active');
-                        activeRail = railLine;
-                    }
 
                     // Auto-open parent groups when active child appears
                     const parentCollapsible = link.closest('li.collapsible');
@@ -499,6 +486,21 @@ function initTableOfContents() {
 
                 window.addEventListener('scroll', updateTocVisibility);
                 updateTocVisibility(); // initial check
+            }
+
+            // Hide TOC when footer enters viewport to avoid overlap
+            const footerEl = document.getElementById('footer-container');
+            if (footerEl) {
+                const footerObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            tocRoot.classList.add('hidden-near-footer');
+                        } else {
+                            tocRoot.classList.remove('hidden-near-footer');
+                        }
+                    });
+                }, { threshold: 0.05 });
+                footerObserver.observe(footerEl);
             }
         });
     } catch (err) {
