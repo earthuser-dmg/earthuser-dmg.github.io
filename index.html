@@ -25,21 +25,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Homepage.css">
+    <link rel="stylesheet" href="css/Homepage.css?v=gallery-fluid">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/ScrollSmoother.min.js"></script>
 </head>
 
 <body>
     <!-- Include Top Navigation -->
     <div id="top-nav-container"></div>
 
-    <!-- Page Wrapper -->
-    <div class="page-wrapper">
+    <div class="homepage-shell">
+        <div id="left-nav-container"></div>
+
+        <!-- The desktop shell owns scrolling; the existing page content stays intact. -->
+        <div class="homepage-content" id="smooth-wrapper">
+            <!-- Page Wrapper -->
+            <div class="page-wrapper" id="smooth-content">
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-text">
                 <div class="prev">Prev. Decathlon, Alibaba</div>
-                <div class="main-text">I'm <strong>Juno</strong> , a product designer and problem solver with 4 years of experience in B2B and travel products.</div>
+                <div class="main-text">I'm <strong>Juno</strong> , a product designer and problem solver with 4 years of
+                    experience in B2B and travel products.</div>
                 <div class="words">Handcrafted this site myself, inspired by my cat's yarn adventures :‑)</div>
             </div>
             <div class="hero-visuals">
@@ -52,110 +61,138 @@
                     </svg>
                 </div>
             </div>
-
         </section>
 
         <!-- Main Container -->
         <div class="main-container">
             <!-- Main Content Area -->
-            <main class="content-area">
+            <main class="content-area" id="work">
+                <h2 class="work-title">Works</h2>
                 <!-- Project Cards -->
                 <div class="projects-container">
                     <!-- Project 1 -->
-                    <a href="Business-module-system.html" class="project-card">
+                    <a href="/business-module-system" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Designing for Digital Transformation: <br>Crafting Decathlon’s
-                                    Business Module System</h1>
-                                <div class="project-description">
-                                    A business module system built from scratch to power internal integration at scale.
-                                    At Decathlon, I led the 0-1 design for DPCP, navigating new domains, aligning
-                                    stakeholders, and shaping the foundation through close collaboration.
-                                </div>
                                 <div class="project-tags">
+                                    <span class="tag">0-1</span>
+                                    <span class="tag">Design system</span>
                                     <span class="tag">B2B</span>
-                                    <span class="tag">Design System</span>
-                                    <span class="tag">2025</span>
+                                    <span class="tag">Web</span>
                                 </div>
+                                <h1 class="project-title">Decathlon</h1>
+                                <div class="project-description">Customized component library</div>
                             </div>
                             <div class="project-image">
-                                <img src="images/odd2.jpg" alt="Project image-BMS">
+                                <img src="images/odd1.jpg" alt="Decathlon project image">
                             </div>
                         </div>
                     </a>
 
                     <!-- Project 2 -->
-                    <a href="Alibaba-travel.html" class="project-card">
+                    <a href="/alibaba-travel" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Breaking Borders: <br>Designing Connected Flight Journeys</h1>
-                                <div class="project-description">
-                                    How I designed for different markets: China & Southeast Asia
-                                </div>
                                 <div class="project-tags">
-                                    <span class="tag">Alibaba</span>
+                                    <span class="tag">Redesign</span>
                                     <span class="tag">Mobile</span>
-                                    <span class="tag">l10n</span>
-                                    <span class="tag">2022</span>
+                                    <span class="tag">L10N</span>
                                 </div>
+                                <h1 class="project-title">Alibaba</h1>
+                                <div class="project-description">Online Check-in</div>
                             </div>
                             <div class="project-image">
-                                <img src="images/CoverFliggy.png" alt="Cover">
+                                <img src="images/CoverFliggy.png" alt="Alibaba project image">
                             </div>
                         </div>
                     </a>
 
                     <!-- Project 3 -->
-                    <a href="Creating-my-website-with-AI.html" class="project-card">
+                    <a href="https://www.behance.net/gallery/148712487/zFuse-Mobile-App-UXUI-Redesign" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Teaming with AI: <br>Creating My first Website in 4 Months
-                                </h1>
-                                <div class="project-description">
-                                    In the beginning, coding was only lines I could read but never truly understand.
-                                    With the support of Claude, Cursor, ChatGPT, Augment—I built my first site,
-                                    and more importantly, I learned how to bring my design to life. </div>
                                 <div class="project-tags">
-                                    <span class="tag">Vide Coding</span>
-                                    <span class="tag">Web Design & Dev</span>
-                                    <span class="tag">2025</span>
+                                    <span class="tag">Redesign</span>
+                                    <span class="tag">Mobile</span>
+                                    <span class="tag">UI design</span>
+                                    <span class="tag">Brand identity</span>
                                 </div>
+                                <h1 class="project-title">zFuse</h1>
+                                <div class="project-description">Video Player app redesign</div>
                             </div>
                             <div class="project-image">
-                                <img src="images/CoverWeb.png" alt="Cover">
+                                <img src="images/CoverzFuse.png" alt="zFuse project image">
                             </div>
                         </div>
                     </a>
 
                     <!-- Project 4 -->
-                    <a href="https://www.behance.net/gallery/148712487/zFuse-Mobile-App-UXUI-Redesign"
-                        class="project-card">
+                    <a href="/creating-my-website-with-ai" class="project-card">
                         <div class="project-content">
                             <div class="project-info">
-                                <h1 class="project-title">Rebuilding Flow: <br>Video Player APP Redesign</h1>
-                                <div class="project-description">
-                                    I redefined the product with a new visual language and restructured framework.
-                                    You'll explore the complete redesign on Behance.
-                                </div>
                                 <div class="project-tags">
-                                    <span class="tag">Side project</span>
-                                    <span class="tag">2022</span>
-                                    <span class="tag">UI design</span>
+                                    <span class="tag">Design engineering</span>
+                                    <span class="tag">Web</span>
+                                    <span class="tag">0-1</span>
                                 </div>
-
+                                <h1 class="project-title">Case study</h1>
+                                <div class="project-description">Crafting my portfolio portfolio journey</div>
                             </div>
                             <div class="project-image">
-                                <img src="images/CoverzFuse.png" alt="Cover">
+                                <img src="images/CoverWeb.png" alt="Portfolio project image">
                             </div>
                         </div>
                     </a>
                 </div>
+
+                <!-- Media Gallery: vertical scroll drives the horizontal gallery track. -->
+                <section class="media-gallery" id="play" aria-labelledby="media-gallery-title">
+                    <div class="media-gallery-sticky">
+                        <div class="media-gallery-intro">
+                            <p class="media-gallery-kicker">A little more play</p>
+                            <h2 id="media-gallery-title">Media gallery<span class="gallery-dot">.</span></h2>
+                            <p class="media-gallery-hint">Keep scrolling to explore</p>
+                        </div>
+                        <div class="media-gallery-viewport">
+                            <div class="media-gallery-track">
+                                <figure class="media-gallery-card media-gallery-card--wide">
+                                    <img src="images/Play/losing control.png" alt="Losing control logo artwork" loading="lazy">
+                                    <figcaption><span>01</span> Losing control · 2023</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card">
+                                    <img src="images/Play/watercolor-2.png" alt="Watercolor cats illustration" loading="lazy">
+                                    <figcaption><span>02</span> Watercolor cats · 2025</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card">
+                                    <img src="images/Play/Portrait.png" alt="Watercolor portrait painting" loading="lazy">
+                                    <figcaption><span>03</span> Portrait study · 2024</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card media-gallery-card--tall">
+                                    <img src="images/Play/Journaling2.png" alt="Museum journaling spread in Den Haag" loading="lazy">
+                                    <figcaption><span>04</span> Museum notes · Den Haag · 2025</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card">
+                                    <img src="images/Play/Illustration-1.png" alt="Coffee lovers community poster" loading="lazy">
+                                    <figcaption><span>05</span> Coffee lovers · 2021</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card media-gallery-card--tall">
+                                    <img src="images/Play/watercolor-1.png" alt="Watercolor flowers illustration" loading="lazy">
+                                    <figcaption><span>06</span> Watercolor flowers · 2025</figcaption>
+                                </figure>
+                                <figure class="media-gallery-card media-gallery-card--tall">
+                                    <img src="images/Play/Journaling1.png" alt="Museum journaling spread in Amsterdam" loading="lazy">
+                                    <figcaption><span>07</span> Museum notes · AMS · 2025</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="media-gallery-progress" aria-hidden="true"><span></span></div>
+                    </div>
+                </section>
             </main>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Include Footer -->
-    <div id="footer-container"></div>
 
     <script src="js/common.js"></script>
     <script>
@@ -171,33 +208,27 @@
 
                 // 点击 path-text 滚动到作品区域
                 pathText.addEventListener('click', () => {
-                    scrollToContentArea();
+                    scrollToTarget(document.querySelector('#work'));
                 });
             }
 
-            // 滚动到content-area的函数
-            function scrollToContentArea() {
-                const contentArea = document.querySelector('.content-area');
-                if (contentArea) {
-                    const topNav = document.getElementById('topNav');
-                    // 考虑到导航栏是固定的，滚动时需要减去它的高度
-                    const navHeight = topNav ? topNav.offsetHeight : 80; // 提供一个后备高度
-                    const elementPosition = contentArea.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - navHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+            // Scroll to a named homepage section.
+            function scrollToTarget(target) {
+                if (target) {
+                    if (window.homepageSmoother) {
+                        window.homepageSmoother.scrollTo(target, true, 'top top');
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             }
 
-            // 检查URL hash，如果是#content-area则滚动到对应位置
+            // Support direct links such as /#work and /#play.
             function handleHashNavigation() {
-                if (window.location.hash === '#content-area') {
-                    // 延迟执行，确保页面完全加载
+                const hash = window.location.hash;
+                if (hash === '#work' || hash === '#play') {
                     setTimeout(() => {
-                        scrollToContentArea();
+                        scrollToTarget(document.querySelector(hash));
                     }, 100);
                 }
             }
@@ -208,33 +239,86 @@
             // 监听hash变化
             window.addEventListener('hashchange', handleHashNavigation);
 
-            // Tag colors for random assignment
-            const tagColors = ['#E1D4F8', '#FAD0E8', '#FDDFD2'];
+            // GSAP ScrollTrigger horizontal gallery, scoped to the homepage scroller.
+            const gallery = document.querySelector('.media-gallery');
+            const track = gallery && gallery.querySelector('.media-gallery-track');
+            const scroller = document.querySelector('.homepage-content');
+            const progress = gallery && gallery.querySelector('.media-gallery-progress span');
 
-            // Random color hover effect for project cards
-            const projectCards = document.querySelectorAll('.project-card');
-            const cardColors = ['#CEE4F8', '#CDE7E0', '#FAEED4'];
+            if (window.initImagePreview) {
+                window.initImagePreview({ selector: '.media-gallery-card img' });
+            }
 
-            // Assign random colors to tags in each project card
-            projectCards.forEach(card => {
-                const tags = card.querySelectorAll('.tag');
-                const shuffledColors = [...tagColors].sort(() => Math.random() - 0.5);
+            if (gallery && track && scroller && window.gsap && window.ScrollTrigger) {
+                gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-                tags.forEach((tag, index) => {
-                    const colorIndex = index % shuffledColors.length;
-                    tag.style.backgroundColor = shuffledColors[colorIndex];
+                const smoother = window.ScrollSmoother && ScrollSmoother.create({
+                    wrapper: '#smooth-wrapper',
+                    content: '#smooth-content',
+                    smooth: 1.15,
+                    effects: false,
+                    normalizeScroll: true,
+                    ignoreMobileResize: true
                 });
+                window.homepageSmoother = smoother;
 
-                // Project card hover effects
-                card.addEventListener('mouseenter', function () {
-                    const randomColor = cardColors[Math.floor(Math.random() * cardColors.length)];
-                    this.style.setProperty('background-color', randomColor, 'important');
-                });
+                const media = gsap.matchMedia();
+                media.add({
+                    desktop: '(min-width: 963px)',
+                    mobile: '(max-width: 962px)',
+                    reduceMotion: '(prefers-reduced-motion: reduce)'
+                }, (context) => {
+                    const { desktop, reduceMotion } = context.conditions;
 
-                card.addEventListener('mouseleave', function () {
-                    this.style.removeProperty('background-color');
+                    if (!desktop || reduceMotion) {
+                        gsap.set(track, { clearProps: 'transform' });
+                        if (progress) gsap.set(progress, { scaleX: 0 });
+                        return;
+                    }
+
+                    // Calculate from the final card itself so the pin never ends
+                    // before the last image is fully visible.
+                    const getTravel = () => {
+                        const lastCard = track.lastElementChild;
+                        const edgeGap = Math.min(128, Math.max(32, gallery.clientWidth * 0.08));
+                        if (!lastCard) return 0;
+                        return Math.max(0, lastCard.offsetLeft + lastCard.offsetWidth - gallery.clientWidth + edgeGap);
+                    };
+                    const horizontalTween = gsap.to(track, {
+                        x: () => -getTravel(),
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: gallery,
+                            start: 'top top',
+                            end: () => `+=${getTravel()}`,
+                            pin: true,
+                            scrub: 1,
+                            invalidateOnRefresh: true,
+                            onUpdate: (self) => {
+                                if (progress) gsap.set(progress, { scaleX: self.progress });
+                            }
+                        }
+                    });
+
+                    const refreshAfterLoad = () => ScrollTrigger.refresh();
+                    const refreshAfterResize = () => ScrollTrigger.refresh();
+                    const galleryImages = gallery.querySelectorAll('img');
+
+                    window.addEventListener('load', refreshAfterLoad, { once: true });
+                    window.addEventListener('resize', refreshAfterResize);
+                    galleryImages.forEach((image) => {
+                        image.addEventListener('load', refreshAfterLoad);
+                    });
+                    return () => {
+                        window.removeEventListener('load', refreshAfterLoad);
+                        window.removeEventListener('resize', refreshAfterResize);
+                        galleryImages.forEach((image) => {
+                            image.removeEventListener('load', refreshAfterLoad);
+                        });
+                        horizontalTween.kill();
+                    };
                 });
-            });
+            }
         });
     </script>
 

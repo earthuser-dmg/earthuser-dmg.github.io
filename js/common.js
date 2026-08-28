@@ -13,13 +13,13 @@ function setActiveNavLink() {
         link.classList.remove('active');
 
         // 检查是否是首页
-        if (currentPath.endsWith('/') || currentPath.endsWith('index.html')) {
-            if (linkPathWithoutHash === 'index.html' || linkPath.startsWith('index.html#')) {
+        if (currentPath === '/' || currentPath.endsWith('/index.html')) {
+            if (linkPathWithoutHash === '/' || linkPath.startsWith('/#')) {
                 link.classList.add('active');
             }
         }
         // 检查其他页面
-        else if (currentPath.endsWith(linkPathWithoutHash)) {
+        else if (linkPathWithoutHash && currentPath.replace(/\/$/, '') === linkPathWithoutHash.replace(/\/$/, '')) {
             link.classList.add('active');
         }
     });
@@ -114,40 +114,34 @@ function initializeNavigation() {
     // Initialize nav state on page load
     updateNavOnScroll();
 
-    // 处理Work链接点击事件
-    function handleWorkLinkClick() {
-        const workLinks = document.querySelectorAll('.work-link');
-        workLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // 如果当前不在index.html页面，让链接正常跳转
-                const currentPath = window.location.pathname;
-                if (!currentPath.endsWith('/') && !currentPath.endsWith('index.html')) {
-                    return; // 让默认行为发生（跳转到index.html#content-area）
-                }
+    // Handle Work links through delegation so asynchronously loaded navs are
+    // covered as well as links already present in the initial DOM.
+    document.addEventListener('click', function (e) {
+        const workLink = e.target.closest('.work-link');
+        if (!workLink) return;
 
-                // 如果已经在index.html页面，阻止默认行为并平滑滚动
-                e.preventDefault();
-                const contentArea = document.querySelector('.content-area');
-                if (contentArea) {
-                    contentArea.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // If this is not the homepage, let the /#work link navigate normally.
+        const currentPath = window.location.pathname;
+        if (currentPath !== '/' && !currentPath.endsWith('/index.html')) return;
 
-                // 关闭移动端菜单
-                closeMenu();
-            });
-        });
-    }
+        e.preventDefault();
+        const workSection = document.querySelector('#work');
+        if (workSection) {
+            if (window.homepageSmoother) {
+                window.homepageSmoother.scrollTo(workSection, true, 'top top');
+            } else {
+                workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            window.history.replaceState(null, '', '#work');
+        }
 
-    // 延迟执行以确保DOM完全加载
-    setTimeout(handleWorkLinkClick, 100);
+        closeMenu();
+    });
 }
 
 // Load favicon
 function loadFavicon() {
-    fetch('components/favicon.html')
+        fetch('/components/favicon.html')
         .then(response => response.text())
         .then(data => {
             const head = document.head;
@@ -216,6 +210,7 @@ function initImagePreview(options) {
         const target = e.target;
         if (!(target && target.tagName === 'IMG')) return;
         if (overlay && overlay.contains(target)) return; // ignore clicks on enlarged image
+        if (target.closest('#left-nav-container, #top-nav-container')) return;
 
         // Match selector scope
         if (config.selector) {
@@ -243,11 +238,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load favicon
     loadFavicon();
 
+    // Load shared project-page navigation when a project provides a host.
+    const projectNavigationContainer = document.getElementById('project-navigation-container');
+    if (projectNavigationContainer) {
+        const projectNavigationScript = document.createElement('script');
+        projectNavigationScript.src = '/js/project-navigation.js';
+        projectNavigationScript.onload = function () {
+            fetch('/components/project-navigation.html')
+                .then(response => {
+                    if (!response.ok) throw new Error(`Project navigation failed: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    projectNavigationContainer.className = 'project-navigation';
+                    projectNavigationContainer.innerHTML = data;
+                    window.initializeProjectNavigation?.();
+                })
+                .catch(error => console.error('Error loading project navigation:', error));
+        };
+        document.head.appendChild(projectNavigationScript);
+    }
+
+    // Load the shared desktop left navigation when a page provides a host.
+    const leftNavContainer = document.getElementById('left-nav-container');
+    if (leftNavContainer) {
+        fetch('/components/left-navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                leftNavContainer.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading left navigation:', error);
+            });
+    }
+
     // Load top navigation
-    fetch('components/top-navigation.html')
+    fetch('/components/top-navigation.html')
         .then(response => response.text())
         .then(data => {
             const container = document.getElementById('top-nav-container');
+            if (!container) return;
             container.innerHTML = data;
             // Wait for the next frame to ensure DOM is updated
             requestAnimationFrame(() => {
@@ -260,10 +290,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Load footer
-    fetch('components/footer.html')
+    fetch('/components/footer.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
+            const footerContainer = document.getElementById('footer-container');
+            if (!footerContainer) return;
+            footerContainer.innerHTML = data;
         })
         .catch(error => {
             console.error('Error loading footer:', error);

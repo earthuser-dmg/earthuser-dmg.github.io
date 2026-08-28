@@ -1,5 +1,11 @@
+/* Global fonts: keep these declarations in the main stylesheet so every page
+   can reuse the same typography without adding page-specific imports. */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
+
 /* Import component styles */
 @import url('components/top-navigation.css');
+@import url('components/left-navigation.css');
+@import url('components/project-navigation.css');
 @import url('components/footer.css');
 @import url('components/toc.css');
 
@@ -12,10 +18,13 @@
 
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #F6F6F6;
-    color: #1E1E1E;
+    background-color: var(--color-bg, #F6F6F6);
+    color: var(--color-body, #1E1E1E);
+    font-size: var(--fonts-size-body, 16px);
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 a {
@@ -32,6 +41,9 @@ a {
     --color-body: #1E1E1E; 
 
     /* 字体系统 */
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
     --fonts-size-h1: 30px;
     --fonts-size-h2: 24px;
     --fonts-size-h3: 20px;
@@ -39,7 +51,11 @@ a {
     --fonts-size-body: 16px;
     --fonts-size-label: 13px;
 
-    /* 其他通用值 */
+    /* 容器与页面宽度 */
+    --page-max-width: 1440px;
+    --content-max-width: 1000px;
+    --section-gap: 2rem;
+    --fullwidth-max: 100vw;
 }
 
 /* Spacing utilities */
@@ -70,6 +86,18 @@ a {
 
 .space-xl {
     --space: 4rem;
+}
+
+/* Global image defaults */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Full-bleed hero images escape container max-width */
+img.head-image {
+    max-width: none;
 }
 
 /* Typography System */

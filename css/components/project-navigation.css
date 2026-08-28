@@ -1,0 +1,198 @@
+/* Shared navigation for case-study pages. */
+.project-navigation {
+    position: relative;
+    z-index: 10;
+}
+
+body.project-page {
+    --project-page-gutter: clamp(24px, 5.56vw, 80px);
+}
+
+.project-back {
+    position: fixed;
+    top: 42px;
+    left: calc(var(--project-rail-width, 153px) + var(--project-page-gutter));
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 10px 16px 10px 10px;
+    color: #1e1e1e;
+    background: rgba(246, 246, 246, 0.96);
+    border: 1px solid rgba(30, 30, 30, 0.06);
+    box-shadow: 0 2px 12px rgba(46, 154, 212, 0.08);
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 20px;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.project-back:hover {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(30, 30, 30, 0.1);
+    transform: translateX(-2px);
+}
+
+.project-back:focus-visible,
+.more-project-card:focus-visible {
+    outline: 3px solid rgba(46, 154, 212, 0.55);
+    outline-offset: 3px;
+}
+
+.project-back-icon {
+    display: inline-grid;
+    width: 24px;
+    height: 24px;
+    place-items: center;
+    font-size: 25px;
+    line-height: 1;
+}
+
+.more-projects {
+    width: calc(100% - var(--project-page-gutter) * 2);
+    margin: 4.5rem var(--project-page-gutter) 0;
+    padding: 0 0 1rem;
+}
+
+.more-projects-title {
+    margin: 0 0 20px;
+    color: var(--color-body, #1e1e1e);
+    font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.more-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.more-project-card {
+    display: flex;
+    min-width: 0;
+    min-height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(30, 30, 30, 0.06);
+    text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.more-project-card:hover {
+    background: #fff;
+    border-color: rgba(30, 30, 30, 0.16);
+    transform: translateY(-2px);
+}
+
+.more-project-card-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 6px;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.more-project-card-name,
+.more-project-card-subtitle {
+    overflow-wrap: anywhere;
+}
+
+.more-project-card-subtitle {
+    color: #1e1e1e;
+    opacity: 0.5;
+}
+
+.more-project-card-arrow {
+    flex: 0 0 auto;
+    color: #aaa;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1;
+    transition: color 180ms ease, transform 180ms ease;
+}
+
+.more-project-card:hover .more-project-card-arrow,
+.more-project-card:focus-visible .more-project-card-arrow {
+    color: #1e1e1e;
+    transform: translateX(3px);
+}
+
+@media (max-width: 962px) {
+    .project-back {
+        left: 8%;
+    }
+
+    .more-projects {
+        width: auto;
+        margin-right: 8%;
+        margin-left: 8%;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-back {
+        position: fixed;
+        top: 70px;
+        left: 2rem;
+        width: fit-content;
+        margin: 0;
+        font-size: 18px;
+    }
+
+    body.project-page .page-wrapper > .container {
+        padding-top: 132px;
+    }
+
+    .more-projects {
+        margin: 4rem 4rem 0;
+    }
+
+    .more-projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Project pages use the same left-gutter model as the homepage content area. */
+@media (min-width: 963px) {
+    body.project-page .page-wrapper > .container {
+        width: calc(100% - var(--project-page-gutter) * 2);
+        max-width: none;
+        margin-right: var(--project-page-gutter);
+        margin-left: var(--project-page-gutter);
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-back {
+        left: 1rem;
+    }
+
+    .more-projects {
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+
+    body.project-page .page-wrapper > .container {
+        padding-top: 122px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-back,
+    .more-project-card,
+    .more-project-card-arrow {
+        transition: none;
+    }
+}
