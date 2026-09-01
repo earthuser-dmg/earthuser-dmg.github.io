@@ -21,6 +21,8 @@
         triggers: [],
         galleryTween: null,
         modalTween: null,
+        destroyModalDrag: null,
+        syncHeroCoverage: null,
         tetris: null,
         resizeTimer: 0,
         waitingForDesktop: false,
@@ -549,27 +551,77 @@
 
     function initModal() {
         const modal = document.querySelector('.demo-window');
+        const bar = document.querySelector('.demo-window-bar');
+        const stage = document.querySelector('.demo-hero-stage');
         const body = document.querySelector('.demo-window-body');
         const minimize = document.querySelector('.demo-minimize');
+        const maximize = document.querySelector('.demo-maximize');
         const like = document.querySelector('.demo-like');
         const heart = document.querySelector('.demo-heart');
         const scrollButton = document.querySelector('.demo-scroll-down');
-        if (!modal || !body || !minimize || !like || !heart || !scrollButton) return;
+        if (!modal || !bar || !stage || !body || !minimize || !maximize || !like || !heart || !scrollButton) return;
 
         const alreadyLiked = safeStorageGet(LIKE_KEY) === 'true';
         like.setAttribute('aria-pressed', String(alreadyLiked));
         heart.textContent = alreadyLiked ? '♥' : '♡';
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        state.modalTween = gsap.timeline({ delay: reducedMotion ? 0 : 1 })
+        const expandedHeight = 404;
+        state.modalTween = gsap.timeline({ delay: reducedMotion ? 0 : 0.3 })
             .set(modal, { visibility: 'visible' })
-            .fromTo(modal, { autoAlpha: 0, y: 24, scale: 0.985 }, {
+            .fromTo(modal, { autoAlpha: 0, y: 16, scale: 0.97 }, {
                 autoAlpha: 1,
                 y: 0,
                 scale: 1,
-                duration: reducedMotion ? 0 : 0.62,
-                ease: 'power3.out'
+                duration: reducedMotion ? 0 : 0.4,
+                ease: 'back.out(1.15)'
             });
+
+        const drag = { pointerId: null, startX: 0, startY: 0, originX: 0, originY: 0, minX: 0, maxX: 0, minY: 0, maxY: 0 };
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+        const endDrag = event => {
+            if (event.pointerId !== drag.pointerId) return;
+            if (bar.hasPointerCapture(event.pointerId)) bar.releasePointerCapture(event.pointerId);
+            drag.pointerId = null;
+            modal.classList.remove('is-dragging');
+        };
+
+        const moveDrag = event => {
+            if (event.pointerId !== drag.pointerId) return;
+            gsap.set(modal, {
+                x: clamp(drag.originX + event.clientX - drag.startX, drag.minX, drag.maxX),
+                y: clamp(drag.originY + event.clientY - drag.startY, drag.minY, drag.maxY)
+            });
+        };
+
+        const startDrag = event => {
+            if (event.button !== 0 || event.target.closest('button, .demo-window-controls')) return;
+            const modalRect = modal.getBoundingClientRect();
+            const stageRect = stage.getBoundingClientRect();
+            drag.pointerId = event.pointerId;
+            drag.startX = event.clientX;
+            drag.startY = event.clientY;
+            drag.originX = Number(gsap.getProperty(modal, 'x')) || 0;
+            drag.originY = Number(gsap.getProperty(modal, 'y')) || 0;
+            drag.minX = drag.originX + stageRect.left - modalRect.left;
+            drag.maxX = drag.originX + stageRect.right - modalRect.right;
+            drag.minY = drag.originY + stageRect.top - modalRect.top;
+            drag.maxY = drag.originY + stageRect.bottom - modalRect.bottom;
+            bar.setPointerCapture(event.pointerId);
+            modal.classList.add('is-dragging');
+            event.preventDefault();
+        };
+
+        bar.addEventListener('pointerdown', startDrag);
+        bar.addEventListener('pointermove', moveDrag);
+        bar.addEventListener('pointerup', endDrag);
+        bar.addEventListener('pointercancel', endDrag);
+        state.destroyModalDrag = () => {
+            bar.removeEventListener('pointerdown', startDrag);
+            bar.removeEventListener('pointermove', moveDrag);
+            bar.removeEventListener('pointerup', endDrag);
+            bar.removeEventListener('pointercancel', endDrag);
+        };
 
         like.addEventListener('click', () => {
             const liked = like.getAttribute('aria-pressed') !== 'true';
@@ -589,11 +641,28 @@
 
         minimize.addEventListener('click', () => {
             const expanded = minimize.getAttribute('aria-expanded') === 'true';
+            const modalRect = modal.getBoundingClientRect();
+            const stageRect = stage.getBoundingClientRect();
+            const resetPosition = !expanded && (
+                modalRect.left < stageRect.left ||
+                modalRect.right > stageRect.right ||
+                modalRect.top < stageRect.top ||
+                modalRect.top + expandedHeight > stageRect.bottom
+            );
             minimize.setAttribute('aria-expanded', String(!expanded));
             minimize.setAttribute('aria-label', expanded ? 'Restore introduction' : 'Minimize introduction');
-            gsap.timeline({ defaults: { duration: reducedMotion ? 0 : 0.35, ease: 'power2.inOut' } })
+            const timeline = gsap.timeline({ defaults: { duration: reducedMotion ? 0 : 0.35, ease: 'power2.inOut' } })
                 .to(body, { autoAlpha: expanded ? 0 : 1 }, 0)
-                .to(modal, { height: expanded ? 52 : 404 }, 0);
+                .to(modal, { height: expanded ? 52 : expandedHeight }, 0);
+            if (resetPosition) timeline.to(modal, { x: 0, y: 0 }, 0);
+        });
+
+        maximize.addEventListener('click', () => {
+            minimize.setAttribute('aria-expanded', 'true');
+            minimize.setAttribute('aria-label', 'Minimize introduction');
+            gsap.timeline({ defaults: { duration: reducedMotion ? 0 : 0.35, ease: 'power2.inOut' } })
+                .to(body, { autoAlpha: 1 }, 0)
+                .to(modal, { height: expandedHeight, x: 0, y: 0 }, 0);
         });
 
         scrollButton.addEventListener('click', () => scrollTo(document.querySelector('#work')));
@@ -631,6 +700,7 @@
                     else state.tetris.resume();
                 }
             };
+            state.syncHeroCoverage = syncHeroCoverage;
             state.triggers.push(ScrollTrigger.create({
                 trigger: surface,
                 start: 'top bottom',
@@ -642,6 +712,19 @@
                 onLeaveBack: syncHeroCoverage
             }));
             window.requestAnimationFrame(syncHeroCoverage);
+        }
+
+        const gradientLayer = document.querySelector('.demo-gradient-background');
+        if (surface && gradientLayer) {
+            state.triggers.push(ScrollTrigger.create({
+                trigger: gradientLayer,
+                start: 'bottom bottom',
+                end: 'max',
+                pin: gradientLayer,
+                pinSpacing: false,
+                anticipatePin: 1,
+                invalidateOnRefresh: true
+            }));
         }
 
         const gallery = document.querySelector('.demo-gallery');
@@ -697,7 +780,12 @@
         if (window.location.hash !== '#work' && window.location.hash !== '#play') return;
         window.setTimeout(() => {
             const target = document.querySelector(window.location.hash);
-            if (target) scrollTo(target);
+            if (target) {
+                scrollTo(target);
+                window.requestAnimationFrame(() => {
+                    if (state.syncHeroCoverage) state.syncHeroCoverage();
+                });
+            }
         }, 160);
     }
 
@@ -737,6 +825,7 @@
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('hashchange', handleHash);
         if (state.tetris) state.tetris.destroy();
+        if (state.destroyModalDrag) state.destroyModalDrag();
         if (state.modalTween) state.modalTween.kill();
         if (state.galleryTween) state.galleryTween.kill();
         state.triggers.forEach(trigger => trigger.kill());
