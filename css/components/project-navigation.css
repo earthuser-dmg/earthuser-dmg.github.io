@@ -52,11 +52,11 @@ body.project-page {
 .more-projects {
     width: calc(100% - var(--project-page-gutter) * 2);
     margin: 4.5rem var(--project-page-gutter) 0;
-    padding: 0 0 1rem;
+    padding: 0 0 var(--page-bottom-space, 40px);
 }
 
 .more-projects-title {
-    margin: 0 0 20px;
+    margin: 0 0 24px;
     color: var(--color-body, #1e1e1e);
     font-family: var(--font-display, 'Instrument Serif', Georgia, serif);
     font-size: 24px;

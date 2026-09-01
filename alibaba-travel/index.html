@@ -20,6 +20,48 @@
     <link rel="stylesheet" href="/css/components/project-navigation.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+    <style>
+        /* Prototype-only Back button styling for review; keep shared navigation unchanged. */
+        body.project-page[data-project="alibaba"] .project-back {
+            width: 42px;
+            height: 42px;
+            min-height: 42px;
+            padding: 0;
+            justify-content: center;
+            gap: 0;
+            border: 0;
+            border-radius: 0;
+            background-color: transparent;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        body.project-page[data-project="alibaba"] .project-back > span {
+            display: none;
+        }
+
+        body.project-page[data-project="alibaba"] .project-back::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -27px;
+            width: 90px;
+            height: 90px;
+            background: url('/images/project/11482-5057.svg') center / 90px 90px no-repeat;
+            pointer-events: none;
+        }
+
+        body.project-page[data-project="alibaba"] .project-back:hover {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body.project-page[data-project="alibaba"] .project-back {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="project-page" data-project="alibaba">
@@ -298,7 +340,7 @@
                         design. </p>
                 </div>
             </div>
-、        </div>
+        </div>
     </div>
 
     <div id="project-navigation-container"></div>

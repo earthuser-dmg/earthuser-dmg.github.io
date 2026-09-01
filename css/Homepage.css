@@ -31,6 +31,7 @@
 
 .homepage-content .page-wrapper {
     width: 100%;
+    padding-bottom: var(--page-bottom-space, 2rem);
 }
 
 /* Hero Section */
