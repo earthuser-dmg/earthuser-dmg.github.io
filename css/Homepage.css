@@ -31,6 +31,8 @@
 
 .homepage-content .page-wrapper {
     width: 100%;
+    position: relative;
+    isolation: isolate;
 }
 
 /* Hero Section */
@@ -46,6 +48,28 @@
     position: relative;
     max-width: 1440px;
     gap: 8rem;
+    z-index: 0;
+}
+
+/* Decorative particle-gradient demo. The canvas listens through the window,
+   so it never blocks links, selection, or the existing hero interactions. */
+.particle-gradient {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    width: calc(100vw - var(--homepage-nav-width));
+    height: 100%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    filter: blur(8px) saturate(1.08);
+    opacity: 0.92;
+}
+
+.hero-text,
+.hero-visuals {
+    position: relative;
+    z-index: 1;
 }
 
 /* Lottie Player Styles */
@@ -505,6 +529,12 @@
         overflow: visible;
     }
 
+    .particle-gradient {
+        width: 100vw;
+        filter: blur(7px) saturate(1.06);
+        opacity: 0.82;
+    }
+
     .main-container {
         width: calc(100% - (var(--homepage-page-gutter) * 2));
         max-width: none;
@@ -720,6 +750,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .particle-gradient {
+        filter: blur(10px) saturate(1.04);
+    }
+
     .project-image {
         transition: none;
     }
