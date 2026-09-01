@@ -7,6 +7,7 @@
     --homepage-nav-width: 140px;
     --homepage-page-gutter: clamp(16px, 3.125vw, 40px);
     --homepage-grid-gap: clamp(10px, 0.8vw, 20px);
+    --homepage-section-title-size: 34px;
 }
 
 /* Homepage left-rail preview */
@@ -31,9 +32,12 @@
 
 .homepage-content .page-wrapper {
     width: 100%;
+<<<<<<< HEAD
     padding-bottom: var(--page-bottom-space, 2rem);
+=======
     position: relative;
     isolation: isolate;
+>>>>>>> fde63278ebac72b160f6b5e0ec66aebec3d8480c
 }
 
 /* Hero Section */
@@ -50,21 +54,6 @@
     max-width: 1440px;
     gap: 8rem;
     z-index: 0;
-}
-
-/* Decorative particle-gradient demo. The canvas listens through the window,
-   so it never blocks links, selection, or the existing hero interactions. */
-.particle-gradient {
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 50%;
-    width: calc(100vw - var(--homepage-nav-width));
-    height: 100%;
-    transform: translateX(-50%);
-    pointer-events: none;
-    filter: blur(8px) saturate(1.08);
-    opacity: 0.92;
 }
 
 .hero-text,
@@ -147,28 +136,8 @@
     pointer-events: none;
 }
 
-.media-gallery-kicker,
-.media-gallery-hint {
-    margin: 0;
-    color: #7d7b7b;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-}
-
-.media-gallery-intro h2 {
-    margin: 0.2rem 0 0;
-    font-family: 'Bitter', serif;
-    font-size: clamp(2.2rem, 4vw, 4.5rem);
-    font-weight: 400;
-    line-height: 1;
-}
-
 .gallery-dot {
     color: #ff4b30;
-}
-
-.media-gallery-hint {
-    margin-top: 0.9rem;
 }
 
 .media-gallery-viewport {
@@ -328,10 +297,10 @@
     margin: 0 0 32px;
     color: var(--color-body);
     font-family: var(--font-display);
-    font-size: 34px;
+    font-size: var(--homepage-section-title-size);
     font-style: italic;
     font-weight: 400;
-    line-height: 44px;
+    line-height: 1.3;
     text-align: center;
 }
 
@@ -530,12 +499,6 @@
         overflow: visible;
     }
 
-    .particle-gradient {
-        width: 100vw;
-        filter: blur(7px) saturate(1.06);
-        opacity: 0.82;
-    }
-
     .main-container {
         width: calc(100% - (var(--homepage-page-gutter) * 2));
         max-width: none;
@@ -640,6 +603,10 @@
 }
 
 @media (max-width: 768px) {
+    :root {
+        --homepage-section-title-size: 31px;
+    }
+
     .hero {
         padding: 10rem 2rem 0;
         min-height: calc(100vh - 60px);
@@ -707,6 +674,10 @@
 }
 
 @media (max-width: 480px) {
+    :root {
+        --homepage-section-title-size: 28px;
+    }
+
     body {
         overflow-x: hidden;
     }
@@ -751,9 +722,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .particle-gradient {
-        filter: blur(10px) saturate(1.04);
-    }
 
     .project-image {
         transition: none;

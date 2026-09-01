@@ -1,3 +1,15 @@
+@property --demo-hue-1 {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 30deg;
+}
+
+@property --demo-hue-2 {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 180deg;
+}
+
 .tetris-demo {
     --demo-rail: 140px;
     --demo-ink: #1e1e1e;
@@ -249,10 +261,43 @@
 }
 
 .tetris-demo .demo-smooth-content {
+    position: relative;
+    isolation: isolate;
     min-height: 100%;
 }
 
+.tetris-demo .demo-gradient-background {
+    position: relative;
+    z-index: 0;
+    top: 18vh;
+    width: calc(100% - 6vw);
+    height: 82vh;
+    margin: 0 -4vw -82vh 10vw;
+    pointer-events: none;
+    opacity: 1;
+    background-image:
+        radial-gradient(
+            ellipse 88% 76% at 82% 24%,
+            oklch(0.95 0.07 var(--demo-hue-1) / 52%),
+            oklch(0.95 0.055 var(--demo-hue-1) / 26%) 48%,
+            transparent 78%
+        ),
+        radial-gradient(
+            ellipse 92% 84% at 78% 96%,
+            oklch(0.92 0.08 var(--demo-hue-2) / 48%),
+            oklch(0.95 0.055 var(--demo-hue-2) / 24%) 50%,
+            transparent 80%
+        );
+    background-size: 100% 100%;
+    -webkit-mask-image: radial-gradient(ellipse 115% 82% at 100% 100%, #000 0 38%, rgba(0, 0, 0, 0.9) 54%, rgba(0, 0, 0, 0.38) 74%, transparent 100%);
+    mask-image: radial-gradient(ellipse 115% 82% at 100% 100%, #000 0 38%, rgba(0, 0, 0, 0.9) 54%, rgba(0, 0, 0, 0.38) 74%, transparent 100%);
+    animation: demo-oklch-gradient 5s linear infinite;
+    will-change: transform;
+}
+
 .tetris-demo .demo-hero-spacer {
+    position: relative;
+    z-index: 1;
     height: calc(100svh + var(--demo-cover-fade));
     min-height: 760px;
 }
@@ -260,6 +305,7 @@
 .tetris-demo .demo-content-surface {
     position: relative;
     z-index: 2;
+    isolation: isolate;
     min-height: 240vh;
     padding-top: clamp(100px, 12vw, 154px);
     overflow: visible;
@@ -279,6 +325,8 @@
 }
 
 .tetris-demo .demo-works {
+    position: relative;
+    z-index: 1;
     width: min(1000px, calc(100% - 80px));
     margin: 0 auto;
 }
@@ -350,10 +398,23 @@
 
 .tetris-demo .demo-gallery {
     position: relative;
+    z-index: 1;
     min-height: 100vh;
     margin-top: 180px;
     overflow: hidden;
     background: var(--demo-paper);
+}
+
+@keyframes demo-oklch-gradient {
+    0% {
+        --demo-hue-1: 30deg;
+        --demo-hue-2: 180deg;
+    }
+
+    100% {
+        --demo-hue-1: 390deg;
+        --demo-hue-2: 540deg;
+    }
 }
 
 .tetris-demo .demo-gallery-sticky {
@@ -434,6 +495,8 @@
 }
 
 .tetris-demo .demo-afterword {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -506,6 +569,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .tetris-demo .demo-gradient-background {
+        animation: none;
+        --demo-hue-1: 30deg;
+        --demo-hue-2: 180deg;
+    }
+
     .tetris-demo .demo-project-card img,
     .tetris-demo .demo-like,
     .tetris-demo .demo-scroll-down {

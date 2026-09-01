@@ -45,7 +45,6 @@
             <div class="page-wrapper" id="smooth-content">
         <!-- Hero Section -->
         <section class="hero">
-            <canvas class="particle-gradient" data-particle-gradient aria-hidden="true"></canvas>
             <div class="hero-text">
                 <div class="prev">Prev. Decathlon, Alibaba</div>
                 <div class="main-text">I'm <strong>Juno</strong> , a product designer and problem solver with 4 years of
@@ -68,7 +67,7 @@
         <div class="main-container">
             <!-- Main Content Area -->
             <main class="content-area" id="work">
-                <h2 class="work-title">Works</h2>
+                <h2 class="work-title">Works<span class="gallery-dot">.</span></h2>
                 <!-- Project Cards -->
                 <div class="projects-container">
                     <!-- Project 1 -->
@@ -150,9 +149,7 @@
                 <section class="media-gallery" id="play" aria-labelledby="media-gallery-title">
                     <div class="media-gallery-sticky">
                         <div class="media-gallery-intro">
-                            <p class="media-gallery-kicker">A little more play</p>
-                            <h2 id="media-gallery-title">Media gallery<span class="gallery-dot">.</span></h2>
-                            <p class="media-gallery-hint">Keep scrolling to explore</p>
+                            <h2 class="work-title" id="media-gallery-title">Media gallery<span class="gallery-dot">.</span></h2>
                         </div>
                         <div class="media-gallery-viewport">
                             <div class="media-gallery-track">
@@ -196,7 +193,6 @@
     </div>
 
     <script src="js/common.js"></script>
-    <script src="js/particle-gradient.js"></script>
     <script>
         // 监听 lottie 动画完成事件
         document.addEventListener('DOMContentLoaded', function () {
