@@ -22,6 +22,7 @@
         galleryTween: null,
         modalTween: null,
         destroyModalDrag: null,
+        destroyCatMail: null,
         syncHeroCoverage: null,
         tetris: null,
         resizeTimer: 0,
@@ -668,6 +669,81 @@
         scrollButton.addEventListener('click', () => scrollTo(document.querySelector('#work')));
     }
 
+    function initCatMail() {
+        const mail = document.querySelector('.cat-mail');
+        const frame = document.querySelector('.cat-mail-frame');
+        if (!mail || !frame) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const assets = {
+            closed: '/images/hero-demo/cat-mail-closed.png',
+            ten: '/images/hero-demo/cat-mail-open-10.png',
+            forty: '/images/hero-demo/cat-mail-open-40.png',
+            seventy: '/images/hero-demo/cat-mail-open-70.png',
+            hundred: '/images/hero-demo/cat-mail-open-100.png'
+        };
+        let animationFrame = null;
+        let currentFrame = 0;
+
+        const sourceForFrame = (value) => {
+            if (value < 13 || value >= 88) return assets.closed;
+            if (value < 15 || value >= 85) return assets.ten;
+            if (value < 17 || value >= 83) return assets.forty;
+            if (value < 20 || value >= 81) return assets.seventy;
+            return assets.hundred;
+        };
+        const cubic = (a, b, c, d, t) => (1 - t) ** 3 * a + 3 * (1 - t) ** 2 * t * b + 3 * (1 - t) * t ** 2 * c + t ** 3 * d;
+        const easedProgress = (value) => {
+            let low = 0;
+            let high = 1;
+            for (let index = 0; index < 18; index += 1) {
+                const middle = (low + high) / 2;
+                if (cubic(0, 0.697, 0.92, 1, middle) < value) low = middle;
+                else high = middle;
+            }
+            return cubic(0, 0.885, 0.332, 1, (low + high) / 2);
+        };
+        const render = (value) => {
+            currentFrame = Math.round(Math.min(Math.max(value, 0), 95));
+            const rotation = currentFrame < 12 ? [0, -0.45, 0.35, -0.2, 0][Math.min(4, Math.floor(currentFrame / 3))] : 0;
+            frame.src = sourceForFrame(currentFrame);
+            mail.style.transform = `rotate(${rotation}deg)`;
+        };
+        const stop = () => {
+            if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        };
+        const playTo = (targetFrame, duration) => {
+            stop();
+            const initialFrame = currentFrame;
+            const startedAt = performance.now();
+            const tick = (now) => {
+                const progress = Math.min((now - startedAt) / duration, 1);
+                render(initialFrame + (targetFrame - initialFrame) * easedProgress(progress));
+                if (progress < 1) animationFrame = window.requestAnimationFrame(tick);
+                else animationFrame = null;
+            };
+            animationFrame = window.requestAnimationFrame(tick);
+        };
+        const open = () => {
+            if (reducedMotion) return;
+            playTo(50, 1100);
+        };
+        const close = () => {
+            if (reducedMotion || currentFrame === 0) return;
+            playTo(0, Math.max(220, currentFrame / 50 * 650));
+        };
+
+        mail.addEventListener('pointerenter', open);
+        mail.addEventListener('pointerleave', close);
+        state.destroyCatMail = () => {
+            mail.removeEventListener('pointerenter', open);
+            mail.removeEventListener('pointerleave', close);
+            stop();
+            render(0);
+        };
+    }
+
     function initScroll() {
         if (!window.gsap || !window.ScrollTrigger || !window.ScrollSmoother) return;
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -802,6 +878,7 @@
         initScroll();
         state.tetris = new TetrisScene(document.querySelector('.demo-tetris-canvas'));
         initModal();
+        initCatMail();
         handleHash();
         document.addEventListener('visibilitychange', handleVisibility);
         window.addEventListener('resize', handleResize, { passive: true });
@@ -826,6 +903,7 @@
         window.removeEventListener('hashchange', handleHash);
         if (state.tetris) state.tetris.destroy();
         if (state.destroyModalDrag) state.destroyModalDrag();
+        if (state.destroyCatMail) state.destroyCatMail();
         if (state.modalTween) state.modalTween.kill();
         if (state.galleryTween) state.galleryTween.kill();
         state.triggers.forEach(trigger => trigger.kill());

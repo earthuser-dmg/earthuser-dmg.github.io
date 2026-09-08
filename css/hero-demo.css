@@ -102,6 +102,27 @@
     transform-origin: center top;
 }
 
+.tetris-demo .cat-mail {
+    position: absolute;
+    z-index: 4;
+    right: clamp(30px, 7vw, 112px);
+    bottom: clamp(25px, 5vh, 62px);
+    width: 260px;
+    height: 219px;
+    cursor: default;
+    transform-origin: 50% 86%;
+    will-change: transform;
+}
+
+.tetris-demo .cat-mail-frame {
+    position: absolute;
+    display: block;
+    width: 260px;
+    height: 219px;
+    max-width: none;
+    user-select: none;
+}
+
 .tetris-demo .demo-window-bar {
     display: flex;
     align-items: center;
