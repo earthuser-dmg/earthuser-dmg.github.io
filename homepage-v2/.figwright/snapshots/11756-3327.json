@@ -1,0 +1,608 @@
+{
+  "figwrightSnapshot": 2,
+  "nodeId": "11756:3327",
+  "capturedAt": "2026-09-06T04:02:24.589Z",
+  "context": {
+    "nodes": [
+      {
+        "id": "11756:3327",
+        "name": "Folder 2",
+        "type": "GROUP",
+        "x": 214.576171875,
+        "y": 1809.5791015625,
+        "width": 752.8344116210938,
+        "height": 602.8399047851562,
+        "children": [
+          {
+            "id": "11756:3328",
+            "name": "Union",
+            "type": "BOOLEAN_OPERATION",
+            "x": 214.57617188167717,
+            "y": 1809.579101592118,
+            "width": 752.8344116210938,
+            "height": 602.8399047851562,
+            "strokeWeight": 2.4000000953674316,
+            "strokeAlign": "CENTER",
+            "strokeCap": "ROUND",
+            "strokeJoin": "ROUND",
+            "fill": "fill_1a84b54",
+            "stroke": "stroke_1s3vosi",
+            "children": [
+              {
+                "id": "11756:3329",
+                "name": "Vector 109",
+                "type": "VECTOR",
+                "x": 420.0000610418334,
+                "y": 1811.0000813303534,
+                "width": 255,
+                "height": 74,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1a84b54",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11756:3330",
+                "name": "Rectangle 115",
+                "type": "RECTANGLE",
+                "x": 216.00005508136894,
+                "y": 1885.0000839529578,
+                "width": 750,
+                "height": 526,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1a84b54",
+                "stroke": "stroke_1s3vosi"
+              }
+            ]
+          },
+          {
+            "id": "11759:3456",
+            "name": "Read more",
+            "type": "TEXT",
+            "x": 271,
+            "y": 2314,
+            "width": 89,
+            "height": 25,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "Read more",
+            "fill": "stroke_1s3vosi",
+            "textStyle": "text_6fzhzb"
+          },
+          {
+            "id": "11759:3457",
+            "name": "Rectangle 116",
+            "type": "RECTANGLE",
+            "x": 632.5185546875,
+            "y": 2118.650634765625,
+            "width": 262,
+            "height": 191,
+            "rotation": -11.02265637231174,
+            "cornerRadius": 12,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_z75uo2"
+          },
+          {
+            "id": "11759:3458",
+            "name": "Frame 78",
+            "type": "FRAME",
+            "x": 268,
+            "y": 2010,
+            "width": 184.00010681152344,
+            "height": 130,
+            "fills": [],
+            "layout": {
+              "mode": "VERTICAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 10,
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "clipsContent": false,
+            "children": [
+              {
+                "id": "11759:3459",
+                "name": "Frame 74",
+                "type": "FRAME",
+                "x": 0,
+                "y": 0,
+                "width": 184.00010681152344,
+                "height": 25,
+                "fills": [],
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 13,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11759:3460",
+                    "name": "checked",
+                    "type": "GROUP",
+                    "x": 0,
+                    "y": 1.72412109375,
+                    "width": 22.000104904174805,
+                    "height": 21.5517578125,
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "children": [
+                      {
+                        "id": "11759:3461",
+                        "name": "Vector 119",
+                        "type": "VECTOR",
+                        "x": 0,
+                        "y": 5.27587890625,
+                        "width": 19,
+                        "height": 18,
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fill": "fill_nll9eq",
+                        "stroke": "stroke_1s3vosi"
+                      },
+                      {
+                        "id": "11759:3462",
+                        "name": "Vector 129",
+                        "type": "VECTOR",
+                        "x": 4.25390625,
+                        "y": 1.72412109375,
+                        "width": 17.75477409362793,
+                        "height": 17.7681827545166,
+                        "rotation": -1.7807699804165167,
+                        "fills": [],
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "stroke": "stroke_1s3vosi"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11759:3463",
+                    "name": "IA and framework",
+                    "type": "TEXT",
+                    "x": 35,
+                    "y": 0,
+                    "width": 142,
+                    "height": 25,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "IA and framework",
+                    "fill": "stroke_1s3vosi",
+                    "textStyle": "text_6fzhzb"
+                  }
+                ]
+              },
+              {
+                "id": "11759:3464",
+                "name": "Frame 75",
+                "type": "FRAME",
+                "x": 0,
+                "y": 35,
+                "width": 184.00010681152344,
+                "height": 25,
+                "fills": [],
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 13,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "FILL",
+                "layoutSizingVertical": "HUG",
+                "layoutAlign": "STRETCH",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11759:3465",
+                    "name": "checked",
+                    "type": "GROUP",
+                    "x": 0,
+                    "y": 1.72412109375,
+                    "width": 22.000104904174805,
+                    "height": 21.5517578125,
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "children": [
+                      {
+                        "id": "11759:3466",
+                        "name": "Vector 119",
+                        "type": "VECTOR",
+                        "x": 0,
+                        "y": 5.27587890625,
+                        "width": 19,
+                        "height": 18,
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fill": "fill_nll9eq",
+                        "stroke": "stroke_1s3vosi"
+                      },
+                      {
+                        "id": "11759:3467",
+                        "name": "Vector 129",
+                        "type": "VECTOR",
+                        "x": 4.25390625,
+                        "y": 1.72412109375,
+                        "width": 17.75477409362793,
+                        "height": 17.7681827545166,
+                        "rotation": -1.7807699804165167,
+                        "fills": [],
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "stroke": "stroke_1s3vosi"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11759:3468",
+                    "name": "complex workflow",
+                    "type": "TEXT",
+                    "x": 35.00010681152344,
+                    "y": 0,
+                    "width": 149,
+                    "height": 25,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "complex workflow",
+                    "fill": "stroke_1s3vosi",
+                    "textStyle": "text_6fzhzb"
+                  }
+                ]
+              },
+              {
+                "id": "11759:3469",
+                "name": "Frame 76",
+                "type": "FRAME",
+                "x": 0,
+                "y": 70,
+                "width": 109.00010681152344,
+                "height": 25,
+                "fills": [],
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 13,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "HUG",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11759:3470",
+                    "name": "checked",
+                    "type": "GROUP",
+                    "x": 0,
+                    "y": 1.72412109375,
+                    "width": 22.000104904174805,
+                    "height": 21.5517578125,
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "children": [
+                      {
+                        "id": "11759:3471",
+                        "name": "Vector 119",
+                        "type": "VECTOR",
+                        "x": 0,
+                        "y": 5.27587890625,
+                        "width": 19,
+                        "height": 18,
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fill": "fill_nll9eq",
+                        "stroke": "stroke_1s3vosi"
+                      },
+                      {
+                        "id": "11759:3472",
+                        "name": "Vector 129",
+                        "type": "VECTOR",
+                        "x": 4.25390625,
+                        "y": 1.72412109375,
+                        "width": 17.75477409362793,
+                        "height": 17.7681827545166,
+                        "rotation": -1.7807699804165167,
+                        "fills": [],
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "stroke": "stroke_1s3vosi"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11759:3473",
+                    "name": "research",
+                    "type": "TEXT",
+                    "x": 35.00010681152344,
+                    "y": 0,
+                    "width": 74,
+                    "height": 25,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "research",
+                    "fill": "stroke_1s3vosi",
+                    "textStyle": "text_6fzhzb"
+                  }
+                ]
+              },
+              {
+                "id": "11759:3474",
+                "name": "Frame 77",
+                "type": "FRAME",
+                "x": 0,
+                "y": 105,
+                "width": 72.00010681152344,
+                "height": 25,
+                "fills": [],
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "paddingTop": 0,
+                  "paddingRight": 0,
+                  "paddingBottom": 0,
+                  "paddingLeft": 0,
+                  "itemSpacing": 13,
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "CENTER",
+                  "layoutWrap": "NO_WRAP",
+                  "strokesIncludedInLayout": true
+                },
+                "layoutSizingHorizontal": "HUG",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11759:3475",
+                    "name": "checked",
+                    "type": "GROUP",
+                    "x": 0,
+                    "y": 1.72412109375,
+                    "width": 22.000104904174805,
+                    "height": 21.5517578125,
+                    "layoutSizingHorizontal": "FIXED",
+                    "layoutSizingVertical": "FIXED",
+                    "children": [
+                      {
+                        "id": "11759:3476",
+                        "name": "Vector 119",
+                        "type": "VECTOR",
+                        "x": 0,
+                        "y": 5.27587890625,
+                        "width": 19,
+                        "height": 18,
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fill": "fill_nll9eq",
+                        "stroke": "stroke_1s3vosi"
+                      },
+                      {
+                        "id": "11759:3477",
+                        "name": "Vector 129",
+                        "type": "VECTOR",
+                        "x": 4.25390625,
+                        "y": 1.72412109375,
+                        "width": 17.75477409362793,
+                        "height": 17.7681827545166,
+                        "rotation": -1.7807699804165167,
+                        "fills": [],
+                        "strokeWeight": 2.4000000953674316,
+                        "strokeAlign": "CENTER",
+                        "strokeCap": "ROUND",
+                        "strokeJoin": "ROUND",
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "stroke": "stroke_1s3vosi"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11759:3478",
+                    "name": "0→1",
+                    "type": "TEXT",
+                    "x": 35.00010681152344,
+                    "y": 0,
+                    "width": 37,
+                    "height": 25,
+                    "layoutSizingHorizontal": "HUG",
+                    "layoutSizingVertical": "HUG",
+                    "characters": "0→1",
+                    "fill": "stroke_1s3vosi",
+                    "textStyle": "text_6fzhzb"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "11759:3479",
+            "name": "Rectangle 117",
+            "type": "RECTANGLE",
+            "x": 597.7666015625,
+            "y": 1978.112060546875,
+            "width": 262,
+            "height": 191,
+            "rotation": 5.280452268580664,
+            "cornerRadius": 12,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_z75uo2"
+          },
+          {
+            "id": "11759:3480",
+            "name": "What I did",
+            "type": "TEXT",
+            "x": 268,
+            "y": 1939,
+            "width": 155,
+            "height": 55,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "What I did ",
+            "fill": "stroke_1s3vosi",
+            "textStyle": "text_1fdbkx2"
+          },
+          {
+            "id": "11756:3331",
+            "name": "Turn solutions into systems",
+            "type": "TEXT",
+            "x": 481.00006103515625,
+            "y": 1825.000081062317,
+            "width": 119,
+            "height": 50,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "Turn solutions\ninto systems",
+            "fill": "stroke_1s3vosi",
+            "textStyle": "text_6fzhzb"
+          }
+        ]
+      }
+    ],
+    "globalVars": {
+      "styles": {
+        "fill_1a84b54": [
+          {
+            "type": "SOLID",
+            "color": "#FEB726"
+          }
+        ],
+        "stroke_1s3vosi": [
+          {
+            "type": "SOLID",
+            "color": "#000000"
+          }
+        ],
+        "text_6fzhzb": {
+          "fontFamily": "Manrope",
+          "fontStyle": "Regular",
+          "fontSize": 18
+        },
+        "fill_z75uo2": [
+          {
+            "type": "SOLID",
+            "color": "#D9D9D9"
+          },
+          {
+            "type": "IMAGE",
+            "scaleMode": "FILL"
+          }
+        ],
+        "fill_nll9eq": [
+          {
+            "type": "SOLID",
+            "color": "#FFFFFF"
+          }
+        ],
+        "text_1fdbkx2": {
+          "fontFamily": "Instrument Serif",
+          "fontStyle": "Italic",
+          "fontSize": 42
+        }
+      }
+    },
+    "metrics": {
+      "nodeCount": 30,
+      "maxDepth": 5,
+      "styleCount": 6,
+      "tokenCount": 0,
+      "inlineSizeKb": 11.19,
+      "dedupedSizeKb": 9.23
+    }
+  }
+}

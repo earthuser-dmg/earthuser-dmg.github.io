@@ -1,0 +1,1491 @@
+{
+  "figwrightSnapshot": 2,
+  "nodeId": "11727:4882",
+  "capturedAt": "2026-09-06T04:02:24.674Z",
+  "context": {
+    "nodes": [
+      {
+        "id": "11727:4882",
+        "name": "work area",
+        "type": "FRAME",
+        "x": 140,
+        "y": 1860,
+        "width": 1140,
+        "height": 1078,
+        "fills": [],
+        "layout": {
+          "mode": "VERTICAL",
+          "paddingTop": 0,
+          "paddingRight": 40,
+          "paddingBottom": 0,
+          "paddingLeft": 40,
+          "itemSpacing": 32,
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "layoutWrap": "NO_WRAP",
+          "strokesIncludedInLayout": true
+        },
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "clipsContent": false,
+        "children": [
+          {
+            "id": "11727:4884",
+            "name": "Works",
+            "type": "TEXT",
+            "x": 40,
+            "y": 0,
+            "width": 73,
+            "height": 44,
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "characters": "Works",
+            "textAlignHorizontal": "CENTER",
+            "boundVariables": {
+              "fills": [
+                "VariableID:3951:2853"
+              ]
+            },
+            "fill": "fill_1kslvis",
+            "textStyle": "text_1kb0tlr"
+          },
+          {
+            "id": "11727:4886",
+            "name": "Frame 39",
+            "type": "FRAME",
+            "x": 40,
+            "y": 76,
+            "width": 1060,
+            "height": 1002,
+            "fills": [],
+            "layout": {
+              "mode": "HORIZONTAL",
+              "paddingTop": 0,
+              "paddingRight": 0,
+              "paddingBottom": 0,
+              "paddingLeft": 0,
+              "itemSpacing": 20,
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "layoutWrap": "WRAP",
+              "counterAxisSpacing": 20,
+              "strokesIncludedInLayout": true
+            },
+            "layoutSizingHorizontal": "FILL",
+            "layoutSizingVertical": "HUG",
+            "layoutAlign": "STRETCH",
+            "clipsContent": false,
+            "children": [
+              {
+                "id": "11727:4887",
+                "name": "Project card",
+                "type": "FRAME",
+                "x": 0,
+                "y": 0,
+                "width": 520,
+                "height": 491,
+                "fills": [],
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 6,
+                  "paddingRight": 6,
+                  "paddingBottom": 6,
+                  "paddingLeft": 6,
+                  "itemSpacing": 20,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP"
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11727:4888",
+                    "name": "Project Image",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 6,
+                    "width": 508,
+                    "height": 320,
+                    "fills": [],
+                    "strokeWeight": 2.4000000953674316,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "strokeJoin": "ROUND",
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 10,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true,
+                    "stroke": "stroke_1s3vosi",
+                    "children": [
+                      {
+                        "id": "11727:4889",
+                        "name": "odd1 1",
+                        "type": "RECTANGLE",
+                        "x": 0,
+                        "y": 0,
+                        "width": 606,
+                        "height": 341,
+                        "layoutSizingHorizontal": "FIXED",
+                        "layoutSizingVertical": "FIXED",
+                        "targetAspectRatio": {
+                          "x": 4000,
+                          "y": 2250
+                        },
+                        "fill": "fill_1r7ub26"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11727:4890",
+                    "name": "Frame 21",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 346,
+                    "width": 508,
+                    "height": 139,
+                    "fills": [],
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 20,
+                      "paddingBottom": 20,
+                      "paddingLeft": 20,
+                      "itemSpacing": 20,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP"
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "children": [
+                      {
+                        "id": "11727:4900",
+                        "name": "Frame 38",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 0,
+                        "width": 468,
+                        "height": 69,
+                        "fills": [],
+                        "layout": {
+                          "mode": "VERTICAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 8,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "MIN",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4901",
+                            "name": "Decathlon",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 0,
+                            "width": 468,
+                            "height": 36,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Decathlon",
+                            "textAutoResize": "HEIGHT",
+                            "boundVariables": {
+                              "fills": [
+                                "VariableID:3951:2853"
+                              ]
+                            },
+                            "fill": "fill_1kslvis",
+                            "textStyle": "text_1kp87b0"
+                          },
+                          {
+                            "id": "11727:4902",
+                            "name": "Customized component library",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 44,
+                            "width": 468,
+                            "height": 25,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Customized component library",
+                            "textAutoResize": "HEIGHT",
+                            "fill": "stroke_1s3vosi",
+                            "textStyle": "text_6fzhzb"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11727:4891",
+                        "name": "Frame 15",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 89,
+                        "width": 468,
+                        "height": 30,
+                        "fills": [],
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 10,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP"
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4892",
+                            "name": "Frame 12",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 43,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4893",
+                                "name": "0-1",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 19,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "0-1",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4894",
+                            "name": "Frame 13",
+                            "type": "FRAME",
+                            "x": 53,
+                            "y": 0,
+                            "width": 112,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4895",
+                                "name": "Design system",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 88,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Design system",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4896",
+                            "name": "Frame 14",
+                            "type": "FRAME",
+                            "x": 175,
+                            "y": 0,
+                            "width": 48,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4897",
+                                "name": "B2B",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 24,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "B2B",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4898",
+                            "name": "Frame 15",
+                            "type": "FRAME",
+                            "x": 233,
+                            "y": 0,
+                            "width": 51,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4899",
+                                "name": "Web",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 27,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Web",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "11727:4903",
+                "name": "Project card",
+                "type": "FRAME",
+                "x": 540,
+                "y": 0,
+                "width": 520,
+                "height": 491,
+                "fills": [],
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 6,
+                  "paddingRight": 6,
+                  "paddingBottom": 6,
+                  "paddingLeft": 6,
+                  "itemSpacing": 20,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP"
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11727:4904",
+                    "name": "Project Image",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 6,
+                    "width": 508,
+                    "height": 320,
+                    "fills": [],
+                    "strokeWeight": 2.4000000953674316,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "strokeJoin": "ROUND",
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 10,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true,
+                    "stroke": "stroke_1s3vosi",
+                    "children": [
+                      {
+                        "id": "11727:4905",
+                        "name": "CoverFliggy 1",
+                        "type": "RECTANGLE",
+                        "x": 1.2001953125,
+                        "y": 1.2001953125,
+                        "width": 546,
+                        "height": 336,
+                        "layoutSizingHorizontal": "FIXED",
+                        "layoutSizingVertical": "FIXED",
+                        "targetAspectRatio": {
+                          "x": 1722,
+                          "y": 1059
+                        },
+                        "fill": "fill_1r7ub26"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11727:4906",
+                    "name": "Frame 21",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 346,
+                    "width": 508,
+                    "height": 139,
+                    "fills": [],
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 20,
+                      "paddingBottom": 20,
+                      "paddingLeft": 20,
+                      "itemSpacing": 20,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP"
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "children": [
+                      {
+                        "id": "11727:4914",
+                        "name": "Frame 38",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 0,
+                        "width": 468,
+                        "height": 69,
+                        "fills": [],
+                        "layout": {
+                          "mode": "VERTICAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 8,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "MIN",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4915",
+                            "name": "Alibaba",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 0,
+                            "width": 468,
+                            "height": 36,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Alibaba",
+                            "textAutoResize": "HEIGHT",
+                            "boundVariables": {
+                              "fills": [
+                                "VariableID:3951:2853"
+                              ]
+                            },
+                            "fill": "fill_1kslvis",
+                            "textStyle": "text_1kp87b0"
+                          },
+                          {
+                            "id": "11727:4916",
+                            "name": "Online Check-in",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 44,
+                            "width": 468,
+                            "height": 25,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Online Check-in",
+                            "textAutoResize": "HEIGHT",
+                            "fill": "stroke_1s3vosi",
+                            "textStyle": "text_6fzhzb"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11727:4907",
+                        "name": "Frame 15",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 89,
+                        "width": 468,
+                        "height": 30,
+                        "fills": [],
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 10,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP"
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4908",
+                            "name": "Frame 12",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 81,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4909",
+                                "name": "Redesign",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 57,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Redesign",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4910",
+                            "name": "Frame 13",
+                            "type": "FRAME",
+                            "x": 91,
+                            "y": 0,
+                            "width": 64,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4911",
+                                "name": "Mobile",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 40,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Mobile",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4912",
+                            "name": "Frame 14",
+                            "type": "FRAME",
+                            "x": 165,
+                            "y": 0,
+                            "width": 53,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4913",
+                                "name": "L10N",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 29,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "L10N",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "11727:4917",
+                "name": "Project card",
+                "type": "FRAME",
+                "x": 0,
+                "y": 511,
+                "width": 520,
+                "height": 491,
+                "fills": [],
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 6,
+                  "paddingRight": 6,
+                  "paddingBottom": 6,
+                  "paddingLeft": 6,
+                  "itemSpacing": 20,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP"
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11727:4918",
+                    "name": "Project Image",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 6,
+                    "width": 508,
+                    "height": 320,
+                    "fills": [],
+                    "strokeWeight": 2.4000000953674316,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "strokeJoin": "ROUND",
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 10,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true,
+                    "stroke": "stroke_1s3vosi",
+                    "children": [
+                      {
+                        "id": "11727:4919",
+                        "name": "CoverzFuse 1",
+                        "type": "RECTANGLE",
+                        "x": 1.2000007629394531,
+                        "y": 1.1999998092651367,
+                        "width": 552,
+                        "height": 348,
+                        "layoutSizingHorizontal": "FIXED",
+                        "layoutSizingVertical": "FIXED",
+                        "targetAspectRatio": {
+                          "x": 2560,
+                          "y": 1611
+                        },
+                        "fill": "fill_1r7ub26"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11727:4920",
+                    "name": "Frame 21",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 346,
+                    "width": 508,
+                    "height": 139,
+                    "fills": [],
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 20,
+                      "paddingBottom": 20,
+                      "paddingLeft": 20,
+                      "itemSpacing": 20,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP"
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "children": [
+                      {
+                        "id": "11727:4930",
+                        "name": "Frame 38",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 0,
+                        "width": 468,
+                        "height": 69,
+                        "fills": [],
+                        "layout": {
+                          "mode": "VERTICAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 8,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "MIN",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4931",
+                            "name": "zFuse",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 0,
+                            "width": 468,
+                            "height": 36,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "zFuse",
+                            "textAutoResize": "HEIGHT",
+                            "boundVariables": {
+                              "fills": [
+                                "VariableID:3951:2853"
+                              ]
+                            },
+                            "fill": "fill_1kslvis",
+                            "textStyle": "text_1kp87b0"
+                          },
+                          {
+                            "id": "11727:4932",
+                            "name": "Video Player app redesign",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 44,
+                            "width": 468,
+                            "height": 25,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Video Player app redesign",
+                            "textAutoResize": "HEIGHT",
+                            "fill": "stroke_1s3vosi",
+                            "textStyle": "text_6fzhzb"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11727:4921",
+                        "name": "Frame 15",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 89,
+                        "width": 468,
+                        "height": 30,
+                        "fills": [],
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 10,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP"
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4922",
+                            "name": "Frame 12",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 81,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4923",
+                                "name": "Redesign",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 57,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Redesign",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4924",
+                            "name": "Frame 13",
+                            "type": "FRAME",
+                            "x": 91,
+                            "y": 0,
+                            "width": 64,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4925",
+                                "name": "Mobile",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 40,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Mobile",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4926",
+                            "name": "Frame 14",
+                            "type": "FRAME",
+                            "x": 165,
+                            "y": 0,
+                            "width": 82,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4927",
+                                "name": "UI design",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 58,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": " UI design",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4928",
+                            "name": "Frame 15",
+                            "type": "FRAME",
+                            "x": 257,
+                            "y": 0,
+                            "width": 108,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4929",
+                                "name": "Brand identity",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 84,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Brand identity",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "11727:4933",
+                "name": "Project card",
+                "type": "FRAME",
+                "x": 540,
+                "y": 511,
+                "width": 520,
+                "height": 491,
+                "fills": [],
+                "layout": {
+                  "mode": "VERTICAL",
+                  "paddingTop": 6,
+                  "paddingRight": 6,
+                  "paddingBottom": 6,
+                  "paddingLeft": 6,
+                  "itemSpacing": 20,
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "MIN",
+                  "layoutWrap": "NO_WRAP"
+                },
+                "layoutSizingHorizontal": "FIXED",
+                "layoutSizingVertical": "HUG",
+                "clipsContent": false,
+                "children": [
+                  {
+                    "id": "11727:4934",
+                    "name": "Project Image",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 6,
+                    "width": 508,
+                    "height": 320,
+                    "fills": [],
+                    "strokeWeight": 2.4000000953674316,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "strokeJoin": "ROUND",
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 0,
+                      "paddingBottom": 0,
+                      "paddingLeft": 0,
+                      "itemSpacing": 10,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP",
+                      "strokesIncludedInLayout": true
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "FIXED",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": true,
+                    "stroke": "stroke_1s3vosi",
+                    "children": [
+                      {
+                        "id": "11727:4935",
+                        "name": "CoverWeb 1",
+                        "type": "RECTANGLE",
+                        "x": 1.1999998092651367,
+                        "y": 1.2000007629394531,
+                        "width": 530,
+                        "height": 377,
+                        "layoutSizingHorizontal": "FIXED",
+                        "layoutSizingVertical": "FIXED",
+                        "targetAspectRatio": {
+                          "x": 1120,
+                          "y": 798
+                        },
+                        "fill": "fill_1r7ub26"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "11727:4936",
+                    "name": "Frame 21",
+                    "type": "FRAME",
+                    "x": 6,
+                    "y": 346,
+                    "width": 508,
+                    "height": 139,
+                    "fills": [],
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "paddingTop": 0,
+                      "paddingRight": 20,
+                      "paddingBottom": 20,
+                      "paddingLeft": 20,
+                      "itemSpacing": 20,
+                      "primaryAxisAlignItems": "MIN",
+                      "counterAxisAlignItems": "MIN",
+                      "layoutWrap": "NO_WRAP"
+                    },
+                    "layoutSizingHorizontal": "FILL",
+                    "layoutSizingVertical": "HUG",
+                    "layoutAlign": "STRETCH",
+                    "clipsContent": false,
+                    "children": [
+                      {
+                        "id": "11727:4944",
+                        "name": "Frame 38",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 0,
+                        "width": 468,
+                        "height": 69,
+                        "fills": [],
+                        "layout": {
+                          "mode": "VERTICAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 8,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "MIN",
+                          "layoutWrap": "NO_WRAP",
+                          "strokesIncludedInLayout": true
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4945",
+                            "name": "Case study",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 0,
+                            "width": 468,
+                            "height": 36,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Case study",
+                            "textAutoResize": "HEIGHT",
+                            "boundVariables": {
+                              "fills": [
+                                "VariableID:3951:2853"
+                              ]
+                            },
+                            "fill": "fill_1kslvis",
+                            "textStyle": "text_1kp87b0"
+                          },
+                          {
+                            "id": "11727:4946",
+                            "name": "Crafting my portfolio portfolio journey",
+                            "type": "TEXT",
+                            "x": 0,
+                            "y": 44,
+                            "width": 468,
+                            "height": 25,
+                            "layoutSizingHorizontal": "FILL",
+                            "layoutSizingVertical": "HUG",
+                            "layoutAlign": "STRETCH",
+                            "characters": "Crafting my portfolio portfolio journey ",
+                            "textAutoResize": "HEIGHT",
+                            "fill": "stroke_1s3vosi",
+                            "textStyle": "text_6fzhzb"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11727:4937",
+                        "name": "Frame 15",
+                        "type": "FRAME",
+                        "x": 20,
+                        "y": 89,
+                        "width": 468,
+                        "height": 30,
+                        "fills": [],
+                        "layout": {
+                          "mode": "HORIZONTAL",
+                          "paddingTop": 0,
+                          "paddingRight": 0,
+                          "paddingBottom": 0,
+                          "paddingLeft": 0,
+                          "itemSpacing": 10,
+                          "primaryAxisAlignItems": "MIN",
+                          "counterAxisAlignItems": "CENTER",
+                          "layoutWrap": "NO_WRAP"
+                        },
+                        "layoutSizingHorizontal": "FILL",
+                        "layoutSizingVertical": "HUG",
+                        "layoutAlign": "STRETCH",
+                        "clipsContent": false,
+                        "children": [
+                          {
+                            "id": "11727:4938",
+                            "name": "Frame 12",
+                            "type": "FRAME",
+                            "x": 0,
+                            "y": 0,
+                            "width": 141,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4939",
+                                "name": "Design engineering",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 117,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Design engineering",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4940",
+                            "name": "Frame 13",
+                            "type": "FRAME",
+                            "x": 151,
+                            "y": 0,
+                            "width": 51,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4941",
+                                "name": "Web",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 27,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "Web",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          },
+                          {
+                            "id": "11727:4942",
+                            "name": "Frame 14",
+                            "type": "FRAME",
+                            "x": 212,
+                            "y": 0,
+                            "width": 43,
+                            "height": 30,
+                            "layout": {
+                              "mode": "HORIZONTAL",
+                              "paddingTop": 6,
+                              "paddingRight": 12,
+                              "paddingBottom": 6,
+                              "paddingLeft": 12,
+                              "itemSpacing": 6,
+                              "primaryAxisAlignItems": "CENTER",
+                              "counterAxisAlignItems": "CENTER",
+                              "layoutWrap": "NO_WRAP"
+                            },
+                            "layoutSizingHorizontal": "HUG",
+                            "layoutSizingVertical": "HUG",
+                            "clipsContent": false,
+                            "fill": "fill_1vnrnyd",
+                            "children": [
+                              {
+                                "id": "11727:4943",
+                                "name": "0-1",
+                                "type": "TEXT",
+                                "x": 12,
+                                "y": 6,
+                                "width": 19,
+                                "height": 18,
+                                "layoutSizingHorizontal": "HUG",
+                                "layoutSizingVertical": "HUG",
+                                "characters": "0-1",
+                                "fill": "fill_4py7be",
+                                "textStyle": "text_xgksq8"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "VariableID:3951:2853": {
+        "name": "Fonts/BodyorHighlight",
+        "type": "COLOR"
+      }
+    },
+    "globalVars": {
+      "styles": {
+        "fill_1kslvis": [
+          {
+            "type": "SOLID",
+            "color": "#1E1E1E"
+          }
+        ],
+        "text_1kb0tlr": {
+          "fontFamily": "Instrument Serif",
+          "fontStyle": "Italic",
+          "fontSize": 34
+        },
+        "stroke_1s3vosi": [
+          {
+            "type": "SOLID",
+            "color": "#000000"
+          }
+        ],
+        "fill_1r7ub26": [
+          {
+            "type": "IMAGE",
+            "scaleMode": "FILL"
+          }
+        ],
+        "text_1kp87b0": {
+          "fontFamily": "Instrument Serif",
+          "fontStyle": "Regular",
+          "fontSize": 28
+        },
+        "text_6fzhzb": {
+          "fontFamily": "Manrope",
+          "fontStyle": "Regular",
+          "fontSize": 18
+        },
+        "fill_1vnrnyd": [
+          {
+            "type": "SOLID",
+            "color": "#3E3E3E0A"
+          }
+        ],
+        "fill_4py7be": [
+          {
+            "type": "SOLID",
+            "color": "#3E3E3E"
+          }
+        ],
+        "text_xgksq8": {
+          "fontFamily": "Manrope",
+          "fontStyle": "Regular",
+          "fontSize": 13
+        }
+      }
+    },
+    "metrics": {
+      "nodeCount": 63,
+      "maxDepth": 7,
+      "styleCount": 9,
+      "tokenCount": 1,
+      "inlineSizeKb": 27.83,
+      "dedupedSizeKb": 22.62
+    }
+  }
+}

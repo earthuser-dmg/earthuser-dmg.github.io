@@ -3,7 +3,16 @@
 // Set active navigation link based on current page
 function setActiveNavLink() {
     const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a, .homepage-rail-nav a');
+    const normalizePath = path => path
+        .toLowerCase()
+        .replace(/\/index\.html$/, '')
+        .replace(/\.html$/, '')
+        .replace(/\/$/, '') || '/';
+    const normalizedCurrentPath = normalizePath(currentPath);
+    const isNestedIndex = normalizedCurrentPath.endsWith('/play') || normalizedCurrentPath.endsWith('/about');
+    const isHomepage = normalizedCurrentPath === '/' || (currentPath.endsWith('/index.html') && !isNestedIndex);
+    const isWorkPage = isHomepage || document.body.classList.contains('project-page');
 
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
@@ -13,14 +22,21 @@ function setActiveNavLink() {
         link.classList.remove('active');
 
         // 检查是否是首页
-        if (currentPath === '/' || currentPath.endsWith('/index.html')) {
-            if (linkPathWithoutHash === '/' || linkPath.startsWith('/#')) {
+        if (isWorkPage && link.classList.contains('work-link')) {
+            link.classList.add('active');
+        }
+        // 检查其他页面
+        else if (!isWorkPage && linkPathWithoutHash) {
+            const normalizedLinkPath = normalizePath(linkPathWithoutHash);
+            if (normalizedCurrentPath === normalizedLinkPath || normalizedCurrentPath.endsWith(normalizedLinkPath)) {
                 link.classList.add('active');
             }
         }
-        // 检查其他页面
-        else if (linkPathWithoutHash && currentPath.replace(/\/$/, '') === linkPathWithoutHash.replace(/\/$/, '')) {
-            link.classList.add('active');
+
+        if (link.classList.contains('active')) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
         }
     });
 }
@@ -266,6 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.text())
             .then(data => {
                 leftNavContainer.innerHTML = data;
+                setActiveNavLink();
             })
             .catch(error => {
                 console.error('Error loading left navigation:', error);

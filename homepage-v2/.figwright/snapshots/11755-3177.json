@@ -1,0 +1,353 @@
+{
+  "figwrightSnapshot": 2,
+  "nodeId": "11755:3177",
+  "capturedAt": "2026-09-06T04:02:24.691Z",
+  "context": {
+    "nodes": [
+      {
+        "id": "11755:3177",
+        "name": "play",
+        "type": "GROUP",
+        "x": 217,
+        "y": 3161,
+        "width": 855.0218505859375,
+        "height": 559.8129272460938,
+        "children": [
+          {
+            "id": "11751:892",
+            "name": "Portrait study image",
+            "type": "RECTANGLE",
+            "x": 648.9228515625,
+            "y": 3483,
+            "width": 217,
+            "height": 217,
+            "rotation": -5.798414437860187,
+            "cornerRadius": 12,
+            "blendMode": "NORMAL",
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_1r7ub26"
+          },
+          {
+            "id": "11751:897",
+            "name": "Museum notes — AMS image",
+            "type": "RECTANGLE",
+            "x": 798.33984375,
+            "y": 3204,
+            "width": 284.3999938964844,
+            "height": 284.3999938964844,
+            "rotation": -15.779860843671367,
+            "cornerRadius": 12,
+            "blendMode": "NORMAL",
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_1r7ub26"
+          },
+          {
+            "id": "11751:894",
+            "name": "Coffee lovers image",
+            "type": "RECTANGLE",
+            "x": 479,
+            "y": 3193,
+            "width": 242,
+            "height": 242,
+            "rotation": -1.5902773407317584e-15,
+            "cornerRadius": 12,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_1r7ub26"
+          },
+          {
+            "id": "11679:1158",
+            "name": "Watercolor cats image",
+            "type": "RECTANGLE",
+            "x": 217,
+            "y": 3351.736328125,
+            "width": 284.3999938964844,
+            "height": 352.79998779296875,
+            "rotation": 8.424494566639565,
+            "cornerRadius": 12,
+            "blendMode": "NORMAL",
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fill": "fill_1r7ub26"
+          },
+          {
+            "id": "11751:915",
+            "name": "Group 212",
+            "type": "GROUP",
+            "x": 289.3095703125,
+            "y": 3246,
+            "width": 104.67243957519531,
+            "height": 110.0064468383789,
+            "children": [
+              {
+                "id": "11751:907",
+                "name": "Vector 117",
+                "type": "VECTOR",
+                "x": 289.3095703125,
+                "y": 3246,
+                "width": 104.67243957519531,
+                "height": 110.0064468383789,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_nll9eq",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11751:908",
+                "name": "Vector 118",
+                "type": "VECTOR",
+                "x": 303.56718730926514,
+                "y": 3261.91259765625,
+                "width": 20.94601058959961,
+                "height": 21.458126068115234,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1cramkg",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11751:910",
+                "name": "Vector 119",
+                "type": "VECTOR",
+                "x": 297.4095706939697,
+                "y": 3296.400001525879,
+                "width": 23.760936737060547,
+                "height": 22.14167594909668,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1pqg1sh",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11751:911",
+                "name": "Vector 120",
+                "type": "VECTOR",
+                "x": 320.8095703125,
+                "y": 3321.599998474121,
+                "width": 20.319795608520508,
+                "height": 20.183439254760742,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1kfb5px",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11751:914",
+                "name": "Vector 123",
+                "type": "VECTOR",
+                "x": 356.8095703125,
+                "y": 3322.5,
+                "width": 18.630001068115234,
+                "height": 18.630001068115234,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_a0s42x",
+                "stroke": "stroke_1s3vosi"
+              },
+              {
+                "id": "11751:913",
+                "name": "Vector 122",
+                "type": "VECTOR",
+                "x": 337.1607437133789,
+                "y": 3275.7769050598145,
+                "width": 30.78151512145996,
+                "height": 33.586185455322266,
+                "rotation": -16.256838107993666,
+                "strokeWeight": 2.4000000953674316,
+                "strokeAlign": "CENTER",
+                "strokeCap": "ROUND",
+                "strokeJoin": "ROUND",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fill": "fill_1a84b54",
+                "stroke": "stroke_1s3vosi"
+              }
+            ]
+          },
+          {
+            "id": "11755:3119",
+            "name": "Frame 71",
+            "type": "FRAME",
+            "x": 550,
+            "y": 3426,
+            "width": 265,
+            "height": 38,
+            "cornerRadius": 14,
+            "strokeWeight": 2,
+            "strokeAlign": "CENTER",
+            "strokeCap": "ROUND",
+            "strokeJoin": "ROUND",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "paddingTop": 10,
+              "paddingRight": 20,
+              "paddingBottom": 10,
+              "paddingLeft": 20,
+              "itemSpacing": 0,
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "layoutWrap": "NO_WRAP",
+              "strokesIncludedInLayout": true
+            },
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "clipsContent": false,
+            "fill": "fill_1pqg1sh",
+            "stroke": "stroke_1s3vosi",
+            "children": [
+              {
+                "id": "11755:3118",
+                "name": "I paint what I love! Coffee, cats, and...",
+                "type": "TEXT",
+                "x": 20,
+                "y": 10,
+                "width": 225,
+                "height": 18,
+                "layoutSizingHorizontal": "HUG",
+                "layoutSizingVertical": "HUG",
+                "characters": "I paint what I love! Coffee, cats, and...",
+                "fill": "fill_1kslvis",
+                "textStyle": "text_1fp67kd"
+              }
+            ]
+          },
+          {
+            "id": "11755:3176",
+            "name": "Vector 124",
+            "type": "VECTOR",
+            "x": 806.78125,
+            "y": 3161,
+            "width": 24.483898162841797,
+            "height": 81.39241790771484,
+            "rotation": -26.865408317245777,
+            "fills": [],
+            "strokeWeight": 2.4000000953674316,
+            "strokeAlign": "CENTER",
+            "strokeCap": "ROUND",
+            "strokeJoin": "ROUND",
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "stroke": "stroke_1s3vosi"
+          }
+        ]
+      }
+    ],
+    "globalVars": {
+      "styles": {
+        "fill_1r7ub26": [
+          {
+            "type": "IMAGE",
+            "scaleMode": "FILL"
+          }
+        ],
+        "fill_nll9eq": [
+          {
+            "type": "SOLID",
+            "color": "#FFFFFF"
+          }
+        ],
+        "stroke_1s3vosi": [
+          {
+            "type": "SOLID",
+            "color": "#000000"
+          }
+        ],
+        "fill_1cramkg": [
+          {
+            "type": "SOLID",
+            "color": "#FF5F90"
+          }
+        ],
+        "fill_1pqg1sh": [
+          {
+            "type": "SOLID",
+            "color": "#66C7FA"
+          }
+        ],
+        "fill_1kfb5px": [
+          {
+            "type": "SOLID",
+            "color": "#2BA35F"
+          }
+        ],
+        "fill_a0s42x": [
+          {
+            "type": "SOLID",
+            "color": "#E94F23"
+          }
+        ],
+        "fill_1a84b54": [
+          {
+            "type": "SOLID",
+            "color": "#FEB726"
+          }
+        ],
+        "fill_1kslvis": [
+          {
+            "type": "SOLID",
+            "color": "#1E1E1E"
+          }
+        ],
+        "text_1fp67kd": {
+          "fontFamily": "Manrope",
+          "fontStyle": "Medium",
+          "fontSize": 13
+        }
+      }
+    },
+    "metrics": {
+      "nodeCount": 15,
+      "maxDepth": 3,
+      "styleCount": 10,
+      "tokenCount": 0,
+      "inlineSizeKb": 6.1,
+      "dedupedSizeKb": 5.13
+    }
+  }
+}

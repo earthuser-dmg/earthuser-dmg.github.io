@@ -1,0 +1,46 @@
+{
+  "figwrightSnapshot": 2,
+  "nodeId": "11755:3186",
+  "capturedAt": "2026-09-06T04:02:24.700Z",
+  "context": {
+    "nodes": [
+      {
+        "id": "11755:3186",
+        "name": "Vector 125",
+        "type": "VECTOR",
+        "x": 514.376953125,
+        "y": 3793,
+        "width": 378.167236328125,
+        "height": 993.1767578125,
+        "fills": [],
+        "strokeWeight": 2,
+        "strokeAlign": "CENTER",
+        "strokeCap": "ROUND",
+        "strokeJoin": "ROUND",
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "stroke": "stroke_1s3vosi"
+      }
+    ],
+    "globalVars": {
+      "styles": {
+        "stroke_1s3vosi": [
+          {
+            "type": "SOLID",
+            "color": "#000000"
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "nodeCount": 1,
+      "maxDepth": 1,
+      "styleCount": 1,
+      "tokenCount": 0,
+      "inlineSizeKb": 0.35,
+      "dedupedSizeKb": 0.38
+    }
+  }
+}

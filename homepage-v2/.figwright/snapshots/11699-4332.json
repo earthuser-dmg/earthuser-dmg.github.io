@@ -1,0 +1,285 @@
+{
+  "figwrightSnapshot": 2,
+  "nodeId": "11699:4332",
+  "capturedAt": "2026-09-06T04:02:24.526Z",
+  "context": {
+    "nodes": [
+      {
+        "id": "11699:4332",
+        "name": "Group 199",
+        "type": "GROUP",
+        "x": 221,
+        "y": 43,
+        "width": 718.7604370117188,
+        "height": 139,
+        "children": [
+          {
+            "id": "11699:4326",
+            "name": "Vector 92",
+            "type": "VECTOR",
+            "x": 807.5,
+            "y": 141.12032318115234,
+            "width": 132.26043701171875,
+            "height": 27.39678955078125,
+            "fills": [],
+            "strokeWeight": 24.700000762939453,
+            "strokeAlign": "CENTER",
+            "strokeJoin": "ROUND",
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "stroke": "stroke_1cabrv3"
+          },
+          {
+            "id": "11436:300",
+            "name": "who turns complexity",
+            "type": "TEXT",
+            "x": 221,
+            "y": 119.699951171875,
+            "width": 396,
+            "height": 57,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "who turns complexity ",
+            "fontSize": 42,
+            "fontName": "mixed",
+            "segments": [
+              {
+                "characters": "who",
+                "start": 0,
+                "end": 3,
+                "fontName": {
+                  "family": "Instrument Serif",
+                  "style": "Italic"
+                },
+                "fontSize": 42,
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": "#1E1E1E"
+                  }
+                ],
+                "textDecoration": "NONE",
+                "textCase": "ORIGINAL"
+              },
+              {
+                "characters": " turns complexity ",
+                "start": 3,
+                "end": 21,
+                "fontName": {
+                  "family": "Manrope",
+                  "style": "Regular"
+                },
+                "fontSize": 42,
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": "#1E1E1E"
+                  }
+                ],
+                "textDecoration": "NONE",
+                "textCase": "ORIGINAL"
+              }
+            ],
+            "boundVariables": {
+              "fills": [
+                "VariableID:3951:2853"
+              ],
+              "textRangeFills": [
+                "VariableID:3951:2853"
+              ]
+            },
+            "fill": "fill_1kslvis"
+          },
+          {
+            "id": "11699:4294",
+            "name": "I'm Juno , a product designer",
+            "type": "TEXT",
+            "x": 221,
+            "y": 43,
+            "width": 551,
+            "height": 57,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "I'm Juno , a product designer ",
+            "boundVariables": {
+              "fills": [
+                "VariableID:3951:2853"
+              ]
+            },
+            "fill": "fill_1kslvis",
+            "textStyle": "text_90aem2"
+          },
+          {
+            "id": "11697:4292",
+            "name": "into clarity.",
+            "type": "TEXT",
+            "x": 720.3999938964844,
+            "y": 119.69999694824219,
+            "width": 211,
+            "height": 57,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "characters": "into clarity.",
+            "boundVariables": {
+              "fills": [
+                "VariableID:3951:2853"
+              ]
+            },
+            "fill": "fill_1kslvis",
+            "textStyle": "text_90aem2"
+          },
+          {
+            "id": "11697:4291",
+            "name": "Group 198",
+            "type": "GROUP",
+            "x": 632,
+            "y": 114.00004577636719,
+            "width": 73,
+            "height": 68,
+            "children": [
+              {
+                "id": "11736:362",
+                "name": "envelope closure button",
+                "type": "GROUP",
+                "x": 637,
+                "y": 114.00004577636719,
+                "width": 68,
+                "height": 68,
+                "targetAspectRatio": {
+                  "x": 83,
+                  "y": 83
+                },
+                "children": [
+                  {
+                    "id": "11736:363",
+                    "name": "Ellipse 783",
+                    "type": "ELLIPSE",
+                    "x": 637,
+                    "y": 114.00004577636719,
+                    "width": 68,
+                    "height": 68,
+                    "strokeWeight": 2.640000104904175,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fill": "fill_nll9eq",
+                    "stroke": "stroke_1s3vosi"
+                  },
+                  {
+                    "id": "11736:364",
+                    "name": "Ellipse 784",
+                    "type": "ELLIPSE",
+                    "x": 680.4219398498535,
+                    "y": 138.57838249206543,
+                    "width": 18.843374252319336,
+                    "height": 18.843374252319336,
+                    "rotation": -180,
+                    "strokeWeight": 2.640000104904175,
+                    "strokeAlign": "CENTER",
+                    "strokeCap": "ROUND",
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fill": "fill_nll9eq",
+                    "stroke": "stroke_1s3vosi"
+                  },
+                  {
+                    "id": "11736:365",
+                    "name": "Ellipse 785",
+                    "type": "ELLIPSE",
+                    "x": 677.1447906494141,
+                    "y": 141.85553169250488,
+                    "width": 12.289155960083008,
+                    "height": 12.289155960083008,
+                    "rotation": -180,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fill": "stroke_1s3vosi"
+                  }
+                ]
+              },
+              {
+                "id": "11697:4287",
+                "name": "Vector 84",
+                "type": "VECTOR",
+                "x": 632,
+                "y": 116.9753143787384,
+                "width": 72.67259979248047,
+                "height": 60.120059967041016,
+                "fills": [],
+                "strokeWeight": 2,
+                "strokeAlign": "CENTER",
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "stroke": "stroke_1s3vosi"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "VariableID:3951:2853": {
+        "name": "Fonts/BodyorHighlight",
+        "type": "COLOR"
+      }
+    },
+    "globalVars": {
+      "styles": {
+        "stroke_1cabrv3": [
+          {
+            "type": "SOLID",
+            "color": "#A9DEFB"
+          }
+        ],
+        "fill_1kslvis": [
+          {
+            "type": "SOLID",
+            "color": "#1E1E1E"
+          }
+        ],
+        "text_90aem2": {
+          "fontFamily": "Manrope",
+          "fontStyle": "Regular",
+          "fontSize": 42
+        },
+        "fill_nll9eq": [
+          {
+            "type": "SOLID",
+            "color": "#FFFFFF"
+          }
+        ],
+        "stroke_1s3vosi": [
+          {
+            "type": "SOLID",
+            "color": "#000000"
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "nodeCount": 11,
+      "maxDepth": 4,
+      "styleCount": 5,
+      "tokenCount": 1,
+      "inlineSizeKb": 4.12,
+      "dedupedSizeKb": 3.51
+    }
+  }
+}
