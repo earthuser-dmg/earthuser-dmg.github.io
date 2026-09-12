@@ -16,8 +16,7 @@
   lampOn.pauseAnimations();
   lampOn.setCurrentTime(0);
   let pull = null;
-  const toggleLamp = () => {
-    const lit = !lamp.classList.contains('is-lit');
+  const setLamp = lit => {
     lamp.classList.toggle('is-lit', lit);
     const loop = lamp.querySelector(':scope > svg');
     if (lit || reduce.matches) loop.pauseAnimations(); else loop.unpauseAnimations();
@@ -26,6 +25,9 @@
     lampOn.pauseAnimations();
     lampOn.setCurrentTime(reduce.matches && lit ? .7 : 0);
     if (lit && !reduce.matches) lampOn.unpauseAnimations();
+  };
+  const toggleLamp = () => {
+    setLamp(!lamp.classList.contains('is-lit'));
   };
   lampPull.addEventListener('pointerdown', event => {
     if (event.button !== 0) return;
@@ -54,16 +56,6 @@
     if (topNav && !topNav.dataset.sizeObserved) {
       topNav.dataset.sizeObserved = 'true';
       navResize.observe(topNav);
-    }
-    const logo = document.querySelector('#top-nav-container .logo-image');
-    if (logo && !logo.parentElement.querySelector('.logo-color')) {
-      logo.src = '/images/logo2026-mono.svg';
-      const color = logo.cloneNode();
-      color.src = '/images/logo2026-hover.svg';
-      color.classList.add('logo-color');
-      color.alt = '';
-      color.setAttribute('aria-hidden', 'true');
-      logo.after(color);
     }
     document.querySelectorAll('#left-nav-container .work-link, #top-nav-container .work-link').forEach(work => {
       work.href = '#work';
@@ -96,18 +88,27 @@
   if (reduce.matches) document.querySelectorAll('.desk-date > svg, .animated-art > svg').forEach(svg => svg.pauseAnimations());
 
   if (!reduce.matches) {
-    const tokens = document.querySelectorAll('.headline-token');
+    const tokens = document.querySelectorAll('.headline-token:not(.knot)');
+    const closure = document.querySelector('.knot-closure');
+    const bottomObjects = document.querySelectorAll('.desk-letter, .desk-brush, .desk-lamp');
+    const updateCard = document.querySelector('.desk-date');
     gsap.set('.desk-object', {autoAlpha: 0});
+    gsap.set(closure, {autoAlpha: 0});
     gsap.set(tokens, { yPercent: 110, opacity: 0 });
     gsap.set('.clarity img', { clipPath: 'inset(0 100% 0 0)' });
     document.fonts.ready.then(() => {
       const intro = gsap.timeline();
       intro.to(tokens, { yPercent: 0, opacity: 1, duration: .65, stagger: .085, ease: 'power3.out' })
-        .call(() => { heroIntroComplete = true; revealClew(); })
-        .to('.clarity img', { clipPath: 'inset(0 0% 0 0)', duration: .8, ease: 'power2.inOut' }, '+=.12');
-      const objects = document.querySelectorAll('.desk-object');
-      intro.fromTo(objects, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, stagger: .1, ease: 'power3.out' })
-        .to(objects, { y: 0, scale: 1, duration: .9, stagger: .1, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2');
+        .fromTo(closure, {yPercent: 110, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, duration: .65, ease: 'power3.out'}, .085 * 6)
+        .addLabel('deskObjects')
+        .call(() => { heroIntroComplete = true; revealClew(); }, [], 'deskObjects')
+        .fromTo(bottomObjects, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'deskObjects')
+        .to(bottomObjects, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
+        .to('.clarity img', { clipPath: 'inset(0 0% 0 0)', duration: .8, ease: 'power2.inOut' }, 'deskObjects')
+        .addLabel('bluePathComplete', 'deskObjects+=.8')
+        .fromTo(updateCard, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'bluePathComplete')
+        .to(updateCard, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
+        .addLabel('finalAccent');
       if (window.ScrambleTextPlugin) {
         const proxy = document.createElement('span');
         proxy.className = 'sr-only';
@@ -143,6 +144,7 @@
   let clewSvg;
   let clewRevealStarted = false;
   let clewComplete = false;
+  let heroPathRevealed = false;
   const ink = new Image();
   knot.classList.add('is-preparing');
   Promise.all([
@@ -151,13 +153,14 @@
       ink.onerror = reject;
       ink.src = '/homepage-v2/assets/latest/11852-21121.svg';
     }),
-    fetch('/homepage-v2/assets/latest/clew-growth.svg').then(response => {
+    fetch('/homepage-v2/assets/latest/clew-growth.svg?v=33').then(response => {
       if (!response.ok) throw new Error('Could not load the clew trace');
       return response.text();
     })
   ]).then(([, markup]) => {
     clewSvg = new DOMParser().parseFromString(markup, 'image/svg+xml').documentElement;
     knot.append(clewSvg);
+    if (!heroIntroComplete) gsap.set(clewSvg, {autoAlpha: 0});
     gsap.set(clewSvg.querySelector('.clew-trace'), { drawSVG: '0%' });
     ctx.drawImage(ink, 0, 0, canvas.width, canvas.height);
     clewReady = true;
@@ -176,6 +179,7 @@
   function revealClew() {
     if (!clewReady || clewRevealStarted || !heroIntroComplete) return;
     clewRevealStarted = true;
+    gsap.set(clewSvg, {autoAlpha: 1});
     knot.dataset.state = 'growing';
     const complete = () => {
       knot.classList.add('is-ready');
@@ -202,31 +206,42 @@
   // The curve and closure share the pinned parent, so the browser moves them
   // together. Only measure on layout changes, never chase pinning on scroll.
   function alignHeroThread() {
-    const source = knot.getBoundingClientRect();
-    const scale = main.clientWidth / 1140;
-    const designer = document.querySelector('.designer').getBoundingClientRect();
+    const source = knot.querySelector('.knot-closure').getBoundingClientRect();
+    // The 71px export uses object-fit: contain inside the knot box.
+    const scale = Math.min(source.width, source.height) / 71;
+    const centerX = source.left + (source.width - 71 * scale) / 2 + 35.6455 * scale;
+    const centerY = source.top + (source.height - 71 * scale) / 2 + 35.3062 * scale;
     const stageRect = stage.getBoundingClientRect();
-    const top = source.top - designer.top - 4 * scale;
     const folderWindow = document.querySelector('.folder-window');
     folderWindow.style.setProperty('--folder-clip-height', `${stage.offsetHeight - folderWindow.offsetTop - 2}px`);
-    heroThread.style.left = `${source.left - stageRect.left - 5 * scale}px`;
-    heroThread.style.top = `${top}px`;
-    heroThread.style.width = `${342.258 * scale}px`;
-    // The new curve ends behind the folder and envelope, as in the Figma layers.
-    heroThread.style.height = `${folderWindow.offsetTop + folderWindow.offsetHeight * .15 - top}px`;
+    // Exported 11852:21115 circle center: (43.5, 36.3982).
+    // Anchor both axes to the closure, never the rotated clew bounds.
+    heroThread.style.left = `${centerX - stageRect.left - 43.5 * scale}px`;
+    heroThread.style.top = `${centerY - stageRect.top - 36.3982 * scale}px`;
+    heroThread.style.width = `${346 * scale}px`;
+    heroThread.style.height = `${954 * scale}px`;
+  }
+
+  function revealHeroPath() {
+    if (heroPathRevealed) return;
+    heroPathRevealed = true;
+    alignHeroThread();
+    gsap.set(heroThread, { visibility: 'visible' });
+    gsap.fromTo(heroPath, {drawSVG: '0%', autoAlpha: 1}, { drawSVG: '100%', duration: 3.2, ease: 'power1.inOut' });
   }
 
   function unravel() {
     if (unravelled || !clewComplete) return;
     unravelled = true;
     knot.dataset.state = 'unravelled';
+    brush.classList.add('is-disabled');
+    brush.disabled = true;
+    brush.blur();
     hideBrush();
-    alignHeroThread();
     growth = gsap.timeline();
-    growth.to(canvas, { autoAlpha: 0, duration: reduce.matches ? 0 : .35 })
-
-      .set(heroThread, { visibility: 'visible' })
-      .to(heroPath, { drawSVG: '100%', duration: reduce.matches ? 0 : 3.2, ease: 'power1.inOut' });
+    growth.set('.knot-closure', {visibility: 'hidden'})
+      .to(canvas, { autoAlpha: 0, duration: reduce.matches ? 0 : .35 })
+      .call(revealHeroPath);
     document.querySelector('#knot-status').textContent = 'Complexity, unravelled. A thread connects to the designer folders below.';
   }
   function brushContactPoint() {
@@ -244,7 +259,7 @@
     event.preventDefault();
     gsap.killTweensOf(brush);
     brush.style.setProperty('--brush-grab-transform', getComputedStyle(brush.querySelector('.brush-visual')).transform);
-    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: Number(gsap.getProperty(brush, 'x')), originY: Number(gsap.getProperty(brush, 'y')), moved: false };
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: Number(gsap.getProperty(brush, 'x')), originY: Number(gsap.getProperty(brush, 'y')), moved: false, touched: false };
     brush.setPointerCapture(event.pointerId);
     brush.classList.add('is-dragging');
   });
@@ -255,11 +270,12 @@
     drag.moved ||= Math.hypot(x, y) > 5;
     gsap.set(brush, { x: drag.originX + x, y: drag.originY + y });
     if (!brushOverKnot()) { previousBrush = null; return; }
+    drag.touched = true;
     const rect = knot.getBoundingClientRect();
     const contact = brushContactPoint();
     const point = { x: gsap.utils.clamp(0, canvas.width, (contact.x - rect.left) / rect.width * canvas.width), y: gsap.utils.clamp(0, canvas.height, (contact.y - rect.top) / rect.height * canvas.height) };
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineWidth = canvas.width * .49;
+    ctx.lineWidth = canvas.width * .58;
     ctx.lineCap = 'round';
     ctx.beginPath();
     ctx.moveTo(previousBrush?.x ?? point.x, previousBrush?.y ?? point.y);
@@ -269,7 +285,7 @@
   });
   brush.addEventListener('pointerup', event => {
     if (!drag || drag.id !== event.pointerId) return;
-    const dropped = drag.moved && brushOverKnot();
+    const dropped = drag.moved && drag.touched;
     hideBrush();
     if (dropped) unravel();
   });

@@ -22,7 +22,7 @@
 .knot img, .knot canvas { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: contain; }
 .knot-closure { opacity: 1; z-index: 0; }
 .knot-ink, .knot-fallback { z-index: 1; }
-.knot-ink { opacity: 0; }
+.knot-ink { opacity: 0; object-fit: fill; }
 .knot.is-ready .knot-ink { opacity: 1; }
 .knot.is-ready .knot-fallback { display: none; }
 .knot.is-brushing { cursor: none; }
@@ -38,7 +38,7 @@
 .desk-at { left: 9.05%; top: 64.05cqw; width: 3.42%; aspect-ratio: 39 / 46; }
 .desk-at img:first-child { width: 100%; height: 100%; }
 .desk-at img:last-child { position: absolute; width: 59%; left: 25%; top: 20%; }
-.hero-thread { position: absolute; pointer-events: none; z-index: -1; visibility: hidden; }
+.hero-thread { position: absolute; pointer-events: none; z-index: 1; visibility: hidden; }
 .hero-thread svg, .footer-thread svg { width: 100%; height: 100%; overflow: visible; display: block; }
 .designer { position: relative; margin-left: 6.54%; width: min(66.32%, calc((100svh - 40px) * 1.09)); z-index: 2; container-type: inline-size; }
 .designer-stage { position: relative; padding-top: 0; }
@@ -166,17 +166,11 @@
 .desk-date { aspect-ratio: 153 / 80; }
 .desk-date > img { width: 100%; }
 .date-value { position: absolute; left: 23%; top: 51%; width: 67%; font: italic 1.4cqw/1.4 cursive; letter-spacing: .1em; transform: rotate(6.8deg); transform-origin: left center; white-space: nowrap; }
-.homepage-v2 .top-nav .logo a { position: relative; }
-.homepage-v2 .top-nav .logo-image { transform: none; transition: opacity .2s; }
-.homepage-v2 .top-nav .logo-color { position: absolute; left: 0; top: 0; opacity: 0; }
-.homepage-v2 .top-nav .logo a:hover .logo-image, .homepage-v2 .top-nav .logo a:focus-visible .logo-image { transform: none; }
-.homepage-v2 .top-nav .logo a:hover .logo-color, .homepage-v2 .top-nav .logo a:focus-visible .logo-color { opacity: 1; }
 @media (max-width: 600px) { .date-value { font-size: 1.98cqw; } }
 @media (prefers-reduced-motion: reduce) { .work-image { transition: none; } }
 
 .date-value { visibility: hidden; }
 .desk-date > .date-original { position: absolute; inset: 0; }
-.homepage-v2 .top-nav .logo a:hover .logo-image:not(.logo-color), .homepage-v2 .top-nav .logo a:focus-visible .logo-image:not(.logo-color) { opacity: 0; }
 
 /* Latest Figma composition, 11247:9621: main canvas 1140px. */
 .intro-story { background-image: linear-gradient(#00000014 1px, transparent 1px), linear-gradient(90deg, #00000014 1px, transparent 1px); background-size: 4.386cqw 4.386cqw; }
@@ -193,13 +187,14 @@
 .date-value { top: 48%; left: 20%; font-size: 1.4cqw; transform: rotate(11.088deg); }
 .desk-lamp { left: 78.07%; top: 52.63cqw; width: 8.6%; }
 .desk-brush { left: 44.035142%; top: 61.578915cqw; width: 16.666667%; }
-.designer { width: min(100%, calc((100svh - 90px) * 1.45)); margin-inline: auto; }
-.designer-stage { aspect-ratio: 1140 / 732; }
+.designer { width: min(100%, 1140px, calc((100svh - var(--top-nav-height, 0px) - 24px) * 1.748466)); margin-inline: auto; }
+/* Figma 11784:5187: 573px artwork + existing 79px title area. */
+.designer-stage { aspect-ratio: 1140 / 652; }
 .designer-stage h2 { position: absolute; left: 17.54%; top: 0; margin: 0; font-size: 2.982cqw; }
-.envelope-layer { position: absolute; inset: 6.93cqw 0 auto; width: 100%; pointer-events: none; }
+.envelope-layer { position: absolute; inset: 6.93cqw 0 auto; width: 100%; pointer-events: none; clip-path: inset(0 0 18.953324%); }
 .envelope-back { z-index: 1; }
 .envelope-front { z-index: 4; }
-.designer-closure { left: 47.02%; top: 60.9cqw; width: 6.23%; right: auto; z-index: 5; }
+.designer-closure { left: 47.02%; top: 53.988765cqw; width: 5.964912%; right: auto; z-index: 5; clip-path: inset(0 0 46.282241%); }
 .folder-window { position: absolute; left: 16.93%; top: 8.947cqw; width: 66.04%; container-type: inline-size; z-index: 2; }
 .folder-label, .folder li, .folder-read { font-size: 2.38cqw; }
 .folder-label { font-weight: 700 !important; }
@@ -338,22 +333,14 @@
 .play-label-art { position: relative; width: 100%; height: 100%; }
 .play-label-art svg { width: 100%; height: auto; display: block; }
 .play-label-art span { position: absolute; inset: 0; display: grid; place-items: center; font: 1.12cqw 'Finger Paint', cursive; white-space: nowrap; }
-.homepage-v2 .homepage-rail .nav-item.active::after { background-image: url('./assets/latest/nav-superscript.svg?v=2'); }
 /* Shift the first vertical grid line away from the rail's own border. */
 .intro-grid { background-position: 0 0, -1px 0; }
-
-/* Match both navigation surfaces within the preview. */
-.homepage-v2 :is(.nav-links, .mobile-nav-links) a.active::after { background-image: url('./assets/latest/nav-superscript.svg?v=2'); }
-.homepage-v2 .nav-links a { display: inline-block; transition: color 180ms ease, opacity 180ms ease, transform 180ms ease; }
-.homepage-v2 :is(.nav-links, .mobile-nav-links) a:is(:hover, :focus-visible) { transform: translateX(2px); opacity: 1; }
-.homepage-v2 :is(.nav-links, .mobile-nav-links) a.active { color: #ffffff; }
-.homepage-v2 .top-nav.scrolled .nav-links a { font-size: 1.1rem; }
 .lamp-shadow { position: absolute; z-index: 0; left: -10.2%; top: 2.8%; width: 103%; max-width: none; pointer-events: none; }
 .desk-lamp > svg { position: relative; z-index: 1; }
 .lamp-on-art { display: none; position: absolute; z-index: 1; top: 0; left: -17.35%; width: 130.61%; }
 .desk-lamp.is-lit > svg { visibility: hidden; }
 .desk-lamp.is-lit .lamp-on-art { display: block; }
-.lamp-pull { position: absolute; left: 9%; top: 23%; width: 30%; height: 31%; min-width: 24px; border: 0; padding: 0; background: transparent; cursor: grab; touch-action: none; }
+.lamp-pull { position: absolute; z-index: 2; left: 9%; top: 23%; width: 30%; height: 31%; min-width: 24px; border: 0; padding: 0; background: transparent; cursor: grab; touch-action: none; }
 .lamp-pull:active { cursor: grabbing; }
 .lamp-pull:focus-visible { outline: 2px solid #1e1e1e; outline-offset: 3px; }
 /* Center the composition's visual bounds, including the rotated photographs. */
@@ -370,18 +357,19 @@
 .letter-hover { position: absolute; z-index: 1; }
 .desk-brush { overflow: visible; }
 .brush-visual { position: relative; display: block; width: 100%; transform-origin: 0 0; transition: transform 200ms cubic-bezier(.25,.46,.45,.94); }
-.desk-brush:hover .brush-visual, .desk-brush:focus-visible .brush-visual { transform: translate(0.421130cqw, -2.146908cqw) rotate(8.847357deg) scale(1.1); }
+.desk-brush:not(.is-disabled):hover .brush-visual, .desk-brush:not(.is-disabled):focus-visible .brush-visual { transform: translate(0.421130cqw, -2.146908cqw) rotate(8.847357deg) scale(1.1); }
 .desk-brush.is-dragging .brush-visual { transform: var(--brush-grab-transform); transition: none; }
 .brush-tip { position: absolute; left: 23.0842%; top: 71.0577%; width: 0; height: 0; pointer-events: none; }
 .desk-brush .brush-art { position: relative; z-index: 1; width: 100%; }
 .desk-brush .brush-shadow { position: absolute; z-index: 0; left: 1%; top: 10%; width: 98%; max-width: none; }
 .desk-brush .brush-tooltip { position: absolute; z-index: 2; left: -60%; top: -82.6923%; width: 96.8421%; max-width: none; opacity: 0; transform: translateY(4px); transition: opacity 200ms cubic-bezier(.25,.46,.45,.94), transform 200ms cubic-bezier(.25,.46,.45,.94); }
-.desk-brush:hover .brush-tooltip, .desk-brush:focus-visible .brush-tooltip { opacity: 1; transform: translateY(0); }
+.desk-brush:not(.is-disabled):hover .brush-tooltip, .desk-brush:not(.is-disabled):focus-visible .brush-tooltip { opacity: 1; transform: translateY(0); }
 .desk-brush.is-dragging .brush-tooltip { opacity: 0; }
+.desk-brush.is-disabled { pointer-events: none; }
 .knot-growth { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 .knot.is-preparing .knot-fallback { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .brush-visual, .desk-brush .brush-tooltip { transition: none; }
-  .desk-brush:hover .brush-visual, .desk-brush:focus-visible .brush-visual { transform: none; }
+  .desk-brush:not(.is-disabled):hover .brush-visual, .desk-brush:not(.is-disabled):focus-visible .brush-visual { transform: none; }
 }
