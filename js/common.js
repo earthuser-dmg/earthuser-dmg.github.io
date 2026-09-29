@@ -10,34 +10,18 @@ function setActiveNavLink() {
         .replace(/\.html$/, '')
         .replace(/\/$/, '') || '/';
     const normalizedCurrentPath = normalizePath(currentPath);
-    const isNestedIndex = normalizedCurrentPath.endsWith('/play') || normalizedCurrentPath.endsWith('/about');
-    const isHomepage = normalizedCurrentPath === '/' || (currentPath.endsWith('/index.html') && !isNestedIndex);
+    const isHomepage = normalizedCurrentPath === '/' || normalizedCurrentPath === '/homepage-v2';
     const isWorkPage = isHomepage || document.body.classList.contains('project-page');
 
     navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        const linkPathWithoutHash = linkPath.split('#')[0]; // 移除hash部分
-
-        // 移除 active 类
-        link.classList.remove('active');
-
-        // 检查是否是首页
-        if (isWorkPage && link.classList.contains('work-link')) {
-            link.classList.add('active');
-        }
-        // 检查其他页面
-        else if (!isWorkPage && linkPathWithoutHash) {
-            const normalizedLinkPath = normalizePath(linkPathWithoutHash);
-            if (normalizedCurrentPath === normalizedLinkPath || normalizedCurrentPath.endsWith(normalizedLinkPath)) {
-                link.classList.add('active');
-            }
-        }
-
-        if (link.classList.contains('active')) {
-            link.setAttribute('aria-current', 'page');
-        } else {
-            link.removeAttribute('aria-current');
-        }
+        const target = new URL(link.getAttribute('href'), window.location.href);
+        const active = target.origin === window.location.origin && (
+            link.classList.contains('work-link') ? isWorkPage :
+            !isWorkPage && normalizedCurrentPath === normalizePath(target.pathname)
+        );
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
     });
 }
 
@@ -46,22 +30,78 @@ function initializeNavigation() {
     const topNav = document.getElementById('topNav');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
     
-    if (!topNav || !mobileMenuToggle || !mobileMenuOverlay || !mobileMenuClose) {
+    if (!topNav || !mobileMenuToggle || !mobileMenuOverlay) {
         console.warn('Navigation elements not found, retrying in 100ms...');
         setTimeout(initializeNavigation, 100);
         return;
     }
     
+    if (topNav.dataset.navigationReady) return;
+    topNav.dataset.navigationReady = 'true';
+    let menuOpen = false;
+    let savedOverflow;
+    const menuQuery = window.matchMedia('(max-width: 962px)');
+    const syncPanelTop = () => mobileMenuOverlay.style.setProperty('--mobile-nav-top', `${topNav.getBoundingClientRect().height}px`);
+    new ResizeObserver(syncPanelTop).observe(topNav);
+
+    // Exact exported endpoints; normalized curves are used only between them.
+    const numberPattern = /-?\d*\.?\d+(?:e[-+]?\d+)?/gi;
+    const morphPaths = [...mobileMenuToggle.querySelectorAll('[data-morph-from]')].map(path => ({
+        path,
+        menu: path.getAttribute('d'),
+        close: path.dataset.closePath,
+        template: path.dataset.morphFrom,
+        from: path.dataset.morphFrom.match(numberPattern).map(Number),
+        to: path.dataset.morphTo.match(numberPattern).map(Number)
+    }));
+    const middlePath = mobileMenuToggle.querySelector('.menu-icon-middle');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let iconProgress = 0;
+    let iconFrame;
+    function renderIcon(progress) {
+        iconProgress = progress;
+        morphPaths.forEach(({ path, menu, close, template, from, to }) => {
+            let index = 0;
+            const d = progress === 0 ? menu : progress === 1 ? close : template.replace(numberPattern, () => {
+                const i = index++;
+                return (from[i] + (to[i] - from[i]) * progress).toFixed(4);
+            });
+            path.setAttribute('d', d);
+        });
+        if (middlePath) {
+            middlePath.setAttribute('transform', `translate(20 20) scale(${1 - progress} 1) translate(-20 -20)`);
+            middlePath.setAttribute('opacity', 1 - progress);
+        }
+    }
+    function morphMenuIcon(open) {
+        cancelAnimationFrame(iconFrame);
+        const target = open ? 1 : 0;
+        if (reducedMotion.matches) { renderIcon(target); return; }
+        const start = iconProgress;
+        const started = performance.now();
+        const duration = 240 * Math.abs(target - start);
+        if (!duration) return;
+        const tick = now => {
+            const elapsed = Math.min(1, (now - started) / duration);
+            const eased = elapsed * elapsed * (3 - 2 * elapsed);
+            renderIcon(start + (target - start) * eased);
+            if (elapsed < 1) iconFrame = requestAnimationFrame(tick);
+        };
+        iconFrame = requestAnimationFrame(tick);
+    }
+    reducedMotion.addEventListener('change', () => {
+        cancelAnimationFrame(iconFrame);
+        renderIcon(menuOpen ? 1 : 0);
+    });
+
     let lastScrollTop = 0;
     let ticking = false;
 
     // Sticky navigation scroll effect
     function updateNavOnScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        if (menuOpen) { ticking = false; return; }
         
         if (scrollTop > 50) {
             topNav.classList.add('scrolled');
@@ -69,7 +109,7 @@ function initializeNavigation() {
             topNav.classList.remove('scrolled');
         }
         
-        if (window.innerWidth <= 768) {
+        if (menuQuery.matches) {
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 topNav.style.transform = 'translateY(-100%)';
             } else {
@@ -77,6 +117,7 @@ function initializeNavigation() {
             }
         }
         
+        if (!menuQuery.matches) topNav.style.transform = '';
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         ticking = false;
     }
@@ -91,40 +132,74 @@ function initializeNavigation() {
 
     window.addEventListener('scroll', requestTick);
 
-    // Mobile menu functionality
+    // Preserve the existing header geometry and background scroll state.
     function openMenu() {
+        if (menuOpen || !menuQuery.matches) return;
+        menuOpen = true;
+        savedOverflow = [document.body.style.overflow, document.documentElement.style.overflow];
+        syncPanelTop();
         mobileMenuToggle.classList.add('active');
+        morphMenuIcon(true);
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenuToggle.setAttribute('aria-label', 'Close menu');
+        mobileMenuOverlay.inert = false;
+        mobileMenuOverlay.setAttribute('aria-hidden', 'false');
         mobileMenuOverlay.classList.add('active');
         document.body.classList.add('mobile-menu-open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        mobileMenuOverlay.querySelector('a').focus({ preventScroll: true });
     }
 
-    function closeMenu() {
+    function closeMenu(restoreFocus = true) {
+        if (!menuOpen) return;
+        menuOpen = false;
+        if (restoreFocus) mobileMenuToggle.focus({ preventScroll: true });
         mobileMenuToggle.classList.remove('active');
+        morphMenuIcon(false);
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', 'Open menu');
         mobileMenuOverlay.classList.remove('active');
+        mobileMenuOverlay.inert = true;
+        mobileMenuOverlay.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('mobile-menu-open');
-        document.body.style.overflow = 'auto';
+        [document.body.style.overflow, document.documentElement.style.overflow] = savedOverflow;
+        lastScrollTop = window.scrollY;
     }
-    
-    mobileMenuToggle.addEventListener('click', function() {
-        if (mobileMenuOverlay.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
+
+    mobileMenuToggle.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    document.addEventListener('click', event => {
+        if (!menuOpen) return;
+        if (topNav.contains(event.target) || mobileMenuOverlay.contains(event.target)) {
+            if (event.target.closest('a')) closeMenu();
+            return;
+        }
+        // The first outside click dismisses the menu without activating content.
+        event.preventDefault();
+        event.stopPropagation();
+        closeMenu();
+    }, true);
+    document.addEventListener('keydown', event => {
+        if (!menuOpen) return;
+        if (event.key === 'Escape') { event.preventDefault(); closeMenu(); }
+        if (event.key !== 'Tab') return;
+        const items = [topNav.querySelector('.logo a'), mobileMenuToggle,
+            ...mobileMenuOverlay.querySelectorAll('a')];
+        const index = items.indexOf(document.activeElement);
+        if (event.shiftKey && index <= 0) {
+            event.preventDefault(); items[items.length - 1].focus();
+        } else if (!event.shiftKey && (index === items.length - 1 || index < 0)) {
+            event.preventDefault(); items[0].focus();
         }
     });
-    
-    mobileMenuClose.addEventListener('click', closeMenu);
-    
-    mobileMenuOverlay.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeMenu();
+    menuQuery.addEventListener('change', () => {
+        const focusWasInMenu = mobileMenuOverlay.contains(document.activeElement) || document.activeElement === mobileMenuToggle;
+        closeMenu(false);
+        if (focusWasInMenu && !menuQuery.matches) {
+            const logo = document.querySelector('.homepage-rail-logo');
+            (logo?.getClientRects().length ? logo : topNav.querySelector('.logo a')).focus({ preventScroll: true });
         }
-    });
-    
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
+        updateNavOnScroll();
     });
 
     // Initialize nav state on page load
@@ -138,7 +213,8 @@ function initializeNavigation() {
 
         // If this is not the homepage, let the /#work link navigate normally.
         const currentPath = window.location.pathname;
-        if (currentPath !== '/' && !currentPath.endsWith('/index.html')) return;
+        if (!['/', '/index.html', '/homepage-v2', '/homepage-v2/', '/homepage-v2/index.html'].includes(currentPath)) return;
+        if (!document.querySelector('#work')) return;
 
         e.preventDefault();
         const workSection = document.querySelector('#work');
@@ -290,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Load top navigation
-    fetch('/components/top-navigation.html')
+    fetch('/components/top-navigation.html?v=nav-icons-2')
         .then(response => response.text())
         .then(data => {
             const container = document.getElementById('top-nav-container');

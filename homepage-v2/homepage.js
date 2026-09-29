@@ -2,8 +2,6 @@
   'use strict';
   const main = document.querySelector('.v2-main');
   const knot = document.querySelector('.knot');
-  const heroThread = document.querySelector('.hero-thread');
-  const heroPath = document.querySelector('.hero-draw');
   const footerPath = document.querySelector('.footer-draw');
   const stage = document.querySelector('.designer-stage');
   const folders = [...document.querySelectorAll('.folder')];
@@ -59,8 +57,6 @@
     }
     document.querySelectorAll('#left-nav-container .work-link, #top-nav-container .work-link').forEach(work => {
       work.href = '#work';
-      work.classList.add('active');
-      work.setAttribute('aria-current', 'page');
     });
   };
   const navObserver = new MutationObserver(() => requestAnimationFrame(adaptNav));
@@ -75,9 +71,7 @@
 
   if (!window.gsap || !window.ScrollTrigger || !window.DrawSVGPlugin) {
     // All content remains available even if the animation libraries fail to load.
-    folders.forEach(folder => { folder.style.position = 'relative'; folder.style.visibility = 'visible'; folder.style.aspectRatio = '756/606'; });
-    document.querySelector('.folder-window').style.overflow = 'visible';
-    document.querySelector('.folder-window').style.aspectRatio = 'auto';
+    knot.style.visibility = 'hidden';
     return;
   }
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -87,263 +81,306 @@
   main.classList.add('has-scroll-layers');
   if (reduce.matches) document.querySelectorAll('.desk-date > svg, .animated-art > svg').forEach(svg => svg.pauseAnimations());
 
-  if (!reduce.matches) {
-    const tokens = document.querySelectorAll('.headline-token:not(.knot)');
-    const closure = document.querySelector('.knot-closure');
-    const bottomObjects = document.querySelectorAll('.desk-letter, .desk-brush, .desk-lamp');
-    const updateCard = document.querySelector('.desk-date');
-    gsap.set('.desk-object', {autoAlpha: 0});
-    gsap.set(closure, {autoAlpha: 0});
-    gsap.set(tokens, { yPercent: 110, opacity: 0 });
-    gsap.set('.clarity img', { clipPath: 'inset(0 100% 0 0)' });
-    document.fonts.ready.then(() => {
-      const intro = gsap.timeline();
-      intro.to(tokens, { yPercent: 0, opacity: 1, duration: .65, stagger: .085, ease: 'power3.out' })
-        .fromTo(closure, {yPercent: 110, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, duration: .65, ease: 'power3.out'}, .085 * 6)
-        .addLabel('deskObjects')
-        .call(() => { heroIntroComplete = true; revealClew(); }, [], 'deskObjects')
-        .fromTo(bottomObjects, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'deskObjects')
-        .to(bottomObjects, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
-        .to('.clarity img', { clipPath: 'inset(0 0% 0 0)', duration: .8, ease: 'power2.inOut' }, 'deskObjects')
-        .addLabel('bluePathComplete', 'deskObjects+=.8')
-        .fromTo(updateCard, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'bluePathComplete')
-        .to(updateCard, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
-        .addLabel('finalAccent');
-      if (window.ScrambleTextPlugin) {
-        const proxy = document.createElement('span');
-        proxy.className = 'sr-only';
-        proxy.setAttribute('aria-hidden', 'true');
-        proxy.textContent = '8/30/2026';
-        document.querySelector('.desk-date').append(proxy);
-        const dates = document.querySelectorAll('.desk-date text[font-family="Finger Paint"] tspan');
-        intro.call(() => {
-          const scramble = gsap.to(proxy, { duration: 1.3, repeat: -1, repeatDelay: 4,
-            scrambleText: { text: '8/30/2026', chars: '0123456789/', revealDelay: .2, speed: .4 },
-            onUpdate: () => dates.forEach(text => { text.textContent = proxy.textContent; }) });
-          ScrollTrigger.create({trigger: '.desk-date', start: 'top bottom', end: 'bottom top', onToggle: self => self.isActive ? scramble.resume() : scramble.pause()});
-        });
-      }
-      if (window.SplitText) {
-        document.querySelectorAll('.hero-company a').forEach(link => link.setAttribute('aria-label', link.textContent));
-        const split = SplitText.create('.hero-company p', {type: 'chars'});
-        gsap.set('.hero-company p', {perspective: 700});
-        intro.fromTo(split.chars, {rotationX: -90, autoAlpha: 0}, {rotationX: 0, autoAlpha: 1, duration: .9, stagger: .014, transformOrigin: '50% 50% -8px', ease: 'power2.out'}, 0);
-      }
-
-    });
-  }
-
-  let unravelled = false;
-  let growth;
-  let previousBrush = null;
-  let drag = null;
-  let clewReady = false;
-  let heroIntroComplete = reduce.matches;
   const canvas = document.querySelector('.knot-ink');
   const ctx = canvas.getContext('2d');
-  let clewSvg;
-  let clewRevealStarted = false;
-  let clewComplete = false;
-  let heroPathRevealed = false;
+  const knotSvg = knot.querySelector('.knot-growth');
+  const knotPaths = knotSvg.querySelectorAll('path');
+  const bracketPaths = document.querySelectorAll('.hero-bracket path');
+  let inkReady = false;
+  let drag = null;
+  let previousBrush = null;
   const ink = new Image();
-  knot.classList.add('is-preparing');
-  Promise.all([
-    new Promise((resolve, reject) => {
-      ink.onload = resolve;
-      ink.onerror = reject;
-      ink.src = '/homepage-v2/assets/latest/11852-21121.svg';
-    }),
-    fetch('/homepage-v2/assets/latest/clew-growth.svg?v=33').then(response => {
-      if (!response.ok) throw new Error('Could not load the clew trace');
-      return response.text();
-    })
-  ]).then(([, markup]) => {
-    clewSvg = new DOMParser().parseFromString(markup, 'image/svg+xml').documentElement;
-    knot.append(clewSvg);
-    if (!heroIntroComplete) gsap.set(clewSvg, {autoAlpha: 0});
-    gsap.set(clewSvg.querySelector('.clew-trace'), { drawSVG: '0%' });
-    ctx.drawImage(ink, 0, 0, canvas.width, canvas.height);
-    clewReady = true;
-    revealClew();
-  }).catch(error => {
-    console.warn('Clew drawing unavailable:', error);
-    knot.classList.remove('is-preparing');
-    clewReady = clewComplete = true;
-    if (ink.complete && ink.naturalWidth) {
-      ctx.drawImage(ink, 0, 0, canvas.width, canvas.height);
-      knot.classList.add('is-ready');
+  // Serialize before DrawSVG changes the strokes; use the same bounds for both layers.
+  const inkSource = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(knotSvg));
+  const inkLoaded = new Promise(resolve => {
+    ink.onload = () => {
+      if (ctx) ctx.drawImage(ink, 0, 0, canvas.width, canvas.height);
+      resolve(Boolean(ctx));
+    };
+    ink.onerror = () => resolve(false);
+    ink.src = inkSource;
+  });
+  const handoffInk = ready => {
+    inkReady = ready;
+    knot.dataset.state = ready ? 'ready' : 'unavailable';
+    knot.classList.toggle('is-ready', ready);
+    knotSvg.style.visibility = 'hidden';
+  };
+
+  const tokens = document.querySelectorAll('.headline-token, .hero-company p');
+  const bottomObjects = document.querySelectorAll('.desk-letter, .desk-brush, .desk-lamp');
+  const updateCard = document.querySelector('.desk-date');
+  let intro;
+  if (!reduce.matches) {
+    gsap.set('.desk-object', {autoAlpha: 0});
+    gsap.set(tokens, { yPercent: 110, opacity: 0 });
+    gsap.set([...knotPaths, ...bracketPaths], {drawSVG: '0%'});
+  }
+  Promise.all([document.fonts.ready, inkLoaded, window.homepageLoading?.ready]).then(([, ready]) => {
+    if (reduce.matches) {
+      gsap.set(tokens, {yPercent: 0, opacity: 1});
+      gsap.set('.desk-object', {autoAlpha: 1, clearProps: 'transform'});
+      gsap.set(bracketPaths, {drawSVG: '100%'});
+      handoffInk(ready);
+      return;
+    }
+    intro = gsap.timeline();
+    intro.addLabel('text')
+      .to(tokens, { yPercent: 0, opacity: 1, duration: .65, ease: 'power3.out' }, 'text')
+      .addLabel('deskObjects')
+      .fromTo(bottomObjects, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'deskObjects')
+      .to(bottomObjects, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
+      .addLabel('strokes')
+      .to(bracketPaths, {drawSVG: '100%', duration: .4, ease: 'none'}, 'strokes');
+    if (ready) {
+      intro.set(knot, {attr: {'data-state': 'growing'}}, 'strokes')
+        .to(knotPaths, {drawSVG: '100%', duration: .2, ease: 'none', onComplete: () => handoffInk(true)}, 'strokes');
+    } else handoffInk(false);
+    intro.addLabel('updateCard', 'strokes+=.4')
+      .fromTo(updateCard, { y: 48, scale: .88, autoAlpha: 0 }, { y: -7, scale: 1.055, autoAlpha: 1, duration: .55, ease: 'power3.out' }, 'updateCard')
+      .to(updateCard, { y: 0, scale: 1, duration: .9, ease: 'elastic.out(1, .65)', clearProps: 'transform' }, '-=.2')
+      .addLabel('finalAccent');
+    if (window.ScrambleTextPlugin) {
+      const proxy = document.createElement('span');
+      proxy.className = 'sr-only';
+      proxy.setAttribute('aria-hidden', 'true');
+      proxy.textContent = '8/30/2026';
+      document.querySelector('.desk-date').append(proxy);
+      const dates = document.querySelectorAll('.desk-date text[font-family="Finger Paint"] tspan');
+      intro.call(() => {
+        const scramble = gsap.to(proxy, { duration: 1.3, repeat: -1, repeatDelay: 4,
+          scrambleText: { text: '8/30/2026', chars: '0123456789/', revealDelay: .2, speed: .4 },
+          onUpdate: () => dates.forEach(text => { text.textContent = proxy.textContent; }) });
+        ScrollTrigger.create({trigger: '.desk-date', start: 'top bottom', end: 'bottom top', onToggle: self => self.isActive ? scramble.resume() : scramble.pause()});
+      });
     }
   });
-  gsap.set(heroPath, { drawSVG: '0%' });
-
-  function revealClew() {
-    if (!clewReady || clewRevealStarted || !heroIntroComplete) return;
-    clewRevealStarted = true;
-    gsap.set(clewSvg, {autoAlpha: 1});
-    knot.dataset.state = 'growing';
-    const complete = () => {
-      knot.classList.add('is-ready');
-      knot.classList.remove('is-preparing');
-      clewSvg.remove();
-      clewComplete = true;
-      knot.dataset.state = 'ready';
-    };
-    if (reduce.matches) complete();
-    else gsap.to(clewSvg.querySelector('.clew-trace'), {
-      drawSVG: '100%', duration: .4, ease: 'none', onComplete: complete
-    });
-  }
 
   function hideBrush() {
-    if (drag && brush.hasPointerCapture(drag.id)) brush.releasePointerCapture(drag.id);
+    const pointerId = drag?.id;
     drag = null;
     previousBrush = null;
+    if (pointerId !== undefined && brush.hasPointerCapture(pointerId)) brush.releasePointerCapture(pointerId);
     brush.classList.remove('is-dragging');
     brush.style.removeProperty('--brush-grab-transform');
     gsap.to(brush, { x: 0, y: 0, duration: reduce.matches ? 0 : .35, ease: 'power2.out', overwrite: true });
   }
 
-  // The curve and closure share the pinned parent, so the browser moves them
-  // together. Only measure on layout changes, never chase pinning on scroll.
-  function alignHeroThread() {
-    const source = knot.querySelector('.knot-closure').getBoundingClientRect();
-    // The 71px export uses object-fit: contain inside the knot box.
-    const scale = Math.min(source.width, source.height) / 71;
-    const centerX = source.left + (source.width - 71 * scale) / 2 + 35.6455 * scale;
-    const centerY = source.top + (source.height - 71 * scale) / 2 + 35.3062 * scale;
-    const stageRect = stage.getBoundingClientRect();
-    const folderWindow = document.querySelector('.folder-window');
-    folderWindow.style.setProperty('--folder-clip-height', `${stage.offsetHeight - folderWindow.offsetTop - 2}px`);
-    // Exported 11852:21115 circle center: (43.5, 36.3982).
-    // Anchor both axes to the closure, never the rotated clew bounds.
-    heroThread.style.left = `${centerX - stageRect.left - 43.5 * scale}px`;
-    heroThread.style.top = `${centerY - stageRect.top - 36.3982 * scale}px`;
-    heroThread.style.width = `${346 * scale}px`;
-    heroThread.style.height = `${954 * scale}px`;
+  // Keep the exported 588 × 440 artwork at its native geometry; scale its canvas only.
+  function layoutDesignerArtwork() {
+    const designer = stage.closest('.designer');
+    if (!designer.classList.contains('is-animated')) return;
+    const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
+    const bodyWidth = stage.querySelector('.designer-body').clientWidth;
+    const stacked = bodyWidth < 940;
+    const gap = stacked ? gsap.utils.clamp(12, 45, (innerHeight - navHeight - 600) * .12) : 32;
+    designer.style.setProperty('--designer-gap', `${gap}px`);
+    let width = bodyWidth - 260 - 24;
+    if (stacked) {
+      const copyHeight = stage.querySelector('.designer-copy-window').offsetHeight;
+      const availableHeight = innerHeight - navHeight - 24 - stage.querySelector('.designer-intro').offsetHeight - copyHeight - gap - parseFloat(getComputedStyle(stage.querySelector('.designer-intro')).marginBottom);
+      width = Math.min(588, bodyWidth, Math.max(100, availableHeight) * 588 / 440);
+    }
+    designer.style.setProperty('--designer-art-width', `${width}px`);
+    designer.style.setProperty('--designer-art-scale', width / 588);
   }
 
-  function revealHeroPath() {
-    if (heroPathRevealed) return;
-    heroPathRevealed = true;
-    alignHeroThread();
-    gsap.set(heroThread, { visibility: 'visible' });
-    gsap.fromTo(heroPath, {drawSVG: '0%', autoAlpha: 1}, { drawSVG: '100%', duration: 3.2, ease: 'power1.inOut' });
+  function animateDesigner() {
+    const designer = stage.closest('.designer');
+    const panels = [...designer.querySelectorAll('.designer-copy')];
+    let animationContext;
+    let timeline;
+    let splits = [];
+    let pendingBuild = false;
+    let renderedKey = '';
+    let savedProgress = 0;
+    let rebuilding = false;
+    const dimensions = () => `${designer.clientWidth}:${innerHeight}:${getComputedStyle(main).getPropertyValue('--top-nav-height')}`;
+    let frame;
+    let disposed = false;
+
+    const build = () => {
+      if (disposed) return;
+      const previousTrigger = timeline?.scrollTrigger;
+      const previousProgress = savedProgress;
+      const restorePosition = previousTrigger && previousProgress > 0 && previousProgress < 1;
+      rebuilding = true;
+      animationContext?.revert();
+      splits.forEach(split => split.revert());
+      splits = [];
+      designer.classList.add('is-animated');
+      layoutDesignerArtwork();
+      animationContext = gsap.context(() => {
+        gsap.fromTo('.designer-juno', { yPercent: 120, autoAlpha: 0 }, {
+          yPercent: 0, autoAlpha: 1, ease: 'none', scrollTrigger: {
+            trigger: '.designer-intro', start: 'top 80%', end: 'top 55%', scrub: true
+          }
+        });
+        layoutDesignerArtwork();
+        const targets = panels.map(panel => {
+          const animated = [...panel.querySelectorAll('.designer-motion')];
+          if (window.SplitText) {
+            panel.querySelectorAll('.designer-split').forEach(text => {
+              const split = SplitText.create(text, { type: 'lines', mask: 'lines' });
+              splits.push(split);
+              animated.push(...split.lines);
+            });
+          } else {
+            animated.push(...panel.querySelectorAll('.designer-split'));
+          }
+          return animated;
+        });
+        gsap.set(panels, { autoAlpha: 0 });
+        gsap.set(panels[0], { autoAlpha: 1 });
+        gsap.set(targets.flat(), { yPercent: 120 });
+        const pinTop = () => {
+          const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
+          return designer.clientWidth > 1010 ? 50 : Math.min(navHeight + 24, innerHeight - stage.offsetHeight);
+        };
+        const folderDistance = () => innerHeight * 2;
+        const entranceY = () => {
+          const visual = designer.querySelector('.designer-visual');
+          const scale = visual.offsetWidth / 588;
+          return (innerHeight - pinTop() - (visual.getBoundingClientRect().top - stage.getBoundingClientRect().top) + 2) / scale;
+        };
+        let active = -1;
+        const setFolderState = time => {
+          const index = time >= 4.275 ? -1 : time < .95 ? 0 : time < 2.25 ? 1 : 2;
+          if (active === index) return;
+          active = index;
+          stage.dataset.activeFolder = String(index + 1);
+          panels.forEach((panel, i) => {
+            panel.inert = i !== index;
+            panel.setAttribute('aria-hidden', String(i !== index));
+          });
+        };
+        timeline = gsap.timeline({
+          onUpdate() {
+            setFolderState(this.time());
+          },
+          scrollTrigger: {
+            id: 'v2-folders', refreshPriority: 1, trigger: stage, start: () => `top ${pinTop()}px`,
+            end: () => `+=${folderDistance() + innerHeight}`,
+            pin: true, scrub: .35, anticipatePin: 1, invalidateOnRefresh: true,
+            onUpdate: self => {
+              if (!rebuilding && renderedKey === dimensions()) savedProgress = self.progress;
+              document.querySelector('.intro-grid').style.setProperty('--grid-bottom', `${self.progress === 0 ? 0 : self.progress === 1 ? innerHeight : Math.max(0, innerHeight - pinTop() - stage.offsetHeight)}px`);
+            }
+          }
+        });
+        // Original folder timing: .25 / 1 / .3 / 1 / .3, followed by the Work cover.
+        timeline.to({}, { duration: .25 })
+          .fromTo(folders[1], { y: entranceY }, { y: 0, duration: 1, ease: 'none' })
+          .to({}, { duration: .3 })
+          .fromTo(folders[2], { y: entranceY }, { y: 0, duration: 1, ease: 'none' })
+          .to({}, { duration: .3 });
+        timeline.to(targets[0], { yPercent: 0, duration: .25, ease: 'none' }, 0);
+        // Sequential handoffs fit inside each existing slide, so copy never overlaps.
+        [[.7, .95], [2, 2.25]].forEach(([out, incoming], i) => {
+          timeline.to(targets[i], { yPercent: -120, duration: .25, ease: 'none' }, out)
+            .set(panels[i], { autoAlpha: 0 }, incoming)
+            .set(panels[i + 1], { autoAlpha: 1 }, incoming)
+            .to(targets[i + 1], { yPercent: 0, duration: .3, ease: 'none' }, incoming);
+        });
+        const coverDuration = 2.85 * innerHeight / folderDistance();
+        timeline.to(stage, { scale: .7, opacity: .5, duration: coverDuration * .9, ease: 'none' }, 2.85)
+          .to(stage, { opacity: 0, duration: coverDuration * .1, ease: 'none' });
+        setFolderState(0);
+      }, designer);
+      ScrollTrigger.refresh();
+      if (restorePosition) {
+        const trigger = timeline.scrollTrigger;
+        window.scrollTo({ top: trigger.start + previousProgress * (trigger.end - trigger.start), behavior: 'instant' });
+        timeline.progress(previousProgress);
+        ScrollTrigger.update();
+      }
+      renderedKey = dimensions();
+      savedProgress = timeline.scrollTrigger.progress;
+      rebuilding = false;
+    };
+    const scheduleBuild = () => {
+      if (disposed || pendingBuild || dimensions() === renderedKey) return;
+      pendingBuild = true;
+      frame = requestAnimationFrame(() => document.fonts.ready.then(() => {
+        pendingBuild = false;
+        if (!disposed && dimensions() !== renderedKey) build();
+      }));
+    };
+    const observer = new ResizeObserver(scheduleBuild);
+    observer.observe(designer);
+    observer.observe(main);
+    window.addEventListener('resize', scheduleBuild);
+    document.fonts.ready.then(scheduleBuild);
+    document.fonts.addEventListener('loadingdone', scheduleBuild);
+    return () => {
+      disposed = true;
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener('resize', scheduleBuild);
+      document.fonts.removeEventListener('loadingdone', scheduleBuild);
+      animationContext?.revert();
+      splits.forEach(split => split.revert());
+      designer.classList.remove('is-animated');
+      panels.forEach(panel => { panel.inert = false; panel.removeAttribute('aria-hidden'); });
+      delete stage.dataset.activeFolder;
+    };
   }
 
-  function unravel() {
-    if (unravelled || !clewComplete) return;
-    unravelled = true;
-    knot.dataset.state = 'unravelled';
-    brush.classList.add('is-disabled');
-    brush.disabled = true;
-    brush.blur();
-    hideBrush();
-    growth = gsap.timeline();
-    growth.set('.knot-closure', {visibility: 'hidden'})
-      .to(canvas, { autoAlpha: 0, duration: reduce.matches ? 0 : .35 })
-      .call(revealHeroPath);
-    document.querySelector('#knot-status').textContent = 'Complexity, unravelled. A thread connects to the designer folders below.';
-  }
   function brushContactPoint() {
     const tip = brush.querySelector('.brush-tip').getBoundingClientRect();
-    return { x: tip.left, y: tip.top };
-  }
-  function brushOverKnot() {
-    const target = knot.getBoundingClientRect();
-    const contact = brushContactPoint();
-    const contains = (px, py) => px >= target.left && px <= target.right && py >= target.top && py <= target.bottom;
-    return contains(contact.x, contact.y);
+    const rect = knot.getBoundingClientRect();
+    return {x: (tip.left - rect.left) / rect.width * canvas.width, y: (tip.top - rect.top) / rect.height * canvas.height};
   }
   brush.addEventListener('pointerdown', event => {
-    if (event.button !== 0 || unravelled || !clewComplete) return;
+    if (event.button !== 0 || !inkReady || drag) return;
     event.preventDefault();
     gsap.killTweensOf(brush);
     brush.style.setProperty('--brush-grab-transform', getComputedStyle(brush.querySelector('.brush-visual')).transform);
-    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: Number(gsap.getProperty(brush, 'x')), originY: Number(gsap.getProperty(brush, 'y')), moved: false, touched: false };
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: Number(gsap.getProperty(brush, 'x')), originY: Number(gsap.getProperty(brush, 'y')) };
+    previousBrush = brushContactPoint();
     brush.setPointerCapture(event.pointerId);
     brush.classList.add('is-dragging');
   });
   brush.addEventListener('pointermove', event => {
     if (!drag || drag.id !== event.pointerId) return;
-    const x = event.clientX - drag.x;
-    const y = event.clientY - drag.y;
-    drag.moved ||= Math.hypot(x, y) > 5;
-    gsap.set(brush, { x: drag.originX + x, y: drag.originY + y });
-    if (!brushOverKnot()) { previousBrush = null; return; }
-    drag.touched = true;
-    const rect = knot.getBoundingClientRect();
-    const contact = brushContactPoint();
-    const point = { x: gsap.utils.clamp(0, canvas.width, (contact.x - rect.left) / rect.width * canvas.width), y: gsap.utils.clamp(0, canvas.height, (contact.y - rect.top) / rect.height * canvas.height) };
+    gsap.set(brush, { x: drag.originX + event.clientX - drag.x, y: drag.originY + event.clientY - drag.y });
+    const point = brushContactPoint();
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineWidth = canvas.width * .58;
+    // Diameter follows the short axis of this wide mask; Canvas clips out-of-bounds segments.
+    ctx.lineWidth = canvas.height * .58;
     ctx.lineCap = 'round';
     ctx.beginPath();
-    ctx.moveTo(previousBrush?.x ?? point.x, previousBrush?.y ?? point.y);
+    ctx.moveTo(previousBrush.x, previousBrush.y);
     ctx.lineTo(point.x, point.y);
     ctx.stroke();
     previousBrush = point;
   });
   brush.addEventListener('pointerup', event => {
     if (!drag || drag.id !== event.pointerId) return;
-    const dropped = drag.moved && drag.touched;
     hideBrush();
-    if (dropped) unravel();
   });
   brush.addEventListener('pointercancel', hideBrush);
   brush.addEventListener('lostpointercapture', () => { if (drag) hideBrush(); });
-  brush.addEventListener('click', event => { if (event.detail === 0) unravel(); });
-  knot.addEventListener('click', event => { if (event.detail === 0) unravel(); });
+  brush.addEventListener('click', event => {
+    if (event.detail !== 0 || !inkReady) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    knot.dataset.state = 'revealed';
+    document.querySelector('#knot-status').textContent = 'Clarity revealed.';
+    hideBrush();
+  });
 
   const media = gsap.matchMedia();
   media.add({ motion: '(prefers-reduced-motion: no-preference)', reduced: '(prefers-reduced-motion: reduce)' }, context => {
     const reduced = context.conditions.reduced;
+    let cleanupDesigner;
     if (reduced) {
-      folders.forEach(folder => {
-        gsap.set(folder, { position: 'relative', visibility: 'visible', aspectRatio: '756/606' });
-      });
-      gsap.set('.folder-window', { aspectRatio: 'auto', overflow: 'visible' });
-      gsap.set('.folder-placeholder', { display: 'none' });
       gsap.set(footerPath, { drawSVG: '100%', visibility: 'visible' });
       gsap.set('.footer-thanks', { autoAlpha: 1 });
     } else {
       const revealTitle = (selector, trigger) => SplitText.create(selector, {type: 'lines', mask: 'lines', autoSplit: true,
         onSplit: split => gsap.from(split.lines, {yPercent: 120, ease: 'none', scrollTrigger: {trigger, start: 'top bottom', end: 'top 65%', scrub: true}})
       });
-      if (window.SplitText) revealTitle('#designer-title', '.designer');
-      const pinTop = () => innerHeight - stage.offsetHeight;
-      const folderDistance = () => innerHeight * 2;
-      const entranceY = () => innerHeight - pinTop() - document.querySelector('.folder-window').offsetTop + 2;
-      gsap.set(folders.slice(1), { visibility: 'visible' });
-      let active = -1;
-      const setFolderState = index => {
-        if (active === index) return;
-        active = index;
-        stage.dataset.activeFolder = String(index + 1);
-        folders.forEach((folder, i) => {
-          folder.inert = i !== index;
-          folder.setAttribute('aria-hidden', String(i !== index));
-        });
-      };
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          id: 'v2-folders', trigger: stage, start: () => `top ${innerHeight - stage.offsetHeight}px`,
-          end: () => `+=${folderDistance() + innerHeight}`,
-          pin: true, scrub: .35, anticipatePin: 1, invalidateOnRefresh: true,
-          onUpdate: self => {
-            document.querySelector('.intro-grid').style.setProperty('--grid-bottom', `${self.progress === 0 ? 0 : self.progress === 1 ? innerHeight : Math.max(0, innerHeight - pinTop() - stage.offsetHeight)}px`);
-            const folderProgress = self.progress * (folderDistance() + innerHeight) / folderDistance();
-            setFolderState(folderProgress < .35 ? 0 : folderProgress < .77 ? 1 : 2);
-          }
-        }
-      });
-      tl.to({}, { duration: .25 }).fromTo(folders[1], { y: entranceY }, { y: 0, duration: 1, ease: 'none' })
-        .to({}, { duration: .3 }).fromTo(folders[2], { y: entranceY }, { y: 0, duration: 1, ease: 'none' })
-        .to({}, { duration: .3 });
-      // Leave the finished folders pinned while the next opaque layer covers them.
-      const coverDuration = 2.85 * innerHeight / folderDistance();
-      tl.to(stage, { scale: .7, opacity: .5, duration: coverDuration * .9, ease: 'none' })
-        .to(stage, { opacity: 0, duration: coverDuration * .1, ease: 'none' });
-      setFolderState(0);
+      cleanupDesigner = animateDesigner();
       if (window.SplitText) { revealTitle('#work-title', '#work-title'); revealTitle('#play-title', '#play-title'); }
       gsap.set(footerPath, { drawSVG: '0%' });
       gsap.timeline({ scrollTrigger: {
@@ -363,7 +400,7 @@
 
     }
     return () => {
-      folders.forEach(folder => { folder.inert = false; folder.removeAttribute('aria-hidden'); });
+      cleanupDesigner?.();
     };
   });
 
@@ -403,11 +440,11 @@
     });
   });
 
-  ScrollTrigger.addEventListener('refresh', alignHeroThread);
+  ScrollTrigger.addEventListener('refresh', layoutDesignerArtwork);
   document.fonts.ready.then(() => ScrollTrigger.refresh());
   window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
   window.addEventListener('blur', hideBrush);
-  window.addEventListener('pageshow', event => { if (event.persisted) ScrollTrigger.refresh(); });
-  window.addEventListener('pagehide', () => { growth?.kill(); impulses.forEach(tl => tl.kill()); });
-  alignHeroThread();
+  window.addEventListener('pageshow', event => { if (event.persisted) { intro?.resume(); ScrollTrigger.refresh(); } });
+  window.addEventListener('pagehide', () => { intro?.pause(); impulses.forEach(tl => tl.kill()); });
+  layoutDesignerArtwork();
 })();

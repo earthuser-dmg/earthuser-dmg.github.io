@@ -1,4 +1,4 @@
-import { Motion, defaults, scene } from '../cat-mail-lab/motion.mjs';
+import { Motion, defaults, scene } from './motion.mjs';
 const host = document.querySelector('.desk-letter');
 const art = host.querySelector('.letter-hover');
 const idle = host.querySelector('.letter-default');
@@ -8,7 +8,7 @@ try { const saved = JSON.parse(localStorage.getItem('cat-mail-lab-v1')); if (sav
 const motion = new Motion(config);
 let raf = 0, last = 0;
 function draw() {
-  art.innerHTML = scene(motion, '/cat-mail-lab/assets/');
+  art.innerHTML = scene(motion, '/homepage-v2/assets/envelope-cat/');
   const blend = Math.min(1, motion.flap / .18);
   const visible = motion.photo > 0 ? 1 : blend * blend * (3 - 2 * blend);
   art.style.opacity = visible;
