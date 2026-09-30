@@ -44,7 +44,7 @@
   lampPull.addEventListener('lostpointercapture', () => { pull = null; });
   lampPull.addEventListener('click', event => { if (event.detail === 0) toggleLamp(); });
 
-  // Keep navigation shared. Only the preview's Work link points into this page.
+  // Track the shared header height for the homepage layout.
   const navHost = document.querySelector('#left-nav-container');
   const navResize = new ResizeObserver(entries => entries.forEach(({ target }) => {
     main.style.setProperty('--top-nav-height', `${target.getBoundingClientRect().height}px`);
@@ -55,9 +55,6 @@
       topNav.dataset.sizeObserved = 'true';
       navResize.observe(topNav);
     }
-    document.querySelectorAll('#left-nav-container .work-link, #top-nav-container .work-link').forEach(work => {
-      work.href = '#work';
-    });
   };
   const navObserver = new MutationObserver(() => requestAnimationFrame(adaptNav));
   navObserver.observe(navHost, { childList: true, subtree: true });

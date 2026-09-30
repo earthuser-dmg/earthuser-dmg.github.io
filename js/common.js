@@ -209,7 +209,7 @@ function initializeNavigation() {
     // covered as well as links already present in the initial DOM.
     document.addEventListener('click', function (e) {
         const workLink = e.target.closest('.work-link');
-        if (!workLink) return;
+        if (!workLink || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
         // If this is not the homepage, let the /#work link navigate normally.
         const currentPath = window.location.pathname;
@@ -222,7 +222,7 @@ function initializeNavigation() {
             if (window.homepageSmoother) {
                 window.homepageSmoother.scrollTo(workSection, true, 'top top');
             } else {
-                workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                workSection.scrollIntoView({ behavior: 'instant', block: 'start' });
             }
             window.history.replaceState(null, '', '#work');
         }
@@ -632,3 +632,14 @@ function initTableOfContents() {
         console.error('TOC init failed:', err);
     }
 }
+
+// Resolve incoming Work anchors after the loader and the homepage pin layout settle.
+function restoreWorkAnchor() {
+    if (location.hash !== '#work' || !document.body.classList.contains('homepage-v2')) return;
+    document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+        window.ScrollTrigger?.refresh();
+        document.getElementById('work')?.scrollIntoView({behavior: 'instant', block: 'start'});
+    })));
+}
+window.addEventListener('site-loading-finished', restoreWorkAnchor);
+window.addEventListener('hashchange', restoreWorkAnchor);

@@ -1,0 +1,27 @@
+/* Main titles follow Homepage v2 Work / Play typography and canvas sizing. */
+.subpage { --page-title-size: 5.263vw; }
+.subpage .container > h1,
+.subpage .head-title > h1,
+.subpage .head-title > .highlight-one {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--page-title-size);
+    font-weight: 400;
+    line-height: 1.3;
+}
+@media (min-width: 963px) {
+    .subpage { --page-title-size: calc((100vw - 153px) * .05263); }
+    body.subpage:not(.project-page) { padding-left: 153px; }
+    .subpage #left-nav-container {
+        position: fixed;
+        inset: 0 auto 0 0;
+        display: block;
+        width: 153px;
+        height: 100vh;
+        z-index: 9000;
+    }
+    .subpage #top-nav-container { display: none; }
+}
+@media (max-width: 600px) {
+    .subpage { --page-title-size: 7vw; }
+}

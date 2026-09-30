@@ -1,0 +1,5 @@
+#opening-loader { display:none; }
+    html.opening-loading { overflow:hidden; }
+    .opening-loading #opening-loader { display:block; position:fixed; inset:0; z-index:2147483647; overflow:hidden; }
+    #opening-panels { display:block; width:100%; height:100%; }
+    #opening-badge { position:absolute; left:50%; top:50%; width:110px; height:110px; transform:translate(-50%,-50%); overflow:visible; }

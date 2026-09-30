@@ -1,6 +1,6 @@
-(() => {
+document.addEventListener('DOMContentLoaded', () => {
   'use strict';
-  const gate = window.homepageLoading;
+  const gate = window.siteLoading;
   const overlay = document.querySelector('#opening-loader');
   if (!gate || gate.done || !overlay) return;
   [...document.body.children].forEach(element => {
@@ -99,4 +99,4 @@
   window.addEventListener('pageshow', event => {
     if (event.persisted) { timeline?.kill(); gate.finish(); }
   });
-})();
+}, {once:true});
