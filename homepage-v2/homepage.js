@@ -167,17 +167,13 @@
   function layoutDesignerArtwork() {
     const designer = stage.closest('.designer');
     if (!designer.classList.contains('is-animated')) return;
-    const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
-    const bodyWidth = stage.querySelector('.designer-body').clientWidth;
+    const bodyWidth = stage.querySelector('.designer-body').getBoundingClientRect().width;
     const stacked = designer.clientWidth <= 1010;
-    const gap = stacked ? gsap.utils.clamp(12, 45, (innerHeight - navHeight - 600) * .12) : 32;
+    const gap = stacked ? gsap.utils.clamp(32, 88, designer.clientWidth * 88 / 834) : 30;
     designer.style.setProperty('--designer-gap', `${gap}px`);
-    let width = bodyWidth - 260 - 24;
-    if (stacked) {
-      const copyHeight = stage.querySelector('.designer-copy-window').offsetHeight;
-      const availableHeight = innerHeight - navHeight - 24 - stage.querySelector('.designer-intro').offsetHeight - copyHeight - gap - parseFloat(getComputedStyle(stage.querySelector('.designer-intro')).marginBottom);
-      width = Math.min(588, bodyWidth, Math.max(100, availableHeight) * 588 / 440);
-    }
+    // Fill the page container on stacked layouts; preserve the desktop Figma columns.
+    const availableHeight = innerHeight - 40 - stage.querySelector('.designer-intro').offsetHeight - 45;
+    const width = stacked ? bodyWidth : Math.min((bodyWidth - 30) * 776.16 / 1030, availableHeight * 588 / 440);
     designer.style.setProperty('--designer-art-width', `${width}px`);
     designer.style.setProperty('--designer-art-scale', width / 588);
   }
@@ -205,8 +201,26 @@
       animationContext?.revert();
       splits.forEach(split => split.revert());
       splits = [];
+      designer.classList.remove('is-flow-layout');
       designer.classList.add('is-animated');
       layoutDesignerArtwork();
+      const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
+      // A full-width folder must not push changing copy behind the navigation.
+      if (designer.clientWidth <= 1010 && stage.offsetHeight > innerHeight - navHeight - 24 + 1) {
+        designer.classList.remove('is-animated');
+        designer.classList.add('is-flow-layout');
+        panels.forEach(panel => {
+          panel.inert = false;
+          panel.removeAttribute('aria-hidden');
+        });
+        delete stage.dataset.activeFolder;
+        timeline = null;
+        renderedKey = dimensions();
+        savedProgress = 0;
+        rebuilding = false;
+        ScrollTrigger.refresh();
+        return;
+      }
       animationContext = gsap.context(() => {
         gsap.fromTo('.designer-juno', { yPercent: 120, autoAlpha: 0 }, {
           yPercent: 0, autoAlpha: 1, ease: 'none', scrollTrigger: {
@@ -214,25 +228,29 @@
           }
         });
         layoutDesignerArtwork();
+        const persistent = panels.flatMap(panel => [...panel.querySelectorAll('.designer-bullet img, .designer-cta, .designer-copy-details p')]);
         const targets = panels.map(panel => {
-          const animated = [...panel.querySelectorAll('.designer-motion')];
+          const animated = [...panel.querySelectorAll('.designer-bullet > span')];
           if (window.SplitText) {
-            panel.querySelectorAll('.designer-split').forEach(text => {
+            panel.querySelectorAll('.designer-split:not(.designer-copy-details p)').forEach(text => {
               const split = SplitText.create(text, { type: 'lines', mask: 'lines' });
               splits.push(split);
               animated.push(...split.lines);
             });
           } else {
-            animated.push(...panel.querySelectorAll('.designer-split'));
+            animated.push(...panel.querySelectorAll('.designer-split:not(.designer-copy-details p)'));
           }
           return animated;
         });
+        // Measure after line splitting, which can change the final heading height.
+        const headingHeight = Math.max(...panels.map(panel => panel.querySelector('h3').offsetHeight));
+        gsap.set(panels.map(panel => panel.querySelector('.designer-copy-heading')), { height: headingHeight, minHeight: headingHeight });
         gsap.set(panels, { autoAlpha: 0 });
         gsap.set(panels[0], { autoAlpha: 1 });
         gsap.set(targets.flat(), { yPercent: 120 });
         const pinTop = () => {
           const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
-          return designer.clientWidth > 1010 ? 50 : Math.min(navHeight + 24, innerHeight - stage.offsetHeight);
+          return Math.min(designer.clientWidth > 1010 ? 40 : navHeight + 24, innerHeight - stage.offsetHeight);
         };
         const folderDistance = () => innerHeight * 2;
         const entranceY = () => {
@@ -271,6 +289,7 @@
           .to({}, { duration: .3 })
           .fromTo(folders[2], { y: entranceY }, { y: 0, duration: 1, ease: 'none' })
           .to({}, { duration: .3 });
+        timeline.fromTo(persistent, { autoAlpha: 0 }, { autoAlpha: 1, duration: .25, ease: 'none' }, 0);
         timeline.to(targets[0], { yPercent: 0, duration: .25, ease: 'none' }, 0);
         // Sequential handoffs fit inside each existing slide, so copy never overlaps.
         [[.7, .95], [2, 2.25]].forEach(([out, incoming], i) => {
