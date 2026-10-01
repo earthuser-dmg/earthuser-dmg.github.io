@@ -1,9 +1,9 @@
 /* Figma 11247:9621; updated Designer styles are scoped below.
-   The 1140px content canvas scales independently of the unchanged 153px rail. */
+   The 1140px content canvas scales independently of the 140px rail. */
 /* Page layout contract. Keep the full-width canvas for cqw and artwork.
    Hero offsets intentionally differ from the standard content gutter. */
 .homepage-v2 {
-  --page-rail-width: 153px;
+  --page-rail-width: 140px;
   --page-gutter: 3.51%;
   --page-container-width: calc(100% - 2 * var(--page-gutter));
   --page-hero-title-gutter: 7.1%;
@@ -354,6 +354,7 @@
    Static content is the default; only a ready timeline enables the pinned stack. */
 .designer { position: relative; z-index: 2; width: 100%; margin-inline: auto; container: designer / inline-size; color: #1e1e1e; }
 .designer-stage { position: relative; transform-origin: center bottom; }
+.designer.is-animated .designer-stage { display: flex; flex-direction: column; min-height: calc(100dvh - 50px); }
 .designer-intro { margin: 0 auto 45px; }
 .designer-juno-mask { display: inline-block; overflow: clip; vertical-align: bottom; padding-inline: .18em; margin-inline: -.18em; }
 .designer-juno { display: inline-block; }
@@ -374,7 +375,7 @@
 .designer-cta-mask { overflow: visible; }
 .designer-static { width: 100%; height: auto; }
 .designer-visual { display: none; }
-.designer.is-animated .designer-body { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 24px; align-items: center; }
+.designer.is-animated .designer-body { display: grid; flex: 1; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 24px; align-items: center; align-content: end; }
 .designer.is-animated .designer-copy-window { display: grid; grid-template-rows: minmax(0, 1fr); height: calc(var(--designer-art-width, 588px) * 440 / 588); }
 .designer.is-animated .designer-copy { grid-area: 1 / 1; width: 320px; max-width: 100%; height: 100%; margin: 0; visibility: hidden; }
 .designer.is-animated .designer-copy-yellow, .designer.is-animated .designer-copy-blue { width: 260px; }
@@ -406,9 +407,10 @@
   .designer-copy h3 { font-size: 40px; line-height: 1.375; }
 }
 @container designer (max-width: 1010px) {
+  .designer.is-animated .designer-stage { min-height: calc(100dvh - var(--top-nav-height, 0px) - 24px); }
   .designer-intro { margin-bottom: clamp(32px, 5cqw, 48px); }
   .designer-intro h2 { font-size: clamp(26px, 4.796cqw, 30px); }
-  .designer.is-animated .designer-body { grid-template-columns: minmax(0, 1fr); gap: var(--designer-gap, 45px); }
+  .designer.is-animated .designer-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; align-content: space-between; gap: var(--designer-gap, 45px); }
   .designer.is-animated .designer-visual { justify-self: center; }
   .designer.is-animated .designer-copy-window { height: clamp(320px, calc(100svh - 754px), 440px); }
   .designer.is-animated .designer-copy { justify-self: center; width: min(100%, 460px); max-width: 100%; gap: clamp(20px, calc(100svh - 1000px), 60px); }

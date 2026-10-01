@@ -24,13 +24,6 @@
   background: hsla(0, 0%, 96%, 0.95);
   backdrop-filter: blur(25px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-  height: 60px;
-}
-
-/* Scrolled state content - padding handled by flexbox centering */
-
-.top-nav.scrolled .logo {
-  transform: scale(0.9);
 }
 
 .top-nav::after {
@@ -249,10 +242,8 @@ body.mobile-menu-open .top-nav {
 
 @media (max-width: 962px) {
   .top-nav { height: 80px; }
-  .top-nav.scrolled { height: 60px; }
   .top-nav-content, .mobile-nav-links { padding-inline: clamp(20px, 5vw, 32px); }
   .logo-image { width: 40px; height: 40px; }
-  .top-nav.scrolled .logo { transform: none; }
   .mobile-menu-toggle { display: flex; margin-right: -2px; }
   .nav-links { display: none; }
 }
@@ -262,6 +253,7 @@ body.mobile-menu-open .top-nav {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .top-nav,
   .logo-image,
   .mobile-menu-overlay,
   .mobile-nav-links a,

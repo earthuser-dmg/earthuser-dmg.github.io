@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* Import component styles */
-@import url('components/top-navigation.css?v=nav-icons-2');
+@import url('components/top-navigation.css?v=nav-scroll-policy-1');
 @import url('components/left-navigation.css');
 @import url('components/project-navigation.css');
 @import url('components/footer.css');

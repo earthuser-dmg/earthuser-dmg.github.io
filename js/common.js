@@ -95,7 +95,8 @@ function initializeNavigation() {
         renderIcon(menuOpen ? 1 : 0);
     });
 
-    let lastScrollTop = 0;
+    const hideOnScroll = document.body.classList.contains('project-page');
+    let lastScrollTop = window.scrollY;
     let ticking = false;
 
     // Sticky navigation scroll effect
@@ -103,21 +104,17 @@ function initializeNavigation() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (menuOpen) { ticking = false; return; }
         
-        if (scrollTop > 50) {
-            topNav.classList.add('scrolled');
-        } else {
-            topNav.classList.remove('scrolled');
+        topNav.classList.toggle('scrolled', scrollTop > 50);
+        if (!hideOnScroll || scrollTop <= 100 || scrollTop < lastScrollTop) {
+            topNav.style.transform = 'translateY(0)';
+        } else if (scrollTop > lastScrollTop) {
+            topNav.style.transform = 'translateY(-100%)';
         }
-        
-        if (menuQuery.matches) {
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                topNav.style.transform = 'translateY(-100%)';
-            } else {
-                topNav.style.transform = 'translateY(0)';
-            }
+
+        if (document.body.classList.contains('project-v2')) {
+            document.body.classList.toggle('project-top-nav-hidden', topNav.style.transform === 'translateY(-100%)');
         }
-        
-        if (!menuQuery.matches) topNav.style.transform = '';
+
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         ticking = false;
     }
@@ -592,41 +589,6 @@ function initTableOfContents() {
             }, { rootMargin: '-30% 0px -60% 0px', threshold: 0.01 });
 
             headings.forEach(h => io.observe(h));
-
-            // Hide TOC when scrolling through head-image area
-            const headImage = contentRoot.querySelector('.head-image');
-            if (headImage) {
-                const headImageHeight = headImage.offsetHeight;
-                const navHeight = 90; // sticky nav height
-                const totalHeroHeight = headImageHeight + navHeight;
-
-                function updateTocVisibility() {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scrollTop < totalHeroHeight) {
-                        tocRoot.classList.add('hidden-in-hero');
-                    } else {
-                        tocRoot.classList.remove('hidden-in-hero');
-                    }
-                }
-
-                window.addEventListener('scroll', updateTocVisibility);
-                updateTocVisibility(); // initial check
-            }
-
-            // Hide TOC when footer enters viewport to avoid overlap
-            const footerEl = document.getElementById('footer-container');
-            if (footerEl) {
-                const footerObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            tocRoot.classList.add('hidden-near-footer');
-                        } else {
-                            tocRoot.classList.remove('hidden-near-footer');
-                        }
-                    });
-                }, { threshold: 0.05 });
-                footerObserver.observe(footerEl);
-            }
         });
     } catch (err) {
         console.error('TOC init failed:', err);

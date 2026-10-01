@@ -10,13 +10,13 @@
     line-height: 1.3;
 }
 @media (min-width: 963px) {
-    .subpage { --page-title-size: calc((100vw - 153px) * .05263); }
-    body.subpage:not(.project-page) { padding-left: 153px; }
+    .subpage { --page-title-size: calc((100vw - 140px) * .05263); }
+    body.subpage:not(.project-page) { padding-left: 140px; }
     .subpage #left-nav-container {
         position: fixed;
         inset: 0 auto 0 0;
         display: block;
-        width: 153px;
+        width: 140px;
         height: 100vh;
         z-index: 9000;
     }

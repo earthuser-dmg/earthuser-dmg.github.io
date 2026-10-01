@@ -11,7 +11,7 @@ body.project-page {
 .project-back {
     position: fixed;
     top: 42px;
-    left: calc(var(--project-rail-width, 153px) + var(--project-page-gutter));
+    left: calc(var(--project-rail-width, 140px) + var(--project-page-gutter));
     display: inline-flex;
     align-items: center;
     gap: 8px;

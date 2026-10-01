@@ -169,7 +169,7 @@
     if (!designer.classList.contains('is-animated')) return;
     const navHeight = parseFloat(getComputedStyle(main).getPropertyValue('--top-nav-height')) || 0;
     const bodyWidth = stage.querySelector('.designer-body').clientWidth;
-    const stacked = bodyWidth < 940;
+    const stacked = designer.clientWidth <= 1010;
     const gap = stacked ? gsap.utils.clamp(12, 45, (innerHeight - navHeight - 600) * .12) : 32;
     designer.style.setProperty('--designer-gap', `${gap}px`);
     let width = bodyWidth - 260 - 24;

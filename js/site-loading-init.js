@@ -13,6 +13,20 @@
         resolve();
         window.dispatchEvent(new Event("site-loading-finished"));
       };
+      // Claim the entry experience before loading so navigating away mid-animation
+      // cannot replay it on another page in the same tab session.
+      try {
+        const sessionKey = 'site-entry-seen';
+        if (sessionStorage.getItem(sessionKey)) {
+          gate.finish();
+          return;
+        }
+        sessionStorage.setItem(sessionKey, '1');
+      } catch {
+        // If session storage is unavailable, keep navigation free of repeat loaders.
+        gate.finish();
+        return;
+      }
       document.documentElement.classList.add('opening-loading');
       gate.timeout = setTimeout(gate.finish, 15000);
     })();
