@@ -111,7 +111,7 @@
     const splits = [];
     if (window.SplitText) document.querySelectorAll('[data-project-reveal]').forEach(title => {
       splits.push(SplitText.create(title, { type: 'lines', linesClass: 'projectRevealLine', mask: 'lines', autoSplit: true,
-        onSplit: split => gsap.from(split.lines, { yPercent: 105, ease: 'none', scrollTrigger: { trigger: title, start: 'top 95%', end: 'top 72%', scrub: true } })
+        onSplit: split => gsap.from(split.lines, { yPercent: 105, ease: 'none', scrollTrigger: { trigger: title.closest('.project-section'), start: () => `top+=${parseFloat(getComputedStyle(title.closest('.project-section')).paddingTop)} 95%`, end: () => `top+=${parseFloat(getComputedStyle(title.closest('.project-section')).paddingTop)} 72%`, scrub: true } })
       }));
     });
     return () => splits.forEach(split => split.revert());

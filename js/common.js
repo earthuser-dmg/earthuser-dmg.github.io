@@ -605,3 +605,10 @@ function restoreWorkAnchor() {
 }
 window.addEventListener('site-loading-finished', restoreWorkAnchor);
 window.addEventListener('hashchange', restoreWorkAnchor);
+
+// Opt-in preview controls; normal site visits do not load this panel.
+if (new URLSearchParams(location.search).get('title-panel') === '1') {
+    const script = document.createElement('script');
+    script.src = '/js/page-title-preview.js';
+    document.head.appendChild(script);
+}

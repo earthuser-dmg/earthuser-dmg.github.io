@@ -187,3 +187,20 @@ p {
         font-size: calc(var(--fonts-size-h1) * 0.8);
     }
 }
+
+/* Shared page-title typography; each page supplies its responsive size. */
+:root {
+    --page-title-font: var(--font-display);
+    --page-title-weight: 400;
+    --page-title-style: italic;
+    --page-title-line-height: 1.3;
+}
+.homepage-v2 .v2-main .page-title,
+.subpage .page-title {
+    font-family: var(--page-title-font);
+    font-size: var(--page-title-size);
+    font-weight: var(--page-title-weight);
+    font-style: var(--page-title-style);
+    line-height: var(--page-title-line-height);
+}
+.page-title em { font: inherit; }

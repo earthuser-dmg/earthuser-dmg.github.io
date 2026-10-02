@@ -167,7 +167,8 @@
 .desk-lamp { left: 78.07%; top: 52.63cqw; width: 8.6%; }
 .desk-brush { left: 44.035142%; top: 61.578915cqw; width: 16.666667%; }
 .v2-work { margin-top: 10.7cqw; }
-.v2-work > h2, .play-heading h2 { font-size: 5.263cqw; }
+.homepage-v2 { --page-title-size: 5.263cqw; }
+@media (min-width: 963px) { .homepage-v2 { --page-title-size: 4.5cqw; } }
 .v2-play { position: relative; padding-block: 0; margin-top: 5.88cqw; }
 .play-collage { margin-top: 6.66cqw; height: 50.79cqw; }
 .play-portrait { left: 38.67%; top: 25.44cqw; width: 20.47%; }
@@ -194,7 +195,7 @@
   .hero-statement { left: 6%; top: 40cqw; font-size: 4.4cqw; gap: .8cqw; }
   .desk-date { top: 14cqw; left: 76%; width: 18%; }
   .date-value { font-size: 1.85cqw; }
-  .v2-work > h2, .play-heading h2 { font-size: 7cqw; }
+  .homepage-v2 { --page-title-size: 7cqw; }
   .view-all { font-size: 2.3cqw; }
   .view-all img { width: 4cqw; }
   .footer-thanks p { font-size: 4.6cqw; }
@@ -370,8 +371,10 @@
 .designer-copy-details ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .designer-bullet { display: flex; align-items: center; gap: 4px; min-height: 24px; }
 .designer-bullet img, .designer-cta img { width: 24px; height: 24px; flex: 0 0 24px; }
-.designer-cta { display: flex; align-items: center; justify-content: center; gap: 4px; width: max-content; min-height: 40px; padding-inline: 12px; border: 2.4px solid var(--color-body); background: transparent; font-size: 13px; font-weight: 600; line-height: 18px; text-decoration: none; }
-.designer-cta:hover { text-decoration: underline; text-underline-offset: 4px; }
+/* CTA stroke is the original Figma outline; keep it outside the 168 × 40 layout. */
+.designer-cta { position: relative; display: flex; align-items: center; justify-content: center; gap: 4px; width: max-content; min-height: 40px; padding-inline: 12px; border: 0; background-color: var(--color-bg); color: var(--color-body); font-size: 13px; font-weight: 600; line-height: 18px; text-decoration: none; }
+.designer-cta::before { content: ""; position: absolute; inset: -1.5px; background: url("assets/designer-2026-09/cta-button-stroke.svg") center / 100% 100% no-repeat; pointer-events: none; }
+.designer-cta:hover { background-color: var(--color-inverse); text-decoration: none; }
 .designer-cta-mask { overflow: visible; }
 .designer-static { width: 100%; height: auto; }
 .designer-visual { display: none; }

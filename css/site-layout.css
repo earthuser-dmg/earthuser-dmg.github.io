@@ -1,0 +1,64 @@
+/* Shared content canvas. Desktop rail stays outside the centered canvas. */
+body.site-layout {
+  --site-content-max: 1200px;
+  --site-canvas-max: calc(var(--site-content-max) / .9298);
+  --site-gutter: calc(min(100vw - 140px, var(--site-canvas-max)) * .0351);
+  --site-rail: 140px;
+}
+@media (max-width: 962px) {
+  body.site-layout {
+    --site-gutter: clamp(28px, 8vw, 48px);
+    --site-rail: 0px;
+  }
+}
+body.site-layout.homepage-v2 { --page-gutter: var(--site-gutter); }
+.site-layout.homepage-v2 .v2-main {
+  width: calc(100% - var(--site-rail));
+  max-width: var(--site-canvas-max);
+  margin-left: max(var(--site-rail), calc((100% + var(--site-rail) - var(--site-canvas-max)) / 2));
+}
+.site-layout.homepage-v2 .intro-grid {
+  background-size: calc(min(100vw - var(--site-rail), var(--site-canvas-max)) * .04386) calc(min(100vw - var(--site-rail), var(--site-canvas-max)) * .04386);
+}
+.site-layout.subpage .page-wrapper {
+  width: 100%;
+  max-width: var(--site-canvas-max);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+.site-layout.subpage .page-wrapper > .container {
+  width: 100%;
+  max-width: var(--site-content-max);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+.site-layout.subpage { --page-gutter: var(--site-gutter); }
+body.site-layout.project-page:not(.project-v2) {
+  --project-page-gutter: max(var(--site-gutter), calc((100vw - var(--site-rail) - var(--site-content-max)) / 2));
+}
+.site-layout.project-page:not(.project-v2) .more-projects {
+  width: calc(100% - 2 * var(--site-gutter));
+  max-width: var(--site-content-max);
+  margin-inline: auto;
+}
+body.site-layout.project-v2 { --project-gutter: var(--site-gutter); }
+.site-layout.project-v2 .project-main {
+  width: 100%;
+  max-width: var(--site-canvas-max);
+  margin-inline: auto;
+}
+.site-layout.project-v2 .project-container,
+.site-layout.project-v2 .more-projects {
+  max-width: var(--site-content-max);
+}
+.site-layout.project-v2 .more-projects {
+  width: calc(100% - 2 * var(--site-gutter));
+}
+.site-layout.project-v2 .project-cover { width: 100%; }
+.site-layout.project-v2 .project-chapter-nav {
+  right: max(var(--site-gutter), calc((100vw - var(--site-rail) - var(--site-content-max)) / 2));
+}
+@media (min-width: 963px) {
+  .site-layout.subpage { --page-title-size: calc(min(100vw - 140px, var(--site-canvas-max)) * .045); }
+  .site-layout.subpage:not(.project-page) { --page-title-size: clamp(32px, calc(min(100vw - 140px, var(--site-canvas-max)) * .045), 54.72px); }
+}

@@ -1,16 +1,7 @@
 /* Main titles follow Homepage v2 Work / Play typography and canvas sizing. */
 .subpage { --page-title-size: 5.263vw; }
-.subpage .container > h1,
-.subpage .head-title > h1,
-.subpage .head-title > .highlight-one {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: var(--page-title-size);
-    font-weight: 400;
-    line-height: 1.3;
-}
 @media (min-width: 963px) {
-    .subpage { --page-title-size: calc((100vw - 140px) * .05263); }
+    .subpage { --page-title-size: calc((100vw - 140px) * .045); }
     body.subpage:not(.project-page) { padding-left: 140px; }
     .subpage #left-nav-container {
         position: fixed;
@@ -24,4 +15,50 @@
 }
 @media (max-width: 600px) {
     .subpage { --page-title-size: 7vw; }
+}
+
+/* About and Play share a content canvas; project pages keep their own layout. */
+.subpage:not(.project-page) {
+    --page-gutter: 3.51%;
+    --page-container-width: var(--content-max-width);
+    --page-title-size: clamp(32px, 5.263vw, 64px);
+    --page-title-top: 112px;
+}
+
+.subpage:not(.project-page) .page-wrapper {
+    max-width: none;
+    margin: 0;
+    padding-inline: var(--page-gutter);
+}
+
+.subpage:not(.project-page) .page-wrapper > .container {
+    width: 100%;
+    max-width: var(--page-container-width);
+    margin-inline: auto;
+    padding: var(--page-title-top) 0 48px;
+}
+
+.subpage:not(.project-page) .container > h1 {
+    margin-top: 0;
+    margin-bottom: 48px;
+}
+
+@media (min-width: 963px) {
+    .subpage:not(.project-page) {
+        --page-title-size: clamp(32px, calc((100vw - 140px) * .045), 54.72px);
+        /* Rail logo: 40px top inset + half of its 50px height. */
+        --page-title-top: calc(65px - var(--page-title-size) / 2);
+    }
+}
+
+@media (max-width: 962px) {
+    .subpage:not(.project-page) {
+        --page-gutter: clamp(28px, 8vw, 48px);
+    }
+}
+
+@media (max-width: 600px) {
+    .subpage:not(.project-page) {
+        --page-title-size: clamp(32px, 7vw, 42px);
+    }
 }
