@@ -1,0 +1,12 @@
+/* Approved project-preview Hero; loaded only by preview pages. */
+body.project-v2.project-hero07 .project-main { padding-top: 0; }
+.project-v2 .hero07 { overflow: hidden; background: var(--color-bg); }
+.project-v2 .hero07-media { position: relative; width: 100%; height: clamp(160px, 36svh, 360px); background: var(--hero-image) center / cover no-repeat; pointer-events: none; }
+.project-v2 .hero07-copy { padding-block: 48px 0; }
+.project-v2 .hero07-tagline { margin: 0; max-width: none; }
+.project-v2 .hero07-heading { display: grid; gap: 12px; min-width: 0; }
+.project-v2 .hero07-heading h1 { max-width: none; text-wrap: balance; font-family: var(--font-display); font-weight: 400; letter-spacing: -.025em; }
+.project-v2 .hero07 + .project-meta { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px var(--project-column-gap); margin-top: 36px; padding-top: 0; padding-bottom: 32px; }
+@media(max-width:962px) { body.project-v2.project-hero07 .project-main { padding-top: 60px; } }
+@media(max-width:962px) { .project-v2 .hero07-copy { padding-block: 40px 0; } }
+@media(max-width:600px) { .project-v2 .hero07-media { height: clamp(140px, 22svh, 200px); } .project-v2 .hero07-copy { padding-block: 32px 0; } .project-v2 .hero07 + .project-meta { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 20px; margin-top: 28px; } }

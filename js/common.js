@@ -249,78 +249,183 @@ function loadFavicon() {
         });
 }
 
-// Initialize image click-to-enlarge overlay (configurable)
-function initImagePreview(options) {
-    const config = Object.assign({ selector: 'img', container: document, closeOnEsc: true }, options || {});
+// Shared content-image preview. Explicit scopes keep decorative UI assets interactive.
+function initImagePreview() {
+    if (!document.body.classList.contains('site-layout')) return;
+    if (window.siteImagePreview) return window.siteImagePreview;
+    // Detail media can enlarge; navigation cards, portraits and covers keep their own purpose.
+    const selector = '.play-item > img, .layout5050-img, .photo-gallery img, .project-main img, [class*="fullwidth"][class*="image"], .gallery-slide img, .ideate-img, [class*="output-img"], .Methodology-img';
+    const captionFor = img => {
+        const link = img.closest('[data-project-preview]');
+        const caption = img.closest('figure, .photo-item, .work-card')?.querySelector('figcaption, .photo-caption, h3');
+        const label = caption?.cloneNode(true);
+        label?.querySelectorAll('br').forEach(br => br.replaceWith(' · '));
+        return link?.dataset.caption || label?.textContent.trim() || img.alt;
+    };
 
-    let overlay = document.getElementById('img-overlay');
-    let overlayImage;
+    const imageResize = new ResizeObserver(entries => entries.forEach(({ target, contentRect }) => {
+        if (contentRect.width) target.style.setProperty('--site-image-scale', 1 + 12 / contentRect.width);
+    }));
 
-    function ensureOverlay() {
-        if (overlay) return;
-        overlay = document.createElement('div');
-        overlay.id = 'img-overlay';
-        overlay.style.cssText = 'display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;cursor:pointer;';
-        overlayImage = document.createElement('img');
-        overlayImage.style.cssText = 'max-width:90vw;max-height:90vh;box-shadow:0 0 16px #000;border-radius:8px;';
-        overlay.appendChild(overlayImage);
-        document.body.appendChild(overlay);
-
-        overlay.addEventListener('click', function (e) {
-            if (e.target === overlay) {
-                closeOverlay();
+    // A separate decoration follows the rendered image throughout its hover transition.
+    const corners = document.createElement('div');
+    corners.className = 'site-image-corners';
+    corners.setAttribute('aria-hidden', 'true');
+    document.body.append(corners);
+    let hoverImage, frame, cornerTimer;
+    function trackCorners() {
+        if (!hoverImage) return;
+        const rect = hoverImage.getBoundingClientRect();
+        Object.assign(corners.style, { left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px` });
+        frame = requestAnimationFrame(trackCorners);
+    }
+    function hideCorners(immediate = false) {
+        corners.classList.remove('is-visible');
+        clearTimeout(cornerTimer);
+        const stop = () => { hoverImage = null; cancelAnimationFrame(frame); };
+        if (immediate) stop();
+        else cornerTimer = setTimeout(stop, 350);
+    }
+    const enhancedImages = new WeakSet();
+    function refreshImages() {
+        const images = [...document.querySelectorAll(selector)].filter(img =>
+            img.tagName === 'IMG' && !img.closest('button, .thumbnail, .work-card, .project-cover, [aria-hidden="true"]') && !img.matches('.head-image') && (!img.closest('a') || img.closest('[data-project-preview]')) && img.alt !== '' && !enhancedImages.has(img));
+        images.forEach(img => {
+            img.classList.add('site-preview-image');
+            // Existing image links already have a keyboard target.
+            if (!img.closest('[data-project-preview]')) {
+                img.tabIndex = 0;
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', `Enlarge: ${captionFor(img)}`);
             }
+            img.setAttribute('aria-haspopup', 'dialog');
         });
-
-        if (config.closeOnEsc) {
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && overlay.style.display === 'flex') {
-                    closeOverlay();
-                }
-            });
-        }
+        images.filter(img => !img.closest('.work-image')).forEach(img => imageResize.observe(img));
+        images.forEach(img => {
+            const show = () => {
+                hideCorners(true);
+                if (img.closest('.work-image, .play-item')) return; // Keep homepage card and Play hover effects local.
+                hoverImage = img;
+                trackCorners();
+                corners.classList.add('is-visible');
+            };
+            img.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') show(); });
+            img.addEventListener('pointerleave', () => hideCorners());
+            const focusTarget = img.closest('[data-project-preview]') || img;
+            focusTarget.addEventListener('focus', () => { if (focusTarget.matches(':focus-visible')) show(); });
+            focusTarget.addEventListener('blur', () => hideCorners());
+        });
+        images.forEach(img => enhancedImages.add(img));
     }
+    refreshImages();
+    document.addEventListener('project-content-updated', refreshImages);
 
-    function openOverlay(src) {
-        ensureOverlay();
-        overlayImage.src = src;
-        overlay.style.display = 'flex';
+    const dialog = document.createElement('dialog');
+    dialog.className = 'site-media-dialog';
+    dialog.setAttribute('aria-labelledby', 'site-media-caption');
+    dialog.innerHTML = '<button class="site-media-close" type="button" aria-label="Close image preview"><img src="/images/ui/12051-1154.svg" width="40" height="40" alt=""></button><figure class="site-media-figure"><div class="site-media-content"></div><figcaption id="site-media-caption"></figcaption></figure>';
+    document.body.append(dialog);
+    const host = dialog.querySelector('.site-media-content');
+    const caption = dialog.querySelector('figcaption');
+    const closeButton = dialog.querySelector('button');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const easing = 'cubic-bezier(.22,1,.36,1)';
+    let opener, originImage, previousOverflow, opening = false, closing = false;
+    function originTransform(media, rect) {
+        const target = media.getBoundingClientRect();
+        if (!rect?.width || !target.width) return 'translateY(12px) scale(.96)';
+        const scale = Math.min(rect.width / target.width, rect.height / target.height);
+        return `translate(${rect.left + rect.width / 2 - target.left - target.width / 2}px, ${rect.top + rect.height / 2 - target.top - target.height / 2}px) scale(${scale})`;
+    }
+    async function close() {
+        if (!dialog.open || closing) return;
+        closing = true;
+        // Reveal the thumbnail beneath the fading preview so the handoff has no blank frame.
+        originImage?.classList.remove('is-preview-origin');
+        if (!reducedMotion.matches) {
+            const media = host.firstElementChild;
+            // Read the displayed transform before cancelling an interrupted opening animation.
+            const from = getComputedStyle(media).transform;
+            const opacity = getComputedStyle(dialog).opacity;
+            dialog.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+            const transform = originTransform(media, originImage?.getBoundingClientRect());
+            media.animate([{ transform: from }, { transform }], { duration: 300, easing, fill: 'forwards' });
+            const fade = dialog.animate([{ opacity }, { opacity: 0 }], { duration: 300, easing, fill: 'forwards' });
+            await fade.finished.catch(() => {});
+        }
+        // Finish cleanup synchronously before removing the dialog from the top layer.
+        resetPreview();
+        dialog.close();
+    }
+    async function open(img, link) {
+        if (dialog.open || opening) return;
+        opening = true;
+        opener = link || img;
+        originImage = img;
+        const video = link?.dataset.projectPreview === 'video';
+        const media = document.createElement(video ? 'video' : 'img');
+        caption.textContent = link?.dataset.caption || (img ? captionFor(img) : 'Video');
+        media.src = link?.href || img.currentSrc || img.src;
+        if (video) {
+            media.controls = true;
+            media.playsInline = true;
+            if (link.dataset.poster) media.poster = link.dataset.poster;
+        } else {
+            media.alt = caption.textContent;
+            await media.decode().catch(() => {});
+        }
+        const origin = img?.getBoundingClientRect();
+        hideCorners(true);
+        host.replaceChildren(media);
+        previousOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
-    }
-
-    function closeOverlay() {
-        if (!overlay) return;
-        overlay.style.display = 'none';
-        if (overlayImage) overlayImage.src = '';
-        document.body.style.overflow = '';
-    }
-
-    config.container.addEventListener('click', function (e) {
-        const target = e.target;
-        if (!(target && target.tagName === 'IMG')) return;
-        if (overlay && overlay.contains(target)) return; // ignore clicks on enlarged image
-        if (target.closest('#left-nav-container, #top-nav-container')) return;
-
-        // Match selector scope
-        if (config.selector) {
-            try {
-                const matched = target.matches(config.selector) || target.closest(config.selector);
-                if (!matched) return;
-            } catch (err) {
-                // If selector invalid, fail safe: do nothing
-                return;
-            }
+        dialog.showModal();
+        originImage?.classList.add('is-preview-origin');
+        opening = false;
+        closeButton.focus();
+        if (!reducedMotion.matches) {
+            media.animate([{ transform: originTransform(media, origin) }, { transform: 'none' }], { duration: 350, easing });
+            dialog.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, easing });
+            caption.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 350, easing });
         }
-
-        openOverlay(target.src);
+    }
+    dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
+    closeButton.addEventListener('click', close);
+    dialog.addEventListener('click', event => {
+        if (event.target === dialog || event.target === host || event.target === dialog.querySelector('figure')) close();
     });
-
-    // Expose close for potential external usage
-    return { close: closeOverlay };
+    function resetPreview() {
+        dialog.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+        originImage?.classList.remove('is-preview-origin');
+        closing = false;
+        host.querySelector('video')?.pause();
+        host.replaceChildren();
+        document.body.style.overflow = previousOverflow;
+    }
+    dialog.addEventListener('close', () => {
+        if (host.firstElementChild) resetPreview();
+        opener?.focus({ preventScroll: true });
+    });
+    document.addEventListener('click', event => {
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        const img = event.target.closest('.site-preview-image');
+        const link = event.target.closest('[data-project-preview]');
+        if (!img && !link) return;
+        event.preventDefault();
+        event.stopPropagation();
+        open(img || link.querySelector('img'), link);
+    }, true);
+    document.addEventListener('keydown', event => {
+        if (!event.target.matches('.site-preview-image[role="button"]') || !['Enter', ' '].includes(event.key)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        open(event.target);
+    }, true);
+    window.siteImagePreview = { close };
+    return window.siteImagePreview;
 }
-
-// expose to window for page usage
 window.initImagePreview = initImagePreview;
+document.addEventListener('DOMContentLoaded', initImagePreview);
 
 // Load common modules
 document.addEventListener('DOMContentLoaded', function() {

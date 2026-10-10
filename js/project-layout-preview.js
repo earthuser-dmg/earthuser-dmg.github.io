@@ -32,6 +32,29 @@
   document.body.append(host);
   const ratio = root.querySelector('#ratio');
   const gap = root.querySelector('#gap');
+  const comparisonMedia = document.querySelector('#comparison > .project-section-body');
+  if (comparisonMedia) {
+    const label = document.createElement('label');
+    label.htmlFor = 'media-layout';
+    label.textContent = 'Before / After 媒体布局';
+    const select = document.createElement('select');
+    select.id = 'media-layout';
+    select.style.cssText = 'display:block;width:100%;margin-top:8px;padding:6px;font:inherit';
+    select.innerHTML = '<option value="wide">通栏 · 跨越标题与内容栏</option><option value="right">右栏 · 与正文对齐</option>';
+    select.value = comparisonMedia.classList.contains('project-media--wide') ? 'wide' : 'right';
+    const initialLayout = select.value;
+    const applyMediaLayout = () => {
+      comparisonMedia.classList.toggle('project-media--wide', select.value === 'wide');
+      comparisonMedia.classList.toggle('project-media--right', select.value === 'right');
+      window.ScrollTrigger?.refresh();
+    };
+    select.addEventListener('change', applyMediaLayout);
+    root.querySelector('#measure').before(label, select);
+    root.querySelector('#reset').addEventListener('click', () => {
+      select.value = initialLayout;
+      applyMediaLayout();
+    });
+  }
   let adjusted = false;
   function measure() {
     const columns = getComputedStyle(section).gridTemplateColumns.split(' ');

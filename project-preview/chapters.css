@@ -1,0 +1,8 @@
+/* Only loaded by project previews. Eyebrows are metadata, not chapter titles. */
+.project-page.project-v2 .project-eyebrow { display: none; }
+
+/* Use the visible-nav anchor offset for reading activation in both nav states. */
+body.project-page.project-v2 { --project-reading-offset: 140px; }
+@media (min-width: 963px) {
+  body.project-page.project-v2 { --project-reading-offset: 113px; }
+}

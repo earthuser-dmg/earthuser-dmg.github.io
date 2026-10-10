@@ -1,0 +1,55 @@
+/* Alibaba preview only; shared project styles remain unchanged. */
+body.project-v2[data-project="alibaba"] { --project-accent: #d48d00; --project-tint: #faeed4; }
+.project-v2[data-project="alibaba"] .ali-diagram { margin: 0; min-width: 0; }
+.project-v2[data-project="alibaba"] .ali-svg { display: none; width: 100%; height: auto; overflow: visible; font-family: var(--font-sans); color: var(--color-body); }
+.project-v2[data-project="alibaba"] .ali-svg--mobile { display: block; }
+.project-v2[data-project="alibaba"] .ali-svg rect { stroke: #555; stroke-width: 1; }
+.project-v2[data-project="alibaba"] .ali-svg text { fill: currentColor; }
+.project-v2[data-project="alibaba"] .ali-line { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.project-v2[data-project="alibaba"] .ali-dashed { stroke-dasharray: 4 4; }
+.project-v2[data-project="alibaba"] .ali-summary { margin-top: 12px; font-size: 14px; color: #626262; max-width: 85ch; }
+.project-v2[data-project="alibaba"] .ali-hold { display: block; margin-top: 8px; color: #626262; }
+.project-v2[data-project="alibaba"] .ali-goals { display: grid; gap: var(--project-gap); }
+.project-v2[data-project="alibaba"] .project-media:not(.project-cover) img { object-fit: contain; }
+.project-v2[data-project="alibaba"] main > .project-media { margin-top: var(--project-section-gap); }
+@media (min-width: 601px) {
+ .project-v2[data-project="alibaba"] .ali-svg--mobile { display: none; }
+ .project-v2[data-project="alibaba"] .ali-svg--tablet { display: block; }
+ .project-v2[data-project="alibaba"] .ali-goals { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (min-width: 963px) {
+ .project-v2[data-project="alibaba"] .ali-svg--tablet { display: none; }
+ .project-v2[data-project="alibaba"] .ali-svg--desktop { display: block; }
+}
+
+/* The supplied diagrams are the visual source of truth, including their rounded cards. */
+.project-v2[data-project="alibaba"] .ali-diagram { container-type: inline-size; }
+.project-v2[data-project="alibaba"] .ali-embedded-copy { font-family: var(--font-sans); font-weight: 400; line-height: 1.44; color: #000; }
+.project-v2[data-project="alibaba"] .ali-quotes { list-style: none; padding: 0; margin: 0; display: grid; gap: .45em; font-family: var(--font-sans); line-height: 1.45; color: #000; }
+.project-v2[data-project="alibaba"] .ali-quotes li { display: grid; grid-template-columns: 1em minmax(0,1fr); gap: .35em; font-size: inherit; line-height: inherit; }
+@media(min-width:963px) {
+ @container (max-width:999px) {
+  .project-v2[data-project="alibaba"] .ali-svg--desktop { display: none; }
+  .project-v2[data-project="alibaba"] .ali-svg--tablet { display: block; }
+ }
+}
+
+/* Retain the textual equivalent for assistive reading without repeating the diagram below it. */
+.project-v2[data-project="alibaba"] .ali-summary { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Text stays in the reading column; only individual diagram figures span the grid. */
+@media(min-width:601px) {
+ .project-v2[data-project="alibaba"] .project-section > .project-section-body { grid-column: 2; }
+}
+@media(min-width:601px) and (max-width:962px) {
+ .project-v2[data-project="alibaba"] .ali-goals,
+ .project-v2[data-project="alibaba"] .project-section-body .project-grid--equal { grid-template-columns: minmax(0,1fr); }
+}
+
+/* Compact variants must never scale up to fill a wide reading grid. */
+.project-v2[data-project="alibaba"] .ali-svg--mobile { max-width: 360px; margin-inline: auto; }
+.project-v2[data-project="alibaba"] .ali-svg--tablet { max-width: 550px; margin-inline: auto; }
+
+/* Center feedback copy within each card, including naturally wrapped lines. */
+.project-v2[data-project="alibaba"] [data-source="Fliggy-03.png"] foreignObject { display: block; }
+.project-v2[data-project="alibaba"] [data-source="Fliggy-03.png"] .ali-quotes { height: 100%; align-content: center; }

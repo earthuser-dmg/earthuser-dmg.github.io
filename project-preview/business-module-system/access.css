@@ -1,0 +1,98 @@
+@import url("/css/components/cta.css?v=1");
+/* BMS-only gate. Figma 12224:703 / 12230:1153; card styles stay in the shared stylesheet. */
+[data-project-access] [hidden] { display: none !important; }
+[data-project-access] .access-story { position: relative; }
+[data-project-access] .access-sheet {
+  position: relative;
+  z-index: 2;
+  display: flow-root;
+  background-color: var(--color-bg, #f6f6f6);
+  background-image: url('./assets/12229-949.svg');
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+[data-project-access="locked"].access-layers #context {
+  position: sticky;
+  top: var(--access-context-top, 0px);
+}
+[data-project-access] :is(.project-chapter-nav, .project-back-to-top) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition: opacity 240ms ease, transform 240ms ease, visibility 0s 240ms, background-color 180ms ease, top 300ms ease;
+}
+[data-project-access="unlocked"] :is(.project-chapter-nav, .project-back-to-top).is-reading-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-project-access] :is(.project-chapter-nav, .project-back-to-top) { transition: none; transform: none; }
+}
+[data-project-access] .access-gate {
+  box-sizing: border-box;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  scroll-margin-top: 0;
+  color: #000;
+}
+[data-project-access] .access-prompt { position: relative; width: 400px; margin-left: calc(50% - 197px); }
+[data-project-access] .access-lock {
+  position: absolute;
+  left: -97px;
+  top: 13.3px;
+  width: 52.56px;
+  height: 70.56px;
+  transform: rotate(-11.31deg);
+  transform-origin: top left;
+  display: block;
+  pointer-events: none;
+}
+[data-project-access] .access-lock img { display: block; width: 98px; max-width: none; height: 139px; transform: translate(-9.64px, -19.62px) scale(.731218, .727792); transform-origin: top left; }
+[data-project-access] #access-heading { margin: 0; font: 400 40px/52px var(--font-display); letter-spacing: 0; color: inherit; }
+[data-project-access] .access-description { margin: 20px 0 0; font: 400 16px/22px var(--font-sans); color: inherit; }
+[data-project-access] .access-form { position: relative; margin-top: 50px; }
+[data-project-access] .access-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[data-project-access] .access-controls { display: grid; grid-template-columns: minmax(0, 240px) 160px; }
+[data-project-access] .access-input-row { position: relative; min-height: 40px; background: var(--color-inverse, #fff); border: 0; border-radius: 0; }
+[data-project-access] .access-input-row::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border: 4px solid transparent;
+  border-image: url('/homepage-v2/assets/designer-2026-09/cta-button-stroke.svg') 4 / 4px / 0 stretch;
+  pointer-events: none;
+}
+[data-project-access] .access-input-row input { display: block; box-sizing: border-box; width: 100%; height: 40px; min-width: 0; padding: 0 20px; border: 0; border-radius: 0; background: transparent; color: var(--color-body); font: 400 14px/19px var(--font-sans); }
+[data-project-access] .access-input-row input::placeholder { opacity: 1; color: #0006; }
+[data-project-access] .access-input-row input:focus-visible { outline: none; }
+[data-project-access] .access-status { position: absolute; top: 100%; left: 0; right: 0; margin: 12px 0 0; font: 400 14px/20px var(--font-sans); }
+[data-project-access] .access-status:empty { margin: 0; }
+[data-project-access] .access-status[data-error="true"] { color: #a12920; }
+[data-project-access] .access-relock-bar { padding-block: 24px; border-top: 1px solid #d5d5d5; }
+[data-project-access] .access-relock { padding: 10px 0; border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+[data-project-access] [data-protected-context] { display: contents; }
+[data-project-access] [data-protected-context]:empty { display: none; }
+@media (min-width: 601px) and (max-width: 962px) {
+  [data-project-access] .access-prompt { margin-left: calc(50% - 151.5px); }
+  [data-project-access] .access-gate { min-height: calc(100svh - 60px); scroll-margin-top: 60px; }
+}
+@media (max-width: 600px) {
+  [data-project-access] .access-gate { padding: 64px var(--project-gutter); min-height: calc(100svh - 60px); scroll-margin-top: 60px; }
+  [data-project-access] .access-prompt { width: 100%; margin: 0; }
+  [data-project-access] .access-lock { position: static; margin-bottom: 20px; }
+  [data-project-access] .access-form { margin-top: 32px; }
+  [data-project-access] .access-controls { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  [data-project-access] .access-input-row input { height: 44px; font-size: 16px; }
+  [data-project-access] .access-submit { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-project-access="locked"].access-layers #context { position: relative; top: auto; }
+}
+
+[data-project-access] .access-submit { width: 100%; }

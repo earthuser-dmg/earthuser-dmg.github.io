@@ -1,0 +1,15 @@
+/* Figma 12211:625: shared journey wraps without shrinking its text. */
+.ali-business-map{font-family:var(--font-sans);color:#4a4a4a;font-size:16px;width:100%;min-width:0}
+.ali-business-map .ali-business-branches{display:block;width:100%;height:84px;min-width:0;overflow:visible}
+.ali-business-branches path{fill:none;stroke:#000;stroke-width:1;vector-effect:non-scaling-stroke}
+.ali-business-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.8vw,20px)}
+.ali-business-card{position:relative;min-height:98px;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px 16px;color:#000;line-height:1.5}
+.ali-business-card span{position:relative;z-index:1}
+.ali-business-map .ali-business-card-bg{position:absolute;inset:0;display:block;min-width:0;width:100%;height:100%;overflow:visible}
+.ali-business-card-bg rect{fill:#f5f5f5;stroke:#4a4a4a;stroke-width:1}
+.ali-business-card--lazada{font-weight:600}.ali-business-card--lazada rect{fill:#fddfd2;stroke:#000}
+.ali-business-map .ali-business-label{margin:30px 0 18px;font-size:16px;line-height:1.5;color:#4a4a4a}
+.ali-business-map .ali-business-journey{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px 8px;list-style:none;margin:0;padding:28px 22px;border:1px solid #4a4a4a;border-radius:12px}
+.ali-business-map .ali-business-journey li{display:flex;align-items:center;gap:8px;margin:0;padding:0;font-size:16px;line-height:1.5;white-space:nowrap}
+.ali-business-journey img{width:28px;height:auto;flex:none}.ali-business-journey strong{color:#000;font-weight:600}
+@media(max-width:600px){.ali-business-card{padding:18px 9px;min-height:110px;font-size:14px}.ali-business-map .ali-business-branches{height:62px}.ali-business-map .ali-business-journey{padding:22px 12px;justify-content:flex-start}}

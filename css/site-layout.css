@@ -1,3 +1,5 @@
+@import url("site-media.css?v=5");
+
 /* Shared content canvas. Desktop rail stays outside the centered canvas. */
 body.site-layout {
   --site-content-max: 1200px;
@@ -19,6 +21,9 @@ body.site-layout.homepage-v2 { --page-gutter: var(--site-gutter); }
 }
 .site-layout.homepage-v2 .intro-grid {
   background-size: calc(min(100vw - var(--site-rail), var(--site-canvas-max)) * .04386) calc(min(100vw - var(--site-rail), var(--site-canvas-max)) * .04386);
+}
+@media (max-width: 600px) {
+  .site-layout.homepage-v2 .intro-grid { background-size: 40px 40px; }
 }
 .site-layout.subpage .page-wrapper {
   width: 100%;
