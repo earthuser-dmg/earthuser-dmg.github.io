@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loading 插画预览</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap">
+<link rel="stylesheet" href="preview.css?v=mobile-70">
+<script defer src="/js/vendor/gsap.min.js"></script><script defer src="preview.js?v=illustration-wobble"></script>
+</head>
+<body>
+<iframe id="homepage" title="加载完成后的首页"></iframe>
+<div id="loader" role="progressbar" aria-label="Loading website" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<aside id="controls" aria-label="预览控制">
+<button id="replay">重播</button><label><input type="checkbox" id="slow">慢速</label>
+<label class="scrub">进度 <input id="progress" type="range" min="0" max="100" value="0"><output id="value">0%</output></label>
+<button id="finish">播放退出</button><button id="hide">收起</button>
+</aside>
+<button id="show" hidden>预览控制</button>
+<p id="error" role="alert" hidden></p>
+<script>window.previewReady = new Promise(resolve => { window.resolvePreviewReady = resolve; });</script>
+</body></html>

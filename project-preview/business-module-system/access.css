@@ -96,3 +96,16 @@
 }
 
 [data-project-access] .access-submit { width: 100%; }
+
+/* Brief last-character echo; the native password field remains the editing surface. */
+[data-project-access] .access-input-row input.is-echoing { color: transparent; -webkit-text-fill-color: transparent; caret-color: transparent; }
+[data-project-access] .access-password-echo {
+  position: absolute; inset: 0 20px; display: block; overflow: hidden; white-space: pre;
+  pointer-events: none; align-content: center; color: var(--color-body);
+  font: 400 14px/19px var(--font-sans);
+}
+[data-project-access] .access-echo-caret { display: inline-block; width: 0; height: 1em; border-left: 1px solid currentColor; vertical-align: -.15em; }
+@media (max-width: 600px) { [data-project-access] .access-password-echo { font-size: 16px; } }
+
+[data-project-access] .access-echo-mask { -webkit-text-security: disc; }
+[data-project-access] .access-echo-character { display: inline-block; text-align: center; }

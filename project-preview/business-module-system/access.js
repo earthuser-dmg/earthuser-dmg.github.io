@@ -8,6 +8,61 @@
   const form = gate.querySelector('form');
   const input = form.querySelector('input');
   const submit = form.querySelector('[type="submit"]');
+  // Keep the real field a password input for autofill, editing and submission.
+  // Only the most recently typed grapheme is briefly painted above its mask.
+  const echo = document.createElement('span');
+  echo.className = 'access-password-echo';
+  echo.setAttribute('aria-hidden', 'true');
+  echo.hidden = true;
+  input.after(echo);
+  let echoTimer;
+  function hidePasswordEcho() {
+    clearTimeout(echoTimer);
+    echo.hidden = true;
+    echo.replaceChildren();
+    input.classList.remove('is-echoing');
+  }
+  const graphemes = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  const characters = text => graphemes ? [...graphemes.segment(text)].map(part => part.segment) : Array.from(text);
+  input.addEventListener('input', event => {
+    hidePasswordEcho();
+    if (!CSS.supports('-webkit-text-security', 'disc') || event.isComposing || event.inputType !== 'insertText' || !event.data ||
+        characters(event.data).length !== 1 || document.activeElement !== input ||
+        input.selectionStart !== input.selectionEnd) return;
+    const end = input.selectionEnd;
+    const before = input.value.slice(0, end - event.data.length);
+    const after = input.value.slice(end);
+    const caret = document.createElement('span');
+    caret.className = 'access-echo-caret';
+    // Use the browser's own disc glyph and advance, exactly like type=password.
+    const mask = length => {
+      const span = document.createElement('span');
+      span.className = 'access-echo-mask';
+      span.textContent = '0'.repeat(length);
+      return span;
+    };
+    const revealed = document.createElement('span');
+    revealed.className = 'access-echo-character';
+    revealed.textContent = event.data;
+    const probe = mask(event.data.length);
+    echo.append(mask(before.length), revealed, caret, mask(after.length), probe);
+    echo.hidden = false;
+    revealed.style.width = probe.getBoundingClientRect().width + 'px';
+    probe.remove();
+    input.classList.add('is-echoing');
+    echo.scrollLeft = Math.max(0, caret.offsetLeft - echo.clientWidth + 2);
+    echoTimer = setTimeout(hidePasswordEcho, 2000);
+  });
+  ['blur', 'paste', 'drop', 'pointerdown', 'compositionstart'].forEach(type => input.addEventListener(type, hidePasswordEcho));
+  input.addEventListener('keydown', event => {
+    if (['ArrowLeft', 'ArrowRight', 'Home', 'End', 'Escape', 'Tab'].includes(event.key) || event.ctrlKey || event.metaKey) hidePasswordEcho();
+  });
+  input.addEventListener('select', () => { if (input.selectionStart !== input.selectionEnd) hidePasswordEcho(); });
+  form.addEventListener('submit', hidePasswordEcho);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) hidePasswordEcho(); });
+  addEventListener('pagehide', hidePasswordEcho);
+
   const status = document.getElementById('access-status');
   const relock = document.querySelector('.access-relock-bar');
   const assetBase = new URL('./encrypted/', document.currentScript.src);

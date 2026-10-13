@@ -398,7 +398,7 @@
 .designer-pattern-video { object-fit: contain; background: #fff; }
 .folder-yellow .designer-folder-image { left: 60px; top: 41px; width: 462px; height: 347px; }
 .folder-pink .designer-folder-image { left: 68px; top: 46px; width: 460px; height: 345px; }
-.folder-pink .designer-pattern-video { object-position: center -50px; }
+.folder-pink .designer-pattern-video { object-position: center -45px; }
 .folder-blue .designer-folder-image { left: 78px; top: 50px; width: 460px; height: 345px; }
 .designer-envelope-front { left: 15.28px; top: 277.8px; z-index: 2; }
 .designer-envelope-thread { left: 293.28px; top: 328.56px; z-index: 3; }
