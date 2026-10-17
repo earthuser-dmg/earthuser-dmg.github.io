@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>磁吸网格 · Interaction Playground</title>
+<link rel="stylesheet" href="style.css">
+<body>
+<main id="stage" aria-label="磁吸网格交互区域">
+  <div class="intro"><span class="eyebrow">INTERACTION LAB / 01</span><h1>让网格，<br>轻轻靠近。</h1><p>移动光标，感受细微的吸引。<br>停下来，让它安静；离开，让它复原。</p></div>
+  <div class="stage-footer"><span>MAGNETIC GRID — p5.js</span><span id="state" role="status">Idle · 规则排列</span></div>
+</main>
+<aside><header><span class="eyebrow">PLAYGROUND</span><h2>磁吸网格</h2><p>微调手感，找到刚好的形变。</p></header><form id="controls"></form>
+<label class="toggle"><input type="checkbox" id="guides">显示吸附范围辅助线</label>
+<div class="actions"><button id="reset" type="button">恢复默认</button><button id="copy" type="button">复制参数</button></div><p class="note" id="note">弹性越高，响应越快；阻尼越高，回弹越克制。立体形态与吸附范围默认不可见。</p><a href="../../">← 返回首页</a></aside>
+<script src="vendor/p5.min.js"></script><script src="sketch.js"></script>
+</body></html>
