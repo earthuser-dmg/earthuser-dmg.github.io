@@ -304,6 +304,7 @@ function initImagePreview() {
         images.forEach(img => {
             const show = () => {
                 hideCorners(true);
+                if (img.closest('[data-project-access] [data-project-comparison]')) return;
                 if (img.closest('.work-image, .play-item')) return; // Keep homepage card and Play hover effects local.
                 hoverImage = img;
                 trackCorners();
